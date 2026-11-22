@@ -49,6 +49,28 @@
   .article-item .meta { color: var(--db-red); }
 
   footer { background: var(--db-blue-deep); color: #dbe4ff; border-top: 4px solid var(--db-orange); }
+  /* ---------- Mise en page avec colonne Fan art ---------- */
+  .sommaire .wrap.layout { max-width: 1140px; display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 48px; align-items: start; }
+  .masthead .wrap, .hero .wrap, footer .wrap { max-width: 1140px; }
+  .fanart-side { position: sticky; top: 20px; background: #fff; border: 2px solid var(--db-orange); border-radius: 14px; padding: 18px 18px 14px; box-shadow: 0 8px 22px rgba(18,53,122,0.12); }
+  .fanart-side h2 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; margin: 0 0 4px; color: var(--db-blue-deep); }
+  .fanart-side .fa-intro { font-size: 0.88rem; color: #5b5a55; margin: 0 0 14px; line-height: 1.45; }
+  .fa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fa-card { margin: 0; }
+  .fa-card a { display: block; aspect-ratio: 1; overflow: hidden; border-radius: 8px; background: var(--db-cream); }
+  .fa-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
+  .fa-card a:hover img { transform: scale(1.06); }
+  .fa-card figcaption { font-size: 0.72rem; line-height: 1.3; margin-top: 5px; color: var(--db-blue-deep); }
+  .fa-card figcaption strong { display: block; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.82rem; }
+  .fa-card figcaption span { color: var(--db-red); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; }
+  .fa-vide { grid-column: 1 / -1; font-size: 0.88rem; background: var(--db-cream); border: 1px dashed var(--db-orange); border-radius: 10px; padding: 14px; margin: 0; color: var(--db-blue-deep); }
+  .fa-btn { display: block; text-align: center; margin-top: 14px; padding: 9px 12px; border-radius: 999px; background: var(--db-orange); color: #fff; text-decoration: none; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: .02em; }
+  .fa-btn:hover { background: var(--db-red); color: #fff; }
+  @media (max-width: 900px) {
+    .sommaire .wrap.layout { grid-template-columns: 1fr; }
+    .fanart-side { position: static; order: -1; }
+    .fa-grid { grid-template-columns: repeat(3, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -58,6 +80,7 @@
     <a href="/" class="brand">Dragonballogie</a>
     <nav>
       <a href="#sommaire">Sommaire</a>
+      <a href="/fanart.html">Fan art</a>
       <a href="#a-propos">À propos</a>
     </nav>
   </div>
@@ -72,7 +95,8 @@
 </section>
 
 <main class="sommaire" id="sommaire">
-  <div class="wrap">
+  <div class="wrap layout">
+  <div class="col-articles">
 
     <p class="titre-section">La méthode — à lire en premier</p>
 
@@ -142,6 +166,15 @@
     </article>
 
   </div>
+
+  <aside class="fanart-side" aria-labelledby="fa-titre">
+    <h2 id="fa-titre">🎨 Fan art</h2>
+    <p class="fa-intro">Les dessins de la communauté. Pour proposer le tien, poste-le dans le salon <b>#fan-art</b> du Discord.</p>
+    <div class="fa-grid" data-fanart="6"></div>
+    <a class="fa-btn" href="/fanart.html">Voir toute la galerie →</a>
+  </aside>
+
+  </div>
 </main>
 
 <footer id="a-propos">
@@ -150,5 +183,6 @@
   </div>
 </footer>
 
+<script src="/fanart.js"></script>
 </body>
 </html>
