@@ -71,6 +71,8 @@
     .fanart-side { position: static; order: -1; }
     .fa-grid { grid-template-columns: repeat(3, 1fr); }
   }
+  .fa-live { display:block; width:100%; border-radius:10px; overflow:hidden; border:1px solid #f1d3a8; }
+  .fa-live-label { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:.06em; text-transform:uppercase; color: var(--db-red); margin: 0 0 8px; }
 </style>
 </head>
 <body>
@@ -169,8 +171,9 @@
 
   <aside class="fanart-side" aria-labelledby="fa-titre">
     <h2 id="fa-titre">🎨 Fan art</h2>
-    <p class="fa-intro">Les dessins de la communauté. Pour proposer le tien, poste-le dans le salon <b>#fan-art</b> du Discord.</p>
-    <div class="fa-grid" data-fanart="6"></div>
+    <p class="fa-intro">Les dessins de la communauté, en direct du salon <b>#fan-art</b> du Discord.</p>
+    <p class="fa-live-label">● En direct du Discord</p>
+    <widgetbot class="fa-live" server="1450574915014234154" channel="1570470471798104195" width="100%" height="460"></widgetbot>
     <a class="fa-btn" href="/fanart.html">Voir toute la galerie →</a>
   </aside>
 
@@ -183,6 +186,6 @@
   </div>
 </footer>
 
-<script src="/fanart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
 </body>
 </html>
