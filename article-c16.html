@@ -7,8 +7,144 @@
 <meta name="description" content="C-16 devait-il être le vrai boss de l'arc Androids ? Une théorie sur le rôle originel de C-16 avant la réécriture qui a mené à Cell.">
 <link rel="stylesheet" href="style.css">
 <script src="/assets/site-nav.js" defer></script>
+<style>
+/* correspondance avec la charte du site pour les marges illustrées */
+.article-body{--c1:var(--rouge);--c2:var(--indigo);--c3:#15803d;--parchment:#e4e2d7;--ink2:var(--ink-soft);--ink3:#77756d;--bg:var(--paper);--rule:rgba(0,0,0,.12)}
+
+/* ══ Marges illustrées ══
+   Fil thématique à gauche (sticky), notes à droite alignées sur leur paragraphe.
+   Au-dessus de 1340px : les deux marges. En dessous : notes en encarts dans le texte, fil en barre. */
+:root{--cloud:#f4b400;--cloudl:#fde68a}
+.marges{position:relative}
+.side{font-size:14.5px;line-height:1.55;color:var(--ink2);margin:6px 0 28px;max-width:520px}
+.side p{font-size:14.5px;margin:0;color:var(--ink2)}
+.side h4{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.25}
+.side .lbl{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;color:var(--c2);margin-bottom:4px}
+.side .card{background:#fff;border:1.5px solid var(--rule);border-radius:12px;padding:16px;box-shadow:0 3px 14px rgba(0,0,0,.05)}
+.side .fiche{background:linear-gradient(170deg,#fff 0 55%,#fff8e1);border:2px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:5px 5px 0 var(--ink);max-width:270px}
+.side .fiche .art{background:radial-gradient(circle at 50% 120%,#bfdbfe,#eff6ff 70%);height:118px;display:grid;place-items:center;border-bottom:2px solid var(--ink)}
+.side .fiche .art svg{width:150px;animation:nuage 4s ease-in-out infinite}
+@keyframes nuage{50%{transform:translateY(-6px)}}
+.side .fiche .bd{padding:12px 16px 14px}
+.side .fiche .nm{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--ink);line-height:1}
+.side .fiche .kj{font-size:13px;color:var(--ink3);margin-bottom:10px}
+.side .fiche dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:13.5px}
+.side .fiche dt{color:var(--ink3)}.side .fiche dd{color:var(--ink);font-weight:600}
+.side .know{border-left:3px solid var(--cloud);padding:2px 0 2px 14px}
+.side .know .big{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--ink);line-height:1.05;margin-bottom:6px}
+.side svg.schema{width:100%;height:auto;display:block;margin:6px 0 8px}
+.side .meter{display:flex;justify-content:space-between;font-size:13.5px;margin-top:8px}
+.side .bar{height:8px;border-radius:4px;background:var(--parchment);overflow:hidden;margin-top:3px}
+.side .bar>div{height:100%;border-radius:4px;background:var(--c2)}
+.side .stamp{display:inline-block;margin-top:12px;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;color:var(--c3);border:2px solid var(--c3);border-radius:6px;padding:2px 10px;transform:rotate(-3deg)}
+.side .slot{border:2px dashed #c9bfae;border-radius:14px;padding:16px;text-align:center;background:repeating-linear-gradient(45deg,transparent 0 10px,rgba(0,0,0,.018) 10px 20px)}
+.side .slot svg{width:64px;opacity:.5;margin-bottom:6px}
+.side .slot p{font-size:13.5px;color:var(--ink3)}
+.side .quote{background:var(--ink);color:#fff;border-radius:14px;padding:18px 18px 16px;position:relative;margin-top:14px}
+.side .quote q{font-family:'Oswald',sans-serif;font-size:21px;font-weight:600;line-height:1.2;display:block;quotes:"« " " »"}
+.side .quote .who{font-size:13px;color:rgba(255,255,255,.6);margin:6px 0 12px}
+.side .quote a{font-size:14px;color:var(--cloudl);text-decoration:none;border-bottom:1px solid rgba(253,230,138,.4)}
+.side .quote svg{position:absolute;right:14px;top:-16px;width:48px}
+/* fil (gauche) */
+.rail{display:none}
+.rail .fil{position:sticky;top:28px}
+.rail .fil-t{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.rail .fil-s{font-size:13px;color:var(--ink3);line-height:1.4;margin-bottom:18px}
+.rail .track{position:relative;height:440px;margin-left:22px}
+.rail .track::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:repeating-linear-gradient(var(--rule) 0 4px,transparent 4px 8px)}
+.rail .tick{position:absolute;left:-3px;width:8px;height:1px;background:var(--ink3);opacity:.35}
+.rail .node{position:absolute;left:-7px;display:flex;align-items:center;gap:14px;transform:translateY(-50%)}
+.rail .node i{width:16px;height:16px;border-radius:50%;background:var(--bg);border:2.5px solid var(--ink3);flex:none;transition:all .3s}
+.rail .node b{font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:400;color:var(--ink3);display:block;line-height:1.2}
+.rail .node span{font-family:'Oswald',sans-serif;font-size:14px;color:var(--ink2);line-height:1.2}
+.rail .node.on i{background:var(--cloud);border-color:#b45309;box-shadow:0 0 0 5px rgba(244,180,0,.22)}
+.rail .node.on span{color:var(--ink);font-weight:600}
+.rail .node.later{opacity:.45}.rail .node.later i{border-style:dashed}
+.rail .puff{position:absolute;left:-22px;width:44px;transform:translateY(-50%);transition:top .7s cubic-bezier(.3,1.4,.5,1)}
+.rail .fil-end{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--ink3);margin:10px 0 0 4px}
+/* barre (petits écrans) */
+.mfil{display:flex;position:sticky;top:0;z-index:5;background:rgba(250,247,242,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);padding:10px 0;gap:6px;align-items:center;margin:-8px 0 24px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--ink3)}
+.mfil i{flex:1;height:6px;border-radius:3px;background:var(--parchment)}
+.mfil i.on{background:var(--cloud)}
+.mfil i.later{background:repeating-linear-gradient(90deg,var(--parchment) 0 4px,transparent 4px 7px)}
+.mfil i.later.on{background:var(--cloud);opacity:.5}
+@media(min-width:1340px){
+  .side{position:absolute;left:calc(100% + 40px);width:250px;margin:6px 0 0}
+  .rail{display:block;position:absolute;right:calc(100% + 40px);top:0;bottom:0;width:200px}
+  .mfil{display:none}
+}
+@media(prefers-reduced-motion:reduce){.side .fiche .art svg{animation:none}.rail .puff,.rail .node i{transition:none}}
+/* fil « liste » (conditions à cocher) */
+.rail[data-mode=liste] .track{height:auto;margin:22px 0 0}
+.rail[data-mode=liste] .track::before{display:none}
+.rail .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;opacity:.45;transition:opacity .3s}
+.rail .item i{width:26px;height:26px;border-radius:50%;border:2px solid var(--ink3);display:grid;place-items:center;font-style:normal;font-family:'Oswald',sans-serif;font-size:13px;color:var(--ink3);flex:none;transition:all .3s}
+.rail .item span{font-family:'Oswald',sans-serif;font-size:15px;color:var(--ink);line-height:1.2;display:block}
+.rail .item b{font-weight:400;font-size:12.5px;color:var(--ink3);line-height:1.35;display:block;margin-top:2px}
+.rail .item.on{opacity:1}
+.rail .item.on i{background:var(--c1);border-color:var(--c1);color:#fff}
+.rail .item.final{margin-top:8px;border-top:1px dashed var(--rule);padding-top:16px}
+.rail .item.final span{font-size:17px;font-weight:700}
+.rail .item.final.on span{color:var(--c1)}
+.rail .item.final.on i{background:var(--ink);border-color:var(--ink)}
+/* badges et petites briques des notes */
+.side .badge{width:56px;height:56px;flex:none}
+.side .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.side .duo>div{background:var(--parchment);border-radius:8px;padding:8px 10px;font-size:13px;line-height:1.4}
+.side .duo b{display:block;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;color:var(--ink3);margin-bottom:4px}
+.side .duo>div.apres{background:#fff3e8;outline:1.5px solid rgba(194,65,12,.3)}
+.side .duo>div.apres b{color:var(--c1)}
+.side ul.coche{list-style:none;margin:8px 0 0;padding:0}
+.side ul.coche li{padding:4px 0 4px 24px;position:relative;font-size:13.5px;line-height:1.4}
+.side ul.coche li::before{content:"✗";position:absolute;left:2px;color:var(--c1);font-weight:700}
+.side ul.coche.oui li::before{content:"✓";color:var(--c3)}
+.side .bulle{position:relative;background:#fff;border:2.5px solid var(--ink);border-radius:50% / 42%;padding:22px 20px;text-align:center;font-family:'Oswald',sans-serif;font-size:16px;line-height:1.25;color:var(--ink)}
+.side .bulle::after{content:"";position:absolute;left:34px;bottom:-16px;border:9px solid transparent;border-top:14px solid var(--ink)}
+.side .tampon{position:absolute;right:-6px;top:-10px;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--c1);border:2.5px solid var(--c1);background:rgba(255,255,255,.85);border-radius:6px;padding:1px 8px;transform:rotate(8deg)}
+.side .big{font-family:'Oswald',sans-serif;font-size:40px;font-weight:700;color:var(--ink);line-height:1}
+.side .head{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.side .fiche.rouge{background:linear-gradient(170deg,#fff 0 55%,#fff1e6)}
+.side .fiche.rouge .art{background:radial-gradient(circle at 50% 120%,#fecaca,#fff7ed 70%)}
+
+.side .pile{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.side .pile div{border-radius:7px;padding:6px 10px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px;background:var(--parchment)}
+.side .pile div.haut{background:#fde7e2;outline:1.5px solid var(--rouge)}
+.side .pile small{color:var(--ink3);font-size:12px}
+.side .jauge .r{font-size:13px;margin-top:10px;display:flex;justify-content:space-between}
+.side .jauge .b{height:14px;border-radius:7px;background:var(--parchment);overflow:hidden;margin-top:4px}
+.side .jauge .b>div{height:100%;border-radius:7px}
+.side .dossier{background:#f7f1dc;border:1.5px solid #c9b98a;border-radius:4px 14px 4px 4px;padding:16px;position:relative;box-shadow:3px 3px 0 #c9b98a}
+.side .dossier .onglet{position:absolute;top:-14px;left:12px;background:#f7f1dc;border:1.5px solid #c9b98a;border-bottom:0;border-radius:6px 6px 0 0;padding:1px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7a6a3a}
+.side .dossier dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13.5px;margin:6px 0 0}
+.side .dossier dt{color:var(--ink3)}.side .dossier dd{margin:0;font-weight:600;color:var(--ink)}
+.side .mini-frise{list-style:none;margin:8px 0 0;padding:0 0 0 14px;border-left:2px dashed var(--rule)}
+.side .mini-frise li{position:relative;padding:4px 0 8px;font-size:13.5px;line-height:1.35}
+.side .mini-frise li::before{content:"";position:absolute;left:-21px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2.5px solid var(--indigo)}
+.side .mini-frise li.toei::before{background:var(--rouge);border-color:var(--rouge)}
+.side .mini-frise b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;color:var(--ink3)}
+.rail .item b{font-size:12px}
+.rail[data-mode=liste] .track{margin-top:14px}
+.rail .item{padding:6px 0}
+.rail .item i{width:24px;height:24px;font-size:12px}
+.rail .item span{font-size:14px}
+.article-body .side ul,.article-body .side ol{list-style:none;padding:0;margin:8px 0 0}
+.article-body .side li{margin:0}
+.article-body .side ol.chaine li{background:var(--parchment);border-radius:8px;padding:7px 10px;font-size:13.5px;line-height:1.35;position:relative;margin-bottom:18px}
+.article-body .side ol.chaine li:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);color:var(--rouge);font-weight:700;font-size:13px}
+.article-body .side ol.chaine li:last-child{background:#fde7e2;outline:1.5px solid var(--rouge);margin-bottom:0}
+.article-body .side ul.mini-frise{padding-left:14px;border-left:2px dashed var(--rule)}
+.article-body .side ul.coche li{padding:4px 0 4px 24px;position:relative;font-size:13.5px;line-height:1.4}
+</style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="kinto" viewBox="0 0 120 64">
+    <path d="M18 56c-9 0-14-6-14-12s5-12 13-12c1-10 10-17 20-15 4-9 13-14 23-12 9 2 15 9 16 17 3-2 7-3 11-2 9 2 14 10 12 18 6 2 9 7 8 12-1 5-5 6-9 6z" fill="#f4b400" stroke="#1c1917" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M26 34c2-6 8-9 14-8M58 20c5-2 11 0 14 4M86 34c4-1 8 1 10 4" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M100 52c6 0 10-2 12-6" fill="none" stroke="#1c1917" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
 
 <header class="masthead">
   <div class="wrap">
@@ -65,7 +201,30 @@
       <img src="files/images/c16-hero.jpg" alt="Illustration de C-16 avec le titre : C-16 devait-il être le vrai boss de l'arc Androids ?">
     </figure>
 
-    <h2>1. La Toei avait des spoilers du manga à venir</h2>
+    <section class="marges">
+    <aside class="rail" data-mode="liste" aria-label="Le faisceau d'indices" data-etapes='[["La Toei a des spoilers","§1"],["Le film 7 et l&#39;absorption","§2"],["Des boss réécrits","§3"],["C-16, nouveau danger","§4"],["Trunks n&#39;en parle pas","§5"],["Gero panique","§6"],["Un C-16 sans fonction","§7"],["Il connaît l&#39;absorption","§8"],["Un adieu de l&#39;auteur","§9"],["Le fantôme d&#39;un ancien arc","conclusion"]]'>
+      <div class="fil">
+        <div class="fil-t">Le faisceau d'indices</div>
+        <div class="fil-s">Chaque section ajoute une pièce au dossier.</div>
+        <div class="track"></div>
+      </div>
+    </aside>
+    <div class="mfil" aria-hidden="true"><span>Indices</span><i data-s="1"></i><i data-s="2"></i><i data-s="3"></i><i data-s="4"></i><i data-s="5"></i><i data-s="6"></i><i data-s="7"></i><i data-s="8"></i><i data-s="9"></i><i data-s="10"></i><span>verdict</span></div>
+
+    <h2 data-step="1">1. La Toei avait des spoilers du manga à venir</h2>
+    <aside class="side">
+      <div class="dossier">
+        <span class="onglet">DOSSIER C-16</span>
+        <dl>
+          <dt>Créateur</dt><dd>Dr Gero</dd>
+          <dt>Selon Gero</dt><dd>« causerait notre perte »</dd>
+          <dt>À l'écran</dt><dd>placide, presque doux</dd>
+          <dt>Fin</dt><dd>détruit par Cell, devant Gohan</dd>
+        </dl>
+        <span class="stamp" style="color:var(--rouge);border-color:var(--rouge)">Dossier non classé</span>
+      </div>
+    </aside>
+
     <p>Le meilleur indice est probablement le fameux « proto
     <span class="term" data-term-id="ssj" data-def="Dans le folklore Saiyan évoqué très tôt par Vegeta, un guerrier légendaire censé apparaître tous les mille ans et dont la puissance dépasse l'imagination. Cette légende deviendra la transformation Super Saiyan.">Super Saiyan</span>
     » visible dans le film 4.</p>
@@ -81,6 +240,18 @@
     <figure>
       <img src="files/images/c16-toei-spoilers.jpg" alt="Visuel résumant l'hypothèse : la Toei recevait des indications à l'avance sur le Super Saiyan.">
     </figure>
+
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">La Toei en avance</div>
+        <ul class="mini-frise">
+          <li><b>janvier 1991 · manga</b>Première évocation du Super Saiyan légendaire</li>
+          <li class="toei"><b>19 mars 1991 · Toei</b>Le film 4 et son « proto Super Saiyan »</li>
+          <li><b>août 1991 · manga</b>Le Super Saiyan apparaît enfin</li>
+        </ul>
+        <div class="big" style="font-size:26px;margin-top:6px">≈ 5 mois d'avance</div>
+      </div>
+    </aside>
 
     <p>
       Ce film sort le 19 mars 1991. Or, dans le manga, la toute première
@@ -101,7 +272,7 @@
     </p>
     <p>Et si cela a été vrai pour le Super Saiyan, alors il est raisonnable de penser que cela a pu être vrai aussi pour l'arc des cyborgs.</p>
 
-    <h2>2. Le film 7 pourrait conserver la trace d'un scénario abandonné</h2>
+    <h2 data-step="2">2. Le film 7 pourrait conserver la trace d'un scénario abandonné</h2>
 
     <figure>
       <img src="files/images/c16-film7.jpg" alt="Visuel présentant l'hypothèse du film 7 : Super C-13 absorbant les autres androïdes comme reflet d'un scénario abandonné.">
@@ -110,6 +281,18 @@
     <figure>
       <img src="files/images/fiche-film7.jpg" alt="Fiche du film 7 : date de sortie le 11 juillet 1992, mise en regard avec les chapitres du manga contemporains.">
     </figure>
+
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Film 7 contre manga</div>
+        <div class="duo">
+          <div><b>Film 7 · juillet 1992</b>Super C-13 absorbe les deux autres androïdes.</div>
+          <div class="apres"><b>Manga · plus tard</b>Cell absorbe C-17 et C-18.</div>
+        </div>
+        <p style="margin-top:8px">Au moment du film, dans le manga, C-16 vient à peine d'apparaître.</p>
+        <span class="stamp" style="color:var(--rouge);border-color:var(--rouge)">Coïncidence ?</span>
+      </div>
+    </aside>
 
     <p>C'est ici que commence vraiment ma théorie.</p>
     <p>
@@ -128,7 +311,7 @@
     <p>Sauf qu'au moment où cette information circule, le personnage concerné n'est pas encore Cell, mais C-16.</p>
     <p>Autrement dit, Super C-13 serait peut-être le reflet « OAV » d'un état intermédiaire du scénario du manga, dans lequel C-16 devait absorber C-17 et C-18.</p>
 
-    <h2>3. Le contexte éditorial rend cette hypothèse crédible</h2>
+    <h2 data-step="3">3. Le contexte éditorial rend cette hypothèse crédible</h2>
     <p>Cette théorie ne sort pas de nulle part. Elle prend sens lorsqu'on replace l'arc dans son contexte de production.</p>
     <p>On sait que les antagonistes ont changé plusieurs fois, parce que les premiers choix de Toriyama ne satisfaisaient pas son entourage éditorial. L'arc avance donc par corrections successives, dans l'urgence.</p>
     <p>Toriyama recolle les morceaux à mesure qu'on lui demande de modifier ses plans, et il le fait avec un talent remarquable. Le résultat final est si fluide que beaucoup de lecteurs ne voient même pas les réécritures. Pourtant, certaines traces demeurent.</p>
@@ -138,30 +321,65 @@
       <img src="files/images/trunks-c19-c20.jpg" alt="Trunks évoque C-19 et C-20 comme des cyborgs meurtriers qui ont tué leur créateur — une réplique qui contredit ce que l'arc montrera ensuite.">
     </figure>
 
+    <figure>
+      <img src="files/images/soldats-ruban-rouge.jpg" alt="C-19 et le Dr Gero (C-20) dans l'anime : les deux cyborgs que Trunks annonçait comme les ennemis du futur.">
+    </figure>
+
+    <aside class="side">
+      <div class="quote">
+        <q>C-19 et C-20 étaient de véritables machines à tuer…</q>
+        <div class="who">Trunks</div>
+        <p style="color:rgba(255,255,255,.8)">Un vestige : l'arc montrera tout autre chose.</p>
+      </div>
+    </aside>
+
     <p>Cette réplique entre en contradiction avec ce que l'arc montrera ensuite. Elle trahit un état antérieur du scénario, où C-19 et C-20 occupaient initialement la place des ennemis principaux.</p>
     <p>Puis, ces deux-là sont écartés. Toriyama crée alors C-17 et C-18, qui constituent déjà une amélioration évidente. Mais selon moi, cela ne s'arrête pas là.</p>
 
-    <h2>4. C-16 aurait été conçu comme le nouveau « vrai » danger</h2>
+    <h2 data-step="4">4. C-16 aurait été conçu comme le nouveau « vrai » danger</h2>
     <p>C'est ici que tout s'assemble.</p>
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Schéma</div>
+        <h4>Le fauteuil du boss final</h4>
+        <ol class="chaine">
+          <li>C-19 et C-20</li>
+          <li>C-17 et C-18</li>
+          <li><b>C-16 ?</b> l'hypothèse de l'article</li>
+          <li>Cell</li>
+        </ol>
+        <p style="margin-top:8px">Chaque remplaçant est plus inquiétant que le précédent.</p>
+      </div>
+    </aside>
+
     <p>Après l'abandon de C-19 et C-20 comme antagonistes centraux, Toriyama aurait conçu un troisième cyborg, plus inquiétant, destiné à reprendre la place de boss final : C-16.</p>
 
     <figure>
       <img src="files/images/chapitres-350-358.jpg" alt="Liste des chapitres 350 à 358, correspondant à l'introduction de C-16 et aux premières semaines de l'arc.">
     </figure>
 
+    <figure>
+      <img src="files/images/chapitre351-cover.jpg" alt="Couverture du chapitre 351 : « Le mystérieux C-16 ».">
+    </figure>
+
     <p>Et c'est probablement à ce moment-là qu'un embryon de scénario ou de design est envoyé à la Toei, qui le recycle à sa manière dans le film 7 sous la forme de Super C-13.</p>
     <p>Mais ensuite, nouveau problème : C-16 lui-même n'aurait pas satisfait pleinement les exigences éditoriales. Il aurait alors fallu aller encore plus loin et créer un véritable « monstre », plus immédiatement marquant, plus « à la Freezer » : Cell.</p>
     <p>Ce basculement semble s'être joué très vite, en l'espace de quelques semaines.</p>
 
-    <h2>5. Pourquoi je pense que le C-16 initial a été évacué du scénario</h2>
+    <h2 data-step="5">5. Pourquoi je pense que le C-16 initial a été évacué du scénario</h2>
     <p>Le premier indice est simple : Trunks ne parle jamais d'un troisième cyborg majeur dans sa version du futur.</p>
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Lexique</div>
+        <h4>Le rasoir d'Ockham</h4>
+        <p>Entre deux explications, préférer la plus simple. Une « distorsion temporelle » demande d'inventer des règles ; une réécriture du scénario n'en demande aucune.</p>
+      </div>
+    </aside>
+
     <p>Et non, je ne pense pas qu'il faille invoquer une quelconque « distorsion temporelle » compliquée pour expliquer ça. La réponse la plus simple est souvent la meilleure : au moment où Trunks est introduit, C-16 n'occupe pas encore cette place dans le scénario.</p>
     <p>Il a d'abord été pensé comme un remplaçant possible de C-17 et C-18, puis il a lui-même été remplacé par Cell.</p>
     <p>Même logique, selon moi, pour la différence de puissance entre les cyborgs du présent et ceux du futur : ce n'est pas forcément une histoire de timeline magique. C'est surtout le signe que Toriyama a réévalué la menace à la hausse, parce qu'avec trois Super Saiyans potentiels et Piccolo fusionné, les cyborgs « version initiale » n'auraient plus suffi.</p>
 
-    <figure>
-      <img src="files/images/c16-question-goku.jpg" alt="C-16 indique que l'un des guerriers Z est à peu près au même niveau que C-17 et C-18, mais qu'il n'a pas d'information sur eux dans sa base de données.">
-    </figure>
 
     <p>
       Ce détail est révélateur : C-16 évalue les guerriers Z avec la précision
@@ -170,7 +388,7 @@
       l'arc ne soit entièrement stabilisé.
     </p>
 
-    <h2>6. Les déclarations du Dr Gero n'ont de sens que si C-16 était censé être catastrophique</h2>
+    <h2 data-step="6">6. Les déclarations du Dr Gero n'ont de sens que si C-16 était censé être catastrophique</h2>
     <p>Lorsqu'il s'apprête à réveiller C-17 et C-18,
     <span class="term" data-term-id="gero" data-def="Le Dr Gero (aussi appelé C-20) est le savant en chef de l'ex-armée du Ruban Rouge, créateur des androïdes C-17, C-18, C-19 et C-16, dans le but de se venger de Son Goku.">Dr Gero</span>
     explique très clairement qu'il aurait préféré éviter de les activer, mais qu'il n'a plus le choix. Puis il insiste : leur défaut a peut-être été corrigé. Jusque-là, tout va bien.</p>
@@ -188,39 +406,59 @@
     </figure>
 
     <figure>
-      <img src="files/images/gero-implant-controle.jpg" alt="Gero mentionne l'implant de contrôle intégré à C-17 et C-18, censé lui permettre de les désactiver si nécessaire.">
+      <img src="files/images/capsules-c17-c18.jpg" alt="Les générateurs d'énergie infinie, vus dans l'anime.">
     </figure>
 
     <figure>
-      <img src="files/images/gero-desactiver-rates.jpg" alt="Gero explique qu'il peut désactiver les cyborgs ratés — mais ce discours change radicalement quand on arrive à C-16.">
+      <img src="files/images/gero-implant-controle.jpg" alt="Dans l'anime, la puce de contrôle que Gero croit pouvoir utiliser contre ses créations.">
     </figure>
+
+    <figure>
+      <img src="files/images/gero-desactiver-rates.jpg" alt="Gero : « Je finirai bien par vous désactiver ! Vous êtes ratés, comme C-16 ! » C-17 : « Ça causerait notre perte ? »">
+    </figure>
+
+
+
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Le ton de Gero</div>
+        <div class="jauge">
+          <div class="r"><span>C-17 et C-18</span><b>confiant</b></div><div class="b"><div style="width:80%;background:var(--indigo)"></div></div>
+          <div class="r"><span>C-16</span><b>paniqué</b></div><div class="b"><div style="width:100%;background:var(--rouge)"></div></div>
+        </div>
+        <div class="duo" style="margin-top:12px">
+          <div><b>Annoncé</b>Un raté catastrophique, « notre perte à tous ».</div>
+          <div class="apres"><b>Montré</b>Un géant calme qui aime la nature.</div>
+        </div>
+      </div>
+    </aside>
 
     <p>Mais ensuite, quand il est question de C-16, le discours change radicalement. Gero devient presque paniqué. Il supplie qu'on ne l'active pas. Il affirme que cela causerait leur perte. Il le présente comme un prototype raté, à ne réveiller sous aucun prétexte.</p>
 
     <figure>
-      <img src="files/images/gero-bouton-panique.jpg" alt="Gero panique face à la capsule de C-16 et supplie qu'on ne l'active pas, affirmant que cela causerait leur perte à tous.">
+      <img src="files/images/gero-bouton-panique.jpg" alt="Gero, paniqué : « N'appuie pas sur ce bouton ! »">
     </figure>
 
     <figure>
-      <img src="files/images/c18-defend-c16.jpg" alt="C-18 prend la défense de la capsule de C-16 et s'oppose à Gero qui veut empêcher son réveil.">
+      <img src="files/images/gero-active-pas-c15.jpg" alt="Gero : « Ne l'activez pas ! Ça causerait notre perte, pour vous comme pour moi ! » C-18 : « Tu les as tous jetés aux ordures jusqu'à C-15. Pourquoi l'as-tu gardé si longtemps, s'il est raté ? »">
     </figure>
 
     <figure>
-      <img src="files/images/chapitre351-cover.jpg" alt="Couverture du chapitre 351 : « Le mystérieux C-16 », premier chapitre dédié au personnage après son réveil.">
+      <img src="files/images/c18-defend-c16.jpg" alt="Gero à C-18 : « N'y touche pas ! Je te défends de le réveiller ! »">
     </figure>
+
+
+
 
     <p>Le problème, c'est que le C-16 que nous découvrons ensuite ne correspond pas du tout à cette mise en garde.</p>
     <p>Il n'est ni incontrôlable, ni sadique, ni destructeur par nature. Il est au contraire placide, taciturne, détaché, presque doux. Ce décalage est énorme.</p>
     <p>La solution la plus logique, selon moi, est que le C-16 dont parle Gero n'est pas exactement celui que l'arc finira par utiliser. Ou plus précisément : le rôle prévu pour C-16 a changé entre ces dialogues et la suite de l'histoire.</p>
     <p>Autrement dit, ces scènes conservent la trace d'une version antérieure du personnage, dans laquelle C-16 représentait un danger absolu.</p>
 
-    <h2>7. Tout indique qu'il devait avoir une autre fonction narrative</h2>
+    <h2 data-step="7">7. Tout indique qu'il devait avoir une autre fonction narrative</h2>
     <p>Une fois activé, C-16 donne une impression étrange : celle d'un personnage important, mais dont Toriyama ne sait plus tout à fait quoi faire.</p>
     <p>C-17 s'interroge lui-même sur sa nature. Il trouve curieux que Gero ait utilisé une base humaine pour eux, alors qu'il était capable de construire un cyborg entièrement mécanique.</p>
 
-    <figure>
-      <img src="files/images/capsules-c17-c18.jpg" alt="Les capsules de C-17 et C-18 dans le laboratoire de Gero, contexte du réveil des androïdes.">
-    </figure>
 
     <figure>
       <img src="files/images/c17-salue-gero.jpg" alt="C-17, après son réveil, adopte une attitude provocatrice et détachée envers le Dr Gero, ignorant son autorité.">
@@ -230,11 +468,36 @@
       <img src="files/images/c17-doute-base-humaine.jpg" alt="C-17 s'interroge sur le fait que Gero les ait construits sur une base humaine, alors qu'il était capable de créer un cyborg entièrement mécanique comme C-16.">
     </figure>
 
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Sa fonction, à l'écran</div>
+        <ul class="coche oui"><li>tuer Son Goku, sa seule mission</li></ul>
+        <ul class="coche" style="margin-top:0"><li>menacer le monde</li><li>obéir à Gero</li><li>peser sur l'intrigue avant Cell</li></ul>
+        <p style="margin-top:8px">Un personnage important… dont l'histoire ne sait plus quoi faire.</p>
+      </div>
+    </aside>
+
     <p>Puis C-16 apparaît, sort de sa capsule, parle peu, reste à distance, refuse de tuer Son Goku immédiatement, et devient progressivement une sorte d'allié passif du groupe.</p>
 
-    <h2>8. Même son savoir sur l'absorption de Cell sonne comme un vestige de scénario</h2>
+    <figure>
+      <img src="files/images/c16-question-goku.jpg" alt="C-17 à C-16 : « Ça doit faire des années que t'es pas sorti du labo… Le docteur Gero avait peur de te mettre en service. Il disait que ça causerait notre perte à tous. »">
+    </figure>
+
+    <figure>
+      <img src="files/images/c16-portrait-capsule.jpg" alt="C-16, et sa capsule transportée par C-17 et C-18.">
+    </figure>
+
+    <figure>
+      <img src="files/images/c16-ce-sera-sans-moi.jpg" alt="C-16 : « Je te l'ai dit, pour tuer Son Goku. » Rien d'autre ne l'intéresse : « Ce sera sans moi. »">
+    </figure>
+
+    <h2 data-step="8">8. Même son savoir sur l'absorption de Cell sonne comme un vestige de scénario</h2>
     <p>Un autre détail me frappe.</p>
     <p>C-16 comprend très vite la nature de la menace Cell. Il parle de l'absorption de C-17 et C-18 avec une pertinence qui peut donner l'impression qu'il est connecté, conceptuellement, à cette idée.</p>
+
+    <figure>
+      <img src="files/images/cell-absorbera-c17-c18.jpg" alt="Cell annonce qu'il va absorber C-17 et C-18 pour évoluer en Corps Parfait.">
+    </figure>
 
     <figure>
       <img src="files/images/c16-protege-c17.jpg" alt="C-16 avertit C-17 que l'ennemi est beaucoup trop fort, et lui ordonne de fuir. C-17 refuse et répond qu'il va faire taire Cell.">
@@ -244,9 +507,6 @@
       <img src="files/images/c16-enfuis-toi-c18.jpg" alt="C-16 explique à C-18 que si elle et C-17 se font absorber, plus personne ne pourra arrêter Cell. Il lui demande de fuir, au moins elle.">
     </figure>
 
-    <figure>
-      <img src="files/images/cell-absorbera-c17-c18.jpg" alt="Cell annonce qu'il va absorber C-17 et C-18 pour évoluer en Corps Parfait. C-16, C-17 et C-18 réagissent à cette révélation.">
-    </figure>
 
     <p>
       C-16 ne subit pas cette menace passivement. Il l'anticipe, il la nomme,
@@ -266,30 +526,55 @@
       dans l'arc — trop douce, trop humaine pour un cyborg censé être le
       prototype d'une arme absolue.
     </p>
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Schéma</div>
+        <h4>Un rôle transféré</h4>
+        <div class="pile">
+          <div><span>C-16</span><small>rôle prévu : absorber C-17 et C-18</small></div>
+          <div style="justify-content:center;background:none;color:var(--rouge);font-weight:700">↓</div>
+          <div class="haut"><span>Cell</span><small>rôle final : il les absorbe</small></div>
+        </div>
+      </div>
+    </aside>
+
     <p>Dans la logique de ma théorie, cela ressemble à un reste de fonction narrative transférée : ce qui devait peut-être être son propre destin scénaristique devient finalement celui de Cell.</p>
     <p>Cell récupérerait alors non seulement la place de boss final, mais aussi la mécanique dramatique initialement envisagée pour C-16.</p>
 
-    <h2>9. La mort de C-16 ressemble à un adieu de l'auteur à un personnage abandonné</h2>
+    <h2 data-step="9">9. La mort de C-16 ressemble à un adieu de l'auteur à un personnage abandonné</h2>
     <p>Et c'est probablement là que la chose devient la plus visible.</p>
     <p>La scène finale de C-16 est très forte, mais aussi profondément étrange.</p>
     <p>Il parle à Gohan de paix, de nature, de colère retenue, de violence nécessaire face à certains adversaires. Puis sa mort sert de déclencheur à la transformation en Super Saiyan 2.</p>
 
-    <figure>
-      <img src="files/images/c16-portrait-capsule.jpg" alt="La tête de C-16, encore vivante après que Cell l'a arrachée, dit à Gohan que ce n'est pas un crime de se battre pour une juste cause, et lui demande de protéger la nature et les animaux.">
-    </figure>
+
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">La question qui gêne</div>
+        <h4>Pourquoi lui ?</h4>
+        <div class="meter"><span>Scènes partagées avant sa mort</span><b>presque aucune</b></div>
+        <div class="meter"><span>Effet sur Gohan</span><b>la transformation</b></div>
+        <p style="margin-top:8px">Une sortie noble… pour un personnage sans histoire commune avec Gohan.</p>
+      </div>
+    </aside>
 
     <p>Le problème, c'est qu'il n'existe pratiquement aucune relation affective construite entre Gohan et C-16.</p>
     <p>Pourquoi est-ce sa mort, et non le massacre des autres, qui fait basculer Gohan ?</p>
     <p>Sur le plan émotionnel pur, la scène fonctionne. Sur le plan strictement narratif, elle est plus discutable.</p>
 
-    <figure>
-      <img src="files/images/c16-ce-sera-sans-moi.jpg" alt="Cell écrase la tête de C-16 sous son pied. Gohan, ensanglanté, est au bord de la transformation. Cell lui dit de s'occuper de ses affaires.">
-    </figure>
 
     <p>Et c'est justement pour cela qu'elle me semble révélatrice : Toriyama cherche à donner à C-16 un poids terminal, une sortie noble, une fonction décisive, comme pour compenser le fait qu'il s'agit d'un personnage dont le destin initial a été abandonné en cours de route.</p>
     <p>Autrement dit, la mort de C-16 ressemble à un hommage tardif rendu par l'auteur à une ancienne version du scénario.</p>
 
-    <h2>Conclusion : C-16 est peut-être le fantôme d'un ancien arc</h2>
+    <h2 data-step="10">Conclusion : C-16 est peut-être le fantôme d'un ancien arc</h2>
+    <aside class="side">
+      <div class="card">
+        <div class="lbl">Les 3 cercles de lecture</div>
+        <h4>Une théorie du 3e cercle</h4>
+        <p>Ici, on ne cherche pas la logique de l'histoire, mais celle de la production : la Toei, l'éditeur, les réécritures dans l'urgence.</p>
+        <a href="/Les-3-cercles-de-lectures/article-3cercles_7.html" style="font-size:13.5px;color:var(--indigo)">Relire les 3 cercles →</a>
+      </div>
+    </aside>
+
     <p>Je pense qu'il existe un faisceau d'indices extrêmement troublant :</p>
     <p>
       la Toei semblait avoir accès à des éléments anticipés du manga ; le
@@ -315,6 +600,7 @@
       entrevoir, entre les cases, les fantômes de ses versions abandonnées.
     </p>
 
+    </section>
   </div>
 </main>
 
@@ -325,5 +611,67 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* ══ Marges illustrées : fil qui suit la lecture + notes qui ne se chevauchent pas ══
+   Fil « frise » : data-etapes = [[tome, "libellé", 1 si à venir], ...]  (tomes 1 → 17)
+   Fil « liste » : data-mode="liste", data-etapes = [["titre", "sous-titre"], ...]
+   Chaque élément du texte portant data-step="n" allume l'étape n quand il passe au milieu de l'écran. */
+(function(){
+  var LARGE = window.matchMedia('(min-width:1340px)');
+
+  document.querySelectorAll('.marges').forEach(function(sec){
+    var rail = sec.querySelector('.rail'), barre = sec.querySelector('.mfil');
+    if(!rail) return;
+    var etapes = JSON.parse(rail.dataset.etapes), liste = rail.dataset.mode === 'liste';
+    var track = rail.querySelector('.track'), puff = rail.querySelector('.puff'), html = '';
+    var T0 = 1, T1 = 17, y = function(t){ return ((t - T0) / (T1 - T0) * 100) + '%'; };
+    if(liste){
+      html = etapes.map(function(e, k){
+        return '<div class="item' + (k === etapes.length - 1 ? ' final' : '') + '" data-k="' + (k + 1) + '"><i>' + (k + 1) + '</i><div><span>' + e[0] + '</span>' + (e[1] ? '<b>' + e[1] + '</b>' : '') + '</div></div>';
+      }).join('');
+    } else {
+      for(var t = T0; t <= T1; t++) html += '<i class="tick" style="top:' + y(t) + '"></i>';
+      etapes.forEach(function(e, k){
+        html += '<div class="node' + (e[2] ? ' later' : '') + '" data-k="' + (k + 1) + '" style="top:' + y(e[0]) + '"><i></i><div><b>tome ' + e[0] + '</b><span>' + e[1] + '</span></div></div>';
+      });
+    }
+    track.insertAdjacentHTML('beforeend', html);
+    var nodes = track.querySelectorAll('[data-k]'), segs = barre ? barre.querySelectorAll('i') : [];
+    function etape(k){
+      nodes.forEach(function(n){ var d = +n.dataset.k; n.classList.toggle('on', d === k || (d < k && !n.classList.contains('later'))); });
+      segs.forEach(function(s){ s.classList.toggle('on', +s.dataset.s <= k); });
+      if(puff && !liste) puff.style.top = y(etapes[k - 1][0]);
+    }
+    var pas = Array.prototype.map.call(sec.querySelectorAll('[data-step]'), function(el){ return +el.dataset.step; });
+    etape(pas.length ? Math.min.apply(null, pas) : 1);
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) etape(+e.target.dataset.step); });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    sec.querySelectorAll('[data-step]').forEach(function(el){ obs.observe(el); });
+  });
+
+  var notes = Array.prototype.slice.call(document.querySelectorAll('.marges .side'));
+  function placer(){
+    var bas = -1e9;
+    notes.forEach(function(n){
+      /* grand écran : la note précède son ancre (alignée en face) ; petit écran : elle la suit */
+      var ancre = n._ancre || (n._ancre = n.nextElementSibling);
+      if(LARGE.matches){ if(n.nextElementSibling !== ancre) ancre.before(n); }
+      else if(ancre.nextElementSibling !== n) ancre.after(n);
+      n.style.transform = '';
+      if(!LARGE.matches) return;
+      var haut = n.getBoundingClientRect().top + window.scrollY;
+      if(n.closest('.marges') !== (notes._sec || null)){ notes._sec = n.closest('.marges'); bas = -1e9; }
+      var decal = Math.max(0, bas + 24 - haut);
+      if(decal) n.style.transform = 'translateY(' + decal + 'px)';
+      bas = haut + decal + n.offsetHeight;
+    });
+    notes._sec = null;
+  }
+  var ro = new ResizeObserver(placer); ro.observe(document.body);
+  window.addEventListener('load', placer);
+  placer();
+})();
+</script>
 </body>
 </html>
