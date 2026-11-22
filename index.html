@@ -6,6 +6,50 @@
 <title>Dragonballogie — analyses de Dragon Ball</title>
 <meta name="description" content="Analyses longues et sourcées du manga Dragon Ball : méthode de lecture, retcons, coulisses de production et hiérarchies de puissance — par Dje.">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Palette Dragon Ball — page d'accueil uniquement */
+  :root {
+    --db-orange: #f5821f;
+    --db-gold: #ffc531;
+    --db-blue: #12357a;
+    --db-blue-deep: #0a1f4d;
+    --db-red: #d7261e;
+    --db-cream: #fff6e6;
+  }
+  body { background: var(--db-cream); }
+
+  .masthead { background: var(--db-orange); border-bottom: 4px solid var(--db-blue); }
+  .masthead .brand { color: var(--db-blue-deep); }
+  .masthead nav a { color: var(--db-blue-deep); font-weight: 500; }
+  .masthead nav a:hover { color: #fff; }
+
+  .hero {
+    background:
+      radial-gradient(circle at 85% 32%, #ffe08a 0, #ffc531 40px, #f5821f 85px, rgba(245,130,31,0.35) 100px, transparent 200px),
+      linear-gradient(160deg, var(--db-blue) 0%, var(--db-blue-deep) 100%);
+    color: #fff;
+    border-bottom: 4px solid var(--db-orange);
+  }
+  .hero::before { background-image: radial-gradient(#fff 1px, transparent 1.4px); opacity: 0.08; }
+  .hero .eyebrow { color: var(--db-gold); }
+  .hero h1 { color: #fff; }
+  .hero p.lede { color: #dbe4ff; }
+
+  .sommaire .titre-section { color: var(--db-blue); border-bottom: 2px solid var(--db-orange); font-weight: 500; }
+  .article-item { border-bottom: 1px solid #f1d3a8; }
+  .article-item .num {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.6rem; height: 2.6rem; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffe08a 0, var(--db-gold) 25%, var(--db-orange) 75%);
+    box-shadow: inset -3px -4px 6px rgba(160,60,0,0.35), 0 3px 8px rgba(160,60,0,0.25);
+    color: var(--db-red); font-size: 1.05rem;
+  }
+  .article-item h2 a { color: var(--db-blue-deep); }
+  .article-item h2 a:hover { color: var(--db-orange); }
+  .article-item .meta { color: var(--db-red); }
+
+  footer { background: var(--db-blue-deep); color: #dbe4ff; border-top: 4px solid var(--db-orange); }
+</style>
 </head>
 <body>
 
