@@ -73,6 +73,12 @@
   }
   .fa-live { display:block; width:100%; border-radius:10px; overflow:hidden; border:1px solid #f1d3a8; }
   .fa-live-label { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:.06em; text-transform:uppercase; color: var(--db-red); margin: 0 0 8px; }
+  /* ---------- Bannière Cursus ---------- */
+  .cursus-banner { padding: 36px 0 8px; }
+  .cursus-banner .wrap { max-width: 1140px; }
+  .cursus-banner a { display:block; border-radius: 16px; overflow: hidden; box-shadow: 0 14px 34px rgba(10,31,77,0.28); border: 3px solid var(--db-orange); transition: transform .2s ease, box-shadow .2s ease; }
+  .cursus-banner a:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(10,31,77,0.36); }
+  .cursus-banner img { display:block; width:100%; height:auto; }
 </style>
 </head>
 <body>
@@ -81,6 +87,7 @@
   <div class="wrap">
     <a href="/" class="brand">Dragonballogie</a>
     <nav>
+      <a href="/cursus.html">Cursus</a>
       <a href="#sommaire">Sommaire</a>
       <a href="/fanart.html">Fan art</a>
       <a href="#a-propos">À propos</a>
@@ -93,6 +100,14 @@
     <p class="eyebrow">La dragonballologie</p>
     <h1>Relire Dragon Ball pour de vrai.</h1>
     <p class="lede">Des analyses longues et sourcées du manga : ce que Toriyama montre, ce qu'il a improvisé, et ce que les fans ont inventé — écrites par Dje.</p>
+  </div>
+</section>
+
+<section class="cursus-banner" aria-label="Le cursus Dragonballogie">
+  <div class="wrap">
+    <a href="/cursus.html">
+      <img src="/cursus/cursus-modules.jpg" alt="Dragonballogie — Commence ton cursus : déceler les retcons, comprendre les timelines, étudier les registres narratifs, analyser les intentions de l'auteur, maîtriser la continuité, décoder la puissance des personnages." onerror="this.closest('.cursus-banner').style.display='none'">
+    </a>
   </div>
 </section>
 
