@@ -85,6 +85,13 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
 @media (prefers-reduced-motion:reduce){.sn-haut,.sn-carte,.sn-prog{transition:none}}
 @media print{.sn-bar,.sn-haut,.sn-suite{display:none!important}}
 `;
+  /* icône d'appli et installation sur l'écran d'accueil, sur toutes les pages */
+  [['manifest','/manifest.webmanifest'],['icon','/favicon.png'],['apple-touch-icon','/assets/apple-touch-icon.png']].forEach(function(l){
+    if (!document.querySelector('link[rel="' + l[0] + '"]')){ var e = document.createElement('link'); e.rel = l[0]; e.href = l[1]; document.head.appendChild(e); }
+  });
+  if (!document.querySelector('meta[name=theme-color]')){ var tc = document.createElement('meta'); tc.name = 'theme-color'; tc.content = '#0a1f4d'; document.head.appendChild(tc); }
+  if ('serviceWorker' in navigator) { try { navigator.serviceWorker.register('/sw.js'); } catch(e){} }
+
   var st = document.createElement('style'); st.id = 'sn-style'; st.textContent = css;
   document.head.appendChild(st);
 
