@@ -196,4 +196,27 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     else if (pied) pied.parentNode.insertBefore(bloc, pied);
     else document.body.insertBefore(bloc, haut);
   }
+  /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
+  function compter(nom, titre){
+    var essais = 0;
+    (function go(){
+      if (window.goatcounter && window.goatcounter.count){ window.goatcounter.count({ path: nom + ':' + location.pathname, title: titre + ' — ' + document.title, event: true }); }
+      else if (essais++ < 20) setTimeout(go, 500);
+    })();
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="discord.gg"]');
+    if (a) compter('clic-discord', 'Clic Discord');
+  });
+  if (page === 'article'){
+    var debut = Date.now(), dejaLu = false;
+    function verifierFin(){
+      if (dejaLu) return;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var part = max > 0 ? window.scrollY / max : 1;
+      /* fin atteinte = 85 % de la page défilée, après au moins 90 secondes sur la page */
+      if (part >= 0.85 && Date.now() - debut > 90000){ dejaLu = true; compter('lecture-complete', 'Lecture complète'); }
+    }
+    window.addEventListener('scroll', verifierFin, { passive: true });
+  }
 })();
