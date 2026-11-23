@@ -10,6 +10,9 @@
 (function(){
   if (window.__dbNav) return; window.__dbNav = true;
 
+  /* Lien d'invitation Discord (à remplacer ici seulement) */
+  var DISCORD = 'https://discord.gg/JxMAuBbpQ';
+
   var ARTICLES = [
     { g:'La méthode',   n:'01', t:'Les 3 cercles de lecture',                u:'/Les-3-cercles-de-lectures/article-3cercles_7.html', p:'/les-3-cercles-de-lectures/' },
     { g:'La méthode',   n:'02', t:"Qu'est-ce qu'un retcon ?",               u:'/Article-Retcon/article-retcon.html',              p:'/article-retcon/' },
@@ -43,6 +46,9 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
 .sn-lien svg,.sn-btn svg{width:17px;height:17px;flex:none}
 .sn-lien:hover,.sn-btn:hover,.sn-btn[aria-expanded=true]{background:rgba(255,255,255,.12)}
 .sn-lien.actif{background:var(--sn-orange);color:#fff}
+.sn-lien.sn-discord{background:#5865F2;margin-left:6px}
+.sn-lien.sn-discord:hover{background:#4752c4}
+.sn-num svg{width:18px;height:18px}
 .sn-lien:focus-visible,.sn-btn:focus-visible,.sn-haut:focus-visible,.sn-panneau a:focus-visible{outline:3px solid var(--sn-or);outline-offset:2px}
 .sn-panneau{position:absolute;top:calc(var(--sn-h) + 3px);right:18px;width:min(420px,calc(100vw - 24px));background:#fff;border:3px solid var(--sn-orange);border-top:0;border-radius:0 0 16px 16px;box-shadow:0 18px 40px rgba(10,31,77,.3);padding:10px 12px 14px;display:none;max-height:calc(100vh - var(--sn-h) - 20px);overflow:auto}
 .sn-panneau.ouvert{display:block}
@@ -103,6 +109,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     chapeau:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>',
     pinceau:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg>',
     fleche:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
+    discord:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.3 5.3A16.8 16.8 0 0015.2 4l-.5 1a15.6 15.6 0 00-5.4 0l-.5-1a16.8 16.8 0 00-4.1 1.3C2.1 9.2 1.4 13 1.7 16.7a17 17 0 005.1 2.6l1.1-1.7a10.9 10.9 0 01-1.7-.8l.4-.3a12 12 0 0010.8 0l.4.3c-.5.3-1.1.6-1.7.8l1.1 1.7a17 17 0 005.1-2.6c.4-4.3-.7-8-3-11.4zM8.7 14.4c-1 0-1.9-.9-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1zm6.6 0c-1 0-1.9-.9-1.9-2.1s.8-2.1 1.9-2.1 1.9 1 1.9 2.1-.8 2.1-1.9 2.1z"/></svg>',
     menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
     haut:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>'
   };
@@ -127,6 +134,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<button class="sn-btn" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.livre + 'Articles' + IC.fleche + '</button>' +
         '<a class="sn-lien' + (page === 'cursus' ? ' actif' : '') + '" href="/cursus.html">' + IC.chapeau + 'Cursus</a>' +
         '<a class="sn-lien' + (page === 'fanart' ? ' actif' : '') + '" href="/fanart.html">' + IC.pinceau + 'Fan art</a>' +
+        '<a class="sn-lien sn-discord" href="' + DISCORD + '" target="_blank" rel="noopener">' + IC.discord + 'Discord</a>' +
       '</nav>' +
       '<button class="sn-btn sn-mob" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.menu + 'Menu</button>' +
     '</div>' +
@@ -135,6 +143,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<a class="sn-art" href="/"><span class="sn-num">' + '⌂' + '</span><span>Accueil</span></a>' +
         '<a class="sn-art" href="/cursus.html"><span class="sn-num">✦</span><span>Cursus</span></a>' +
         '<a class="sn-art" href="/fanart.html"><span class="sn-num">✎</span><span>Fan art</span></a>' +
+        '<a class="sn-art" href="' + DISCORD + '" target="_blank" rel="noopener"><span class="sn-num" style="background:#5865F2;color:#fff;box-shadow:none">' + IC.discord + '</span><span>Rejoindre le Discord</span></a>' +
       '</div>' +
       listeHTML +
     '</div>' +
