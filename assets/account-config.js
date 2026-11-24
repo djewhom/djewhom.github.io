@@ -1,3 +1,3 @@
-// Clé PUBLIQUE Supabase uniquement. Jamais de clé secrète, service_role ou mot de passe.
-export const SUPABASE_URL = '';
-export const SUPABASE_PUBLISHABLE_KEY = '';
+// Clé publique exclusivement. Les données sont protégées par RLS.
+export const SUPABASE_URL = "https://dhauhmkeietngvmnkfqp.supabase.co";
+export const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_q2EtUylUWIZyaa0BRjRGGA_e59jbps_";
