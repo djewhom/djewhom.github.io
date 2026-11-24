@@ -47,8 +47,8 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
 .sn-lien svg,.sn-btn svg{width:17px;height:17px;flex:none}
 .sn-lien:hover,.sn-btn:hover,.sn-btn[aria-expanded=true]{background:rgba(255,255,255,.12)}
 .sn-lien.actif{background:var(--sn-orange);color:#fff}
-.sn-lien.sn-discord{background:#5865F2;margin-left:6px}
-.sn-lien.sn-discord:hover{background:#4752c4}
+.sn-lien.sn-discord{background:transparent;border:1px solid #7186b7;margin-left:6px;font-size:14px}
+.sn-lien.sn-discord:hover{background:#4752c4}.sn-account-mobile{display:none}.sn-lien.sn-academy-link{background:#ffc531;color:#0a1f4d;font-weight:600}.sn-lien.sn-academy-link:hover{background:#ffe08a}
 .sn-num svg{width:18px;height:18px}
 .sn-lien:focus-visible,.sn-btn:focus-visible,.sn-haut:focus-visible,.sn-panneau a:focus-visible{outline:3px solid var(--sn-or);outline-offset:2px}
 .sn-panneau{position:absolute;top:calc(var(--sn-h) + 3px);right:18px;width:min(420px,calc(100vw - 24px));background:#fff;border:3px solid var(--sn-orange);border-top:0;border-radius:0 0 16px 16px;box-shadow:0 18px 40px rgba(10,31,77,.3);padding:10px 12px 14px;display:none;max-height:calc(100vh - var(--sn-h) - 20px);overflow:auto}
@@ -79,9 +79,11 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
 /* les marges illustrées et barres collantes des articles passent sous la barre */
 .rail .fil{top:calc(var(--sn-h) + 22px)!important}
 .mfil{top:calc(var(--sn-h) + 3px)!important}
-@media (max-width:760px){
+@media (max-width:1050px){
   .sn-liens{display:none}
-  .sn-mob{display:inline-flex}
+  .sn-mob{display:inline-flex;padding:0 9px}
+  .sn-account-mobile{display:inline-flex;font-size:14px;padding:0 9px;color:#ffc531;text-decoration:none;white-space:nowrap}
+  .sn-in{padding:0 10px;gap:4px}
   .sn-extra{display:block}
   .sn-logo{font-size:17px}
   .sn-panneau{left:8px;right:8px;width:auto}
@@ -89,6 +91,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   .sn-carte.suiv{text-align:left}
   .sn-haut{right:14px;bottom:16px;width:50px;height:50px}
 }
+@media (max-width:360px){.sn-logo{font-size:14px;gap:4px}.sn-logo svg{width:23px;height:23px}.sn-account-mobile{font-size:12px;padding:0 4px}.sn-btn.sn-mob{font-size:13px;padding:0 5px}}
 @media (prefers-reduced-motion:reduce){.sn-haut,.sn-carte,.sn-prog{transition:none}}
 @media print{.sn-bar,.sn-haut,.sn-suite{display:none!important}}
 `;
@@ -135,9 +138,10 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<button class="sn-btn" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.livre + 'Articles' + IC.fleche + '</button>' +
         '<a class="sn-lien' + (page === 'cursus' ? ' actif' : '') + '" href="/cursus.html">' + IC.chapeau + 'Cursus</a>' +
         '<a class="sn-lien' + (page === 'fanart' ? ' actif' : '') + '" href="/fanart.html">' + IC.pinceau + 'Fan art</a>' +
-        '<a class="sn-lien" href="/compte.html">Mon académie</a>' +
+        '<a class="sn-lien sn-academy-link" href="/compte.html">Mon académie</a>' +
         '<a class="sn-lien sn-discord" href="' + DISCORD + '" target="_blank" rel="noopener">' + IC.discord + 'Discord</a>' +
       '</nav>' +
+      '<a class="sn-account-mobile" href="/compte.html">Académie</a>' +
       '<button class="sn-btn sn-mob" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.menu + 'Menu</button>' +
     '</div>' +
     '<div class="sn-panneau" id="sn-panneau">' +
@@ -201,14 +205,17 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   }
   /* ---------- commentaires et activité communautaire ---------- */
   if (page === 'article' || accueil) {
+    var activitySlot = accueil && document.getElementById('db-activity');
     var communityRoot = document.createElement('section');
-    if (page === 'article') bloc.parentNode.insertBefore(communityRoot, bloc);
+    if (page === 'article') {communityRoot.id='commentaires';bloc.parentNode.insertBefore(communityRoot, bloc);}
+    else if(activitySlot){activitySlot.replaceChildren(communityRoot);}
     else { var anchor = document.querySelector('.dbz-cta, body > footer'); if(anchor) anchor.parentNode.insertBefore(communityRoot,anchor); else document.body.appendChild(communityRoot); }
     import('/assets/comments.js?v=5').then(function(m){
       if(page === 'article') return m.mountComments(communityRoot,ARTICLES[ici]);
       return m.mountActivity(communityRoot,ARTICLES);
     }).catch(function(){communityRoot.textContent='Espace communautaire temporairement indisponible.';});
   }
+  if(page === 'article') import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){
     var essais = 0;
