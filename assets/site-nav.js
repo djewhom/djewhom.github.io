@@ -210,7 +210,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     if (page === 'article') {communityRoot.id='commentaires';bloc.parentNode.insertBefore(communityRoot, bloc);}
     else if(activitySlot){activitySlot.replaceChildren(communityRoot);}
     else { var anchor = document.querySelector('.dbz-cta, body > footer'); if(anchor) anchor.parentNode.insertBefore(communityRoot,anchor); else document.body.appendChild(communityRoot); }
-    import('/assets/comments.js?v=5').then(function(m){
+    import('/assets/comments.js?v=6').then(function(m){
       if(page === 'article') return m.mountComments(communityRoot,ARTICLES[ici]);
       return m.mountActivity(communityRoot,ARTICLES);
     }).catch(function(){communityRoot.textContent='Espace communautaire temporairement indisponible.';});
