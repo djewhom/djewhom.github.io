@@ -29,6 +29,7 @@
   ARTICLES.forEach(function(a, i){ if (chemin.indexOf(a.p) === 0) ici = i; });
   var page = accueil ? 'accueil' : chemin.indexOf('/cursus') === 0 ? 'cursus' : chemin.indexOf('/fanart') === 0 ? 'fanart' : ici >= 0 ? 'article' : 'autre';
 
+  window.__dbArticles = ARTICLES.map(function(a){return {n:a.n,t:a.t,u:a.u};});
   /* ---------- styles ---------- */
   var css = `
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
@@ -197,6 +198,16 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     if (conteneur) conteneur.parentNode.insertBefore(bloc, conteneur.nextSibling);
     else if (pied) pied.parentNode.insertBefore(bloc, pied);
     else document.body.insertBefore(bloc, haut);
+  }
+  /* ---------- commentaires et activité communautaire ---------- */
+  if (page === 'article' || accueil) {
+    var communityRoot = document.createElement('section');
+    if (page === 'article') bloc.parentNode.insertBefore(communityRoot, bloc);
+    else { var anchor = document.querySelector('.dbz-cta, body > footer'); if(anchor) anchor.parentNode.insertBefore(communityRoot,anchor); else document.body.appendChild(communityRoot); }
+    import('/assets/comments.js?v=5').then(function(m){
+      if(page === 'article') return m.mountComments(communityRoot,ARTICLES[ici]);
+      return m.mountActivity(communityRoot,ARTICLES);
+    }).catch(function(){communityRoot.textContent='Espace communautaire temporairement indisponible.';});
   }
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){
