@@ -38,7 +38,7 @@ export async function mountComments(root,article){
 }
 export async function mountActivity(root,articles){
  styles();root.classList.add('dbc');root.append(node('p','LA COMMUNAUTÉ','dbc-kicker'),node('h2','La vie de Dragonballogie'));
- const note=status(root);try{const client=await connect(false);const {data,count,error}=await client.from('academy_comments').select(fields,{count:'exact'}).order('published_at',{ascending:false}).order('id',{ascending:false}).limit(5);if(error)throw error;note.textContent=(count||0)+' commentaire(s) publié(s) sur le site';const byKey=new Map(articles.map(a=>[a.n,a]));
+ const note=status(root);try{const client=await connect(false);const {data,count,error}=await client.from('academy_comments').select(fields,{count:'exact'}).order('published_at',{ascending:false}).order('id',{ascending:false}).limit(5);if(error)throw error;note.textContent=(count||0)+' commentaire(s) publié(s) sur le site';const live=document.getElementById('db-live-count');if(live)live.textContent=(count||0)>0?count+' commentaire'+(count===1?' publié':'s publiés')+' · Voir les échanges':'Les premiers débats n’attendent que vous !';const byKey=new Map(articles.map(a=>[a.n,a]));
  if(!data.length)root.append(node('p','Les premiers débats n’attendent que vous !','dbc-muted'));
  for(const c of data){const a=byKey.get(c.article_key);if(!a)continue;const item=node('div',undefined,'dbc-comment');item.append(node('strong',c.author_name),node('span',' · '+date(c.published_at),'dbc-muted'),node('p',c.body.length>180?c.body.slice(0,180)+'…':c.body,'dbc-copy'),link(a.t+' →',a.u+'#comment-'+c.id));root.append(item);}
  root.append(link('Rejoindre l’académie','/compte.html'));

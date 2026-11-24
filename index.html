@@ -5,215 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dragonballogie — analyses de Dragon Ball</title>
 <meta name="description" content="Analyses longues et sourcées du manga Dragon Ball : méthode de lecture, retcons, coulisses de production et hiérarchies de puissance — par Dje.">
-<link rel="stylesheet" href="style.css">
-<style>
-  /* Palette Dragon Ball — page d'accueil uniquement */
-  :root {
-    --db-orange: #f5821f;
-    --db-gold: #ffc531;
-    --db-blue: #12357a;
-    --db-blue-deep: #0a1f4d;
-    --db-red: #d7261e;
-    --db-cream: #fff6e6;
-  }
-  body { background: var(--db-cream); }
-
-  .masthead { background: var(--db-orange); border-bottom: 4px solid var(--db-blue); }
-  .masthead .brand { color: var(--db-blue-deep); }
-  .masthead nav a { color: var(--db-blue-deep); font-weight: 500; }
-  .masthead nav a:hover { color: #fff; }
-
-  .hero {
-    background:
-      radial-gradient(circle at 85% 32%, #ffe08a 0, #ffc531 40px, #f5821f 85px, rgba(245,130,31,0.35) 100px, transparent 200px),
-      linear-gradient(160deg, var(--db-blue) 0%, var(--db-blue-deep) 100%);
-    color: #fff;
-    border-bottom: 4px solid var(--db-orange);
-  }
-  .hero::before { background-image: radial-gradient(#fff 1px, transparent 1.4px); opacity: 0.08; }
-  .hero .eyebrow { color: var(--db-gold); }
-  .hero h1 { color: #fff; }
-  .hero p.lede { color: #dbe4ff; }
-
-  .sommaire .titre-section { color: var(--db-blue); border-bottom: 2px solid var(--db-orange); font-weight: 500; }
-  .article-item { border-bottom: 1px solid #f1d3a8; }
-  .article-item .num {
-    display: flex; align-items: center; justify-content: center;
-    width: 2.6rem; height: 2.6rem; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #ffe08a 0, var(--db-gold) 25%, var(--db-orange) 75%);
-    box-shadow: inset -3px -4px 6px rgba(160,60,0,0.35), 0 3px 8px rgba(160,60,0,0.25);
-    color: var(--db-red); font-size: 1.05rem;
-  }
-  .article-item h2 a { color: var(--db-blue-deep); }
-  .article-item h2 a:hover { color: var(--db-orange); }
-  .article-item .meta { color: var(--db-red); }
-
-  footer { background: var(--db-blue-deep); color: #dbe4ff; border-top: 4px solid var(--db-orange); }
-  /* ---------- Mise en page avec colonne Fan art ---------- */
-  .sommaire .wrap.layout { max-width: 1140px; display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 48px; align-items: start; }
-  .masthead .wrap, .hero .wrap, footer .wrap { max-width: 1140px; }
-  .fanart-side { position: sticky; top: 20px; background: #fff; border: 2px solid var(--db-orange); border-radius: 14px; padding: 18px 18px 14px; box-shadow: 0 8px 22px rgba(18,53,122,0.12); }
-  .fanart-side h2 { font-family: 'Oswald', sans-serif; font-size: 1.3rem; margin: 0 0 4px; color: var(--db-blue-deep); }
-  .fanart-side .fa-intro { font-size: 0.88rem; color: #5b5a55; margin: 0 0 14px; line-height: 1.45; }
-  .fa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .fa-card { margin: 0; }
-  .fa-card a { display: block; aspect-ratio: 1; overflow: hidden; border-radius: 8px; background: var(--db-cream); }
-  .fa-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
-  .fa-card a:hover img { transform: scale(1.06); }
-  .fa-card figcaption { font-size: 0.72rem; line-height: 1.3; margin-top: 5px; color: var(--db-blue-deep); }
-  .fa-card figcaption strong { display: block; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.82rem; }
-  .fa-card figcaption span { color: var(--db-red); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; }
-  .fa-vide { grid-column: 1 / -1; font-size: 0.88rem; background: var(--db-cream); border: 1px dashed var(--db-orange); border-radius: 10px; padding: 14px; margin: 0; color: var(--db-blue-deep); }
-  .fa-btn { display: block; text-align: center; margin-top: 14px; padding: 9px 12px; border-radius: 999px; background: var(--db-orange); color: #fff; text-decoration: none; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: .02em; }
-  .fa-btn:hover { background: var(--db-red); color: #fff; }
-  @media (max-width: 900px) {
-    .sommaire .wrap.layout { grid-template-columns: 1fr; }
-    .fanart-side { position: static; order: -1; }
-    .fa-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  .fa-live { display:block; width:100%; border-radius:10px; overflow:hidden; border:1px solid #f1d3a8; }
-  .fa-live-label { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:.06em; text-transform:uppercase; color: var(--db-red); margin: 0 0 8px; }
-  /* ---------- Bannière Cursus ---------- */
-  .cursus-banner { padding: 36px 0 8px; }
-  .cursus-banner .wrap { max-width: 1140px; }
-  .cursus-banner a { display:block; border-radius: 16px; overflow: hidden; box-shadow: 0 14px 34px rgba(10,31,77,0.28); border: 3px solid var(--db-orange); transition: transform .2s ease, box-shadow .2s ease; }
-  .cursus-banner a:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(10,31,77,0.36); }
-  .cursus-banner img { display:block; width:100%; height:auto; }
-</style>
-<script src="/assets/site-nav.js" defer></script>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/assets/magazine.css?v=6">
+<script src="/assets/site-nav.js?v=6" defer></script>
 <script data-goatcounter="https://dragonballogy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#0a1f4d">
+<script type="module" src="/assets/magazine.js?v=6"></script>
 </head>
-<body>
-
-<header class="masthead">
-  <div class="wrap">
-    <a href="/" class="brand">Dragonballogie</a>
-    <nav>
-      <a href="/cursus.html">Cursus</a>
-      <a href="#sommaire">Sommaire</a>
-      <a href="/fanart.html">Fan art</a>
-      <a href="#a-propos">À propos</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">La dragonballologie</p>
-    <h1>Relire Dragon Ball pour de vrai.</h1>
-    <p class="lede">Des analyses longues et sourcées du manga : ce que Toriyama montre, ce qu'il a improvisé, et ce que les fans ont inventé — écrites par Dje.</p>
-  </div>
+<body class="db-magazine">
+<a class="db-skip" href="#sommaire">Aller aux articles</a>
+<header class="masthead"><div class="wrap"><a href="/" class="brand">Dragonballogie</a><nav><a href="#sommaire">Articles</a><a href="/cursus.html">Cursus</a><a href="/compte.html">Mon académie</a></nav></div></header>
+<section class="db-cover" aria-labelledby="db-cover-title"><div class="db-shell db-cover-grid">
+  <div class="db-cover-copy"><p class="db-eyebrow"><span></span> Revue d'analyse &amp; académie</p><h1 id="db-cover-title">Relire Dragon Ball<br><em>pour de vrai.</em></h1><p>Des analyses longues et sourcées du manga : ce que Toriyama montre, ce qu'il a improvisé, et ce que les fans ont inventé.</p><div class="db-cover-actions"><a class="db-primary" href="#sommaire">Explorer les dossiers <span aria-hidden="true">↓</span></a><a class="db-outline" href="/cursus.html">Découvrir le cursus</a></div><p class="db-signature">Un projet indépendant de Dje · Mihawkis</p></div>
+  <a href="/Article-Retcon/article-retcon.html" class="db-feature" aria-label="Dossier à découvrir : Qu'est-ce qu'un retcon ?"><img src="/Article-Retcon/images/illu-ouverture-tisserand.jpg" alt="" fetchpriority="high" decoding="async"><div class="db-feature-caption"><span class="db-eyebrow">Dossier à découvrir</span><strong>Qu'est-ce qu'un retcon ?</strong><span>Le tisserand à l'œuvre <b aria-hidden="true">↗</b></span></div></a>
+</div></section>
+<div class="db-shell db-entry-grid" aria-label="Choisir son parcours">
+<a class="db-entry" href="#sommaire"><span class="db-entry-symbol">01</span><span><strong>Lire &amp; comprendre</strong><small>Les dossiers de fond</small></span><b aria-hidden="true">→</b></a>
+<a class="db-entry" href="/cursus.html"><span class="db-entry-symbol">02</span><span><strong>Apprendre</strong><small>Les six modules du cursus</small></span><b aria-hidden="true">→</b></a>
+<a class="db-entry" href="/compte.html"><span class="db-entry-symbol">03</span><span><strong>Participer</strong><small>Ton espace de dragonballogue</small></span><b aria-hidden="true">→</b></a>
+</div>
+<div class="db-shell"><a class="db-community-strip" href="#db-activity"><span><i aria-hidden="true"></i> La communauté</span><span id="db-live-count">Découvrir les dernières discussions</span><b aria-hidden="true">→</b></a></div>
+<main class="db-shell db-main" id="sommaire">
+<section class="db-library" aria-labelledby="db-library-title">
+<div class="db-section-head"><div><p class="db-eyebrow">La bibliothèque</p><h2 id="db-library-title">Les dossiers</h2></div><span class="db-count" id="db-count">7 articles</span></div>
+<div id="db-resume" hidden></div>
+<div class="db-library-controls" id="db-library-controls" hidden><label class="db-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="db-query" type="search" placeholder="Rechercher un article…" aria-label="Rechercher un article"></label><div class="db-filters" role="group" aria-label="Filtrer les dossiers"><button type="button" data-filter="all" aria-pressed="true">Tout</button><button type="button" data-filter="method" aria-pressed="false">Méthode</button><button type="button" data-filter="freezer" aria-pressed="false">Freezer</button><button type="button" data-filter="cell" aria-pressed="false">Cell</button><button type="button" data-filter="buu" aria-pressed="false">Boo</button><button type="button" data-filter="saved" aria-pressed="false">Mes favoris</button></div></div>
+<p id="db-result" class="db-result" aria-live="polite" hidden></p>
+<div class="db-group" data-group="method"><div class="db-group-head"><span>01 / La méthode</span><h3>Les fondations</h3><p>Deux lectures pour comprendre l'approche Dragonballogie.</p></div><div class="db-cards db-foundations"><article class="db-article" data-article="01" data-category="method"><a class="db-art-image db-art-cercles" href="/Les-3-cercles-de-lectures/article-3cercles_7.html" tabindex="-1" aria-hidden="true"><span class="db-rings" aria-hidden="true"><i></i><i></i><i></i></span><span class="db-art-number">01</span></a><div class="db-art-content"><p class="db-tag">Fondamentaux</p><h3><a href="/Les-3-cercles-de-lectures/article-3cercles_7.html">Les 3 cercles de lecture</a></h3><p class="db-description">Cohérence interne, intention de l'auteur, contexte de production : les trois niveaux auxquels on peut lire un récit, et pourquoi les confondre fausse tous les débats.</p><div class="db-art-footer"><a class="db-read" href="/Les-3-cercles-de-lectures/article-3cercles_7.html">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="01" aria-label="Ajouter Les 3 cercles de lecture à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article><article class="db-article" data-article="02" data-category="method"><a class="db-art-image db-art-retcon" href="/Article-Retcon/article-retcon.html" tabindex="-1" aria-hidden="true"><img src="/Article-Retcon/images/illu-ouverture-tisserand.jpg" alt="" loading="lazy" decoding="async"><span class="db-art-number">02</span></a><div class="db-art-content"><p class="db-tag">Théorie narrative</p><h3><a href="/Article-Retcon/article-retcon.html">Qu'est-ce qu'un retcon ?</a></h3><p class="db-description">Il y a deux façons de lire Dragon Ball : la première ne voit qu'un plan, la seconde voit le tisserand au travail. Du Kinto'un au Nyoibō, comment Toriyama réécrit son propre récit.</p><div class="db-art-footer"><a class="db-read" href="/Article-Retcon/article-retcon.html">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="02" aria-label="Ajouter Qu'est-ce qu'un retcon ? à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article></div></div>
+<div class="db-group" data-group="analysis"><div class="db-group-head"><span>02 / Les analyses</span><h3>Au cœur du manga</h3><p>Relire les arcs, les personnages et la construction du récit.</p></div><div class="db-cards"><article class="db-article" data-article="03" data-category="freezer"><a class="db-art-image db-art-freezer" href="/La-vraie-fin-de-DB/" tabindex="-1" aria-hidden="true"><span class="db-orbit" aria-hidden="true"><i></i></span><span class="db-art-number">03</span></a><div class="db-art-content"><p class="db-tag">Arc Freezer</p><h3><a href="/La-vraie-fin-de-DB/">Dragon Ball devait s'arrêter à Freezer</a></h3><p class="db-description">De Raditz à l'explosion de Namek, chaque choix narratif pointe vers la même conclusion : la saga Freezer était la fin prévue. La suite est un rattrapage.</p><div class="db-art-footer"><a class="db-read" href="/La-vraie-fin-de-DB/">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="03" aria-label="Ajouter Dragon Ball devait s'arrêter à Freezer à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article><article class="db-article" data-article="04" data-category="cell"><a class="db-art-image db-art-cell" href="/article-c16.html" tabindex="-1" aria-hidden="true"><img src="/files/images/c16-hero.jpg" alt="" loading="lazy" decoding="async"><span class="db-art-number">04</span></a><div class="db-art-content"><p class="db-tag">Coulisses de production</p><h3><a href="/article-c16.html">L'énigme C-16</a></h3><p class="db-description">C-16 devait-il être le vrai boss de l'arc Androids ? Une théorie sur son rôle originel avant la réécriture qui a mené à Cell.</p><div class="db-art-footer"><a class="db-read" href="/article-c16.html">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="04" aria-label="Ajouter L'énigme C-16 à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article><article class="db-article" data-article="05" data-category="buu"><a class="db-art-image db-art-buu" href="/Goku-SSJ3-vs-gros-Buu/" tabindex="-1" aria-hidden="true"><img src="/Goku-SSJ3-vs-gros-Buu/images/01-domination-initiale.jpg" alt="" loading="lazy" decoding="async"><span class="db-art-number">05</span></a><div class="db-art-content"><p class="db-tag">Arc Boo</p><h3><a href="/Goku-SSJ3-vs-gros-Buu/">Goku SSJ3 vs Gros Buu — l'égalité qui n'en était pas une</a></h3><p class="db-description">Un combat souvent lu comme équilibré. En réalité, une mise en scène d'intention qui cache un déséquilibre profond — et qu'un retcon mal calibré vient fragiliser.</p><div class="db-art-footer"><a class="db-read" href="/Goku-SSJ3-vs-gros-Buu/">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="05" aria-label="Ajouter Goku SSJ3 vs Gros Buu — l'égalité qui n'en était pas une à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article><article class="db-article" data-article="06" data-category="buu"><a class="db-art-image db-art-ultra" href="/Pourquoi-Ultra-Buu-existe-t-il-/" tabindex="-1" aria-hidden="true"><img src="/Pourquoi-Ultra-Buu-existe-t-il-/ultra_buu_1.png" alt="" loading="lazy" decoding="async"><span class="db-art-number">06</span></a><div class="db-art-content"><p class="db-tag">Arc Boo</p><h3><a href="/Pourquoi-Ultra-Buu-existe-t-il-/">Pourquoi Ultra Buu existe-t-il ?</a></h3><p class="db-description">Quelques cases à peine, et pourtant la clé de lecture de tout l'arc : le chaînon manquant entre Super Buu et Kid Buu.</p><div class="db-art-footer"><a class="db-read" href="/Pourquoi-Ultra-Buu-existe-t-il-/">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="06" aria-label="Ajouter Pourquoi Ultra Buu existe-t-il ? à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article><article class="db-article" data-article="07" data-category="buu"><a class="db-art-image db-art-kid" href="/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html" tabindex="-1" aria-hidden="true"><img src="/Super-Buu-vs-Kid-Buu/Super%20buu%20vs%20kid%20buu/panel-combat-ssj3.jpg" alt="" loading="lazy" decoding="async"><span class="db-art-number">07</span></a><div class="db-art-content"><p class="db-tag">Arc Boo</p><h3><a href="/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html">Super Buu vs Kid Buu : ce que le manga établit</a></h3><p class="db-description">« Kid Buu est le plus puissant » : une intuition tenace. Ce que le manga montre dit l'inverse — Super Buu le dépasse largement.</p><div class="db-art-footer"><a class="db-read" href="/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html">Lire le dossier <span aria-hidden="true">↗</span></a><button class="db-save" type="button" data-save="07" aria-label="Ajouter Super Buu vs Kid Buu : ce que le manga établit à mes favoris" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>Favori</span></button></div></div></article></div></div>
+<div id="db-empty" class="db-empty" hidden><strong>Aucun dossier trouvé.</strong><p>Essaie une autre recherche ou un autre filtre.</p><button id="db-reset" type="button">Réinitialiser les filtres</button></div>
+<p class="db-local-note">Les favoris et la reprise de lecture sont enregistrés uniquement dans ce navigateur.</p>
 </section>
-
-<section class="cursus-banner" aria-label="Le cursus Dragonballogie">
-  <div class="wrap">
-    <a href="/cursus.html">
-      <img src="/cursus/ChatGPT_Image_10_sept._2026_13_59_35.png" alt="Dragonballogie — Commence ton cursus : déceler les retcons, comprendre les timelines, étudier les registres narratifs, analyser les intentions de l'auteur, maîtriser la continuité, décoder la puissance des personnages." onerror="this.closest('.cursus-banner').style.display='none'">
-    </a>
-  </div>
-</section>
-
-<main class="sommaire" id="sommaire">
-  <div class="wrap layout">
-  <div class="col-articles">
-
-    <p class="titre-section">La méthode — à lire en premier</p>
-
-    <article class="article-item">
-      <span class="num">01</span>
-      <div>
-        <h2><a href="/Les-3-cercles-de-lectures/article-3cercles_7.html">Les 3 cercles de lecture</a></h2>
-        <p class="extrait">Cohérence interne, intention de l'auteur, contexte de production : les trois niveaux auxquels on peut lire un récit, et pourquoi les confondre fausse tous les débats.</p>
-        <p class="meta">Méthode · Fondamentaux</p>
-      </div>
-    </article>
-
-    <article class="article-item">
-      <span class="num">02</span>
-      <div>
-        <h2><a href="/Article-Retcon/article-retcon.html">Qu'est-ce qu'un retcon ?</a></h2>
-        <p class="extrait">Il y a deux façons de lire Dragon Ball : la première ne voit qu'un plan, la seconde voit le tisserand au travail. Du Kinto'un au Nyoibō, comment Toriyama réécrit son propre récit.</p>
-        <p class="meta">Méthode · Théorie narrative</p>
-      </div>
-    </article>
-
-    <p class="titre-section" style="margin-top:48px">Les analyses</p>
-
-    <article class="article-item">
-      <span class="num">03</span>
-      <div>
-        <h2><a href="/La-vraie-fin-de-DB/">Dragon Ball devait s'arrêter à Freezer</a></h2>
-        <p class="extrait">De Raditz à l'explosion de Namek, chaque choix narratif pointe vers la même conclusion : la saga Freezer était la fin prévue. La suite est un rattrapage.</p>
-        <p class="meta">Analyse · Arc Freezer</p>
-      </div>
-    </article>
-
-    <article class="article-item">
-      <span class="num">04</span>
-      <div>
-        <h2><a href="/article-c16.html">L'énigme C-16</a></h2>
-        <p class="extrait">C-16 devait-il être le vrai boss de l'arc Androids ? Une théorie sur son rôle originel avant la réécriture qui a mené à Cell.</p>
-        <p class="meta">Analyse · Coulisses de production</p>
-      </div>
-    </article>
-
-    <article class="article-item">
-      <span class="num">05</span>
-      <div>
-        <h2><a href="/Goku-SSJ3-vs-gros-Buu/">Goku SSJ3 vs Gros Buu — l'égalité qui n'en était pas une</a></h2>
-        <p class="extrait">Un combat souvent lu comme équilibré. En réalité, une mise en scène d'intention qui cache un déséquilibre profond — et qu'un retcon mal calibré vient fragiliser.</p>
-        <p class="meta">Analyse · Arc Boo</p>
-      </div>
-    </article>
-
-    <article class="article-item">
-      <span class="num">06</span>
-      <div>
-        <h2><a href="/Pourquoi-Ultra-Buu-existe-t-il-/">Pourquoi Ultra Buu existe-t-il ?</a></h2>
-        <p class="extrait">Quelques cases à peine, et pourtant la clé de lecture de tout l'arc : le chaînon manquant entre Super Buu et Kid Buu.</p>
-        <p class="meta">Analyse · Arc Boo</p>
-      </div>
-    </article>
-
-    <article class="article-item">
-      <span class="num">07</span>
-      <div>
-        <h2><a href="/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html">Super Buu vs Kid Buu : ce que le manga établit</a></h2>
-        <p class="extrait">« Kid Buu est le plus puissant » : une intuition tenace. Ce que le manga montre dit l'inverse — Super Buu le dépasse largement.</p>
-        <p class="meta">Analyse · Arc Boo</p>
-      </div>
-    </article>
-
-  </div>
-
-  <aside class="fanart-side" aria-labelledby="fa-titre">
-    <h2 id="fa-titre">🎨 Fan art</h2>
-    <p class="fa-intro">Les dessins de la communauté, en direct du salon <b>#fan-art</b> du Discord.</p>
-    <p class="fa-live-label">● En direct du Discord</p>
-    <widgetbot class="fa-live" server="1450574915014234154" channel="1570470471798104195" width="100%" height="460"></widgetbot>
-    <a class="fa-btn" href="/fanart.html">Voir toute la galerie →</a>
-  </aside>
-
-  </div>
+<aside class="db-sidebar" aria-label="Académie et communauté">
+<section class="db-side-card db-academy"><p class="db-eyebrow">L'académie</p><h2>Deviens dragonballogue.</h2><p>Six modules pour apprendre à analyser Dragon Ball. Découvre le cursus, puis crée ton espace personnel.</p><a href="/cursus.html" class="db-primary">Découvrir le cursus →</a><a href="/compte.html" class="db-side-link">Mon académie →</a></section>
+<div id="db-activity" class="db-activity-slot"><p class="db-side-placeholder">Chargement des dernières discussions…</p></div>
+<section class="db-side-card db-fanart"><p class="db-eyebrow">La galerie</p><h2>Fan art</h2><p>Les créations de la communauté Dragonballogie.</p><a class="db-side-link" href="/fanart.html">Voir les dessins →</a><details id="db-discord-gallery"><summary>Afficher le salon Discord</summary><p class="db-local-note">L'affichage charge le service externe WidgetBot.</p><div id="db-gallery-embed"></div></details></section>
+<section class="db-side-card db-discord"><p class="db-eyebrow">Les échanges libres</p><h2>Sur Discord</h2><p>Débats, atelier d'écriture et discussions entre passionnés.</p><a class="db-side-link" href="https://discord.gg/JxMAuBbpQ" target="_blank" rel="noopener">Rejoindre le serveur ↗</a></section>
+</aside>
 </main>
-
-<!-- cta-discord -->
-<section class="dbz-cta">
-<style>.dbz-cta{box-sizing:border-box;width:calc(100% - 32px);max-width:760px;margin:56px auto 40px;padding:26px 24px;border-radius:16px;background:linear-gradient(160deg,#12357a,#0a1f4d);color:#fff;text-align:center;font-family:'Source Serif 4',Georgia,serif;box-shadow:0 12px 30px rgba(10,31,77,.25);border-bottom:4px solid #f5821f}.dbz-cta h3{font-family:'Oswald',sans-serif;font-size:24px;line-height:1.2;margin:0 0 8px;color:#ffc531;border:0}.dbz-cta p{margin:0 auto 18px;max-width:52ch;color:#dbe4ff;font-size:16px;line-height:1.55}.dbz-cta a.dbz-btn{display:inline-block;padding:11px 24px;border-radius:999px;background:#5865F2;color:#fff;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.02em}.dbz-cta a.dbz-btn:hover{background:#f5821f;color:#fff}</style>
-<h3>Une réaction, une objection, une théorie ?</h3>
-<p>Venez en débattre avec la communauté Dragonballogie sur Discord : analyses, fan art, atelier d'écriture.</p>
-<a class="dbz-btn" href="https://discord.gg/JxMAuBbpQ" target="_blank" rel="noopener">Rejoindre le Discord</a>
-</section>
-<footer id="a-propos">
-  <div class="wrap">
-    Dragonballogie — analyses de Dragon Ball par Dje (Mihawkis)
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
-</body>
-</html>
+<footer class="db-footer" id="a-propos"><div class="db-shell"><div><strong>Dragonballogie</strong><p>Analyses indépendantes du manga Dragon Ball par Dje (Mihawkis).</p></div><nav aria-label="Pied de page"><a href="#sommaire">Les dossiers</a><a href="/cursus.html">Le cursus</a><a href="/compte.html">Mon académie</a><a href="/fanart.html">Fan art</a></nav></div></footer>
+</body></html>
