@@ -134,6 +134,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<button class="sn-btn" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.livre + 'Articles' + IC.fleche + '</button>' +
         '<a class="sn-lien' + (page === 'cursus' ? ' actif' : '') + '" href="/cursus.html">' + IC.chapeau + 'Cursus</a>' +
         '<a class="sn-lien' + (page === 'fanart' ? ' actif' : '') + '" href="/fanart.html">' + IC.pinceau + 'Fan art</a>' +
+        '<a class="sn-lien" href="/compte.html">Mon académie</a>' +
         '<a class="sn-lien sn-discord" href="' + DISCORD + '" target="_blank" rel="noopener">' + IC.discord + 'Discord</a>' +
       '</nav>' +
       '<button class="sn-btn sn-mob" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.menu + 'Menu</button>' +
@@ -143,6 +144,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<a class="sn-art" href="/"><span class="sn-num">' + '⌂' + '</span><span>Accueil</span></a>' +
         '<a class="sn-art" href="/cursus.html"><span class="sn-num">✦</span><span>Cursus</span></a>' +
         '<a class="sn-art" href="/fanart.html"><span class="sn-num">✎</span><span>Fan art</span></a>' +
+        '<a class="sn-art" href="/compte.html"><span class="sn-num">★</span><span>Mon académie</span></a>' +
         '<a class="sn-art" href="' + DISCORD + '" target="_blank" rel="noopener"><span class="sn-num" style="background:#5865F2;color:#fff;box-shadow:none">' + IC.discord + '</span><span>Rejoindre le Discord</span></a>' +
       '</div>' +
       listeHTML +
