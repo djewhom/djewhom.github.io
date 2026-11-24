@@ -193,7 +193,7 @@ $('directory-prev').addEventListener('click',()=>{directoryOffset=Math.max(0,dir
 $('directory-next').addEventListener('click',()=>{if(directoryMore){directoryOffset+=30;loadDirectory();}});
 
 let cleanupCommentModeration=null;
-function resetCommentModeration(){if(cleanupCommentModeration)cleanupCommentModeration();cleanupCommentModeration=null;show('comment-moderation',false);$('comment-moderation').replaceChildren();}
-async function setupCommentModeration(renderId){try{const mod=await import('/assets/comments.js?v=5');if(renderId!==renderGeneration||!staffActor)return;show('comment-moderation',true);cleanupCommentModeration=mod.mountModeration($('comment-moderation'),client,window.__dbArticles||[]);}catch{if(renderId===renderGeneration){show('comment-moderation',true);$('comment-moderation').textContent='Modération des commentaires indisponible.';}}}
+function resetCommentModeration(){if(cleanupCommentModeration)cleanupCommentModeration();cleanupCommentModeration=null;show('comment-moderation',false);show('shortcut-comments',false);$('comment-moderation').replaceChildren();}
+async function setupCommentModeration(renderId){try{const mod=await import('/assets/comments.js?v=5');if(renderId!==renderGeneration||!staffActor)return;show('comment-moderation',true);show('shortcut-comments',true);cleanupCommentModeration=mod.mountModeration($('comment-moderation'),client,window.__dbArticles||[]);}catch{if(renderId===renderGeneration){show('comment-moderation',true);$('comment-moderation').textContent='Modération des commentaires indisponible.';}}}
 
 start();
