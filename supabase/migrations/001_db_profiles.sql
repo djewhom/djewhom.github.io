@@ -1,5 +1,7 @@
 -- Dragonballogie : comptes v1. Exécuter dans un nouveau projet Supabase de test.
 begin;
+create schema db_internal;
+revoke all on schema db_internal from public, anon, authenticated;
 create table public.db_profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   pseudo text not null default 'Disciple' check (char_length(btrim(pseudo)) between 2 and 40),
@@ -14,7 +16,7 @@ grant select, insert, update, delete on public.db_profiles to service_role;
 create policy "Lire uniquement son profil" on public.db_profiles for select to authenticated using ((select auth.uid()) = id);
 create policy "Modifier uniquement son pseudo" on public.db_profiles for update to authenticated using ((select auth.uid()) = id) with check ((select auth.uid()) = id);
 
-create function public.db_create_profile() returns trigger language plpgsql security definer set search_path = '' as $$
+create function db_internal.db_create_profile() returns trigger language plpgsql security definer set search_path = '' as $$
 declare nom text;
 begin
   nom := btrim(coalesce(new.raw_user_meta_data ->> 'pseudo',''));
@@ -23,8 +25,8 @@ begin
   return new;
 end;
 $$;
-revoke all on function public.db_create_profile() from public, anon, authenticated;
-create trigger db_on_auth_user_created after insert on auth.users for each row execute function public.db_create_profile();
+revoke all on function db_internal.db_create_profile() from public, anon, authenticated;
+create trigger db_on_auth_user_created after insert on auth.users for each row execute function db_internal.db_create_profile();
 
 insert into public.db_profiles (id) select id from auth.users on conflict (id) do nothing;
 commit;
