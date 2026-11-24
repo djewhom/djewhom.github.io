@@ -24,7 +24,7 @@ function renderNotebook(root,{article=null,jump=null,onChange=()=>{}}={}){
  list.append(group);}
  root.append(list);
 }
-export function mountHomeNotebook(){const root=$('db-resume');if(!root||root.dataset.carnet)return;style();root.dataset.carnet='true';root.hidden=false;root.classList.add('cn-home');const head=el('div',undefined,'cn-head'),title=el('div');title.append(el('p','TON CARNET DE LECTURE','cn-kicker'),el('h2','Reprendre mes lectures'));head.append(title);const details=el('details');const summary=el('summary','Mes lectures et marque-pages');const content=el('div');details.append(summary,content);root.replaceChildren(head,el('p','Lis à ton rythme. Retrouve tes passages, sans compte et sans limite de durée imposée.','cn-muted'),details);function refresh(){renderNotebook(content);const s=getEntries();const count=Object.keys(s.progress).length,marks=s.marks.length;summary.textContent=count+' lecture'+(count!==1?'s':'')+' · '+marks+' marque-page'+(marks!==1?'s':'');if(count||marks)details.open=true;}refresh();window.addEventListener('pageshow',refresh);window.addEventListener('storage',refresh);}
+export function mountHomeNotebook(){const root=$('db-resume');if(!root||root.dataset.carnet)return;style();root.dataset.carnet='true';root.hidden=false;root.classList.add('cn-home');const head=el('div',undefined,'cn-head'),title=el('div');title.append(el('p','TON CARNET DE LECTURE','cn-kicker'),el('h2','Reprendre mes lectures'));head.append(title);const details=el('details');const summary=el('summary','Mes lectures et marque-pages');const content=el('div');details.append(summary,content);root.replaceChildren(head,el('p','Lis à ton rythme. Retrouve tes passages, sans compte et sans limite de durée imposée.','cn-muted'),details);function refresh(){renderNotebook(content,{onChange:refresh});const s=getEntries();const count=Object.keys(s.progress).length,marks=s.marks.length;summary.textContent=count+' lecture'+(count!==1?'s':'')+' · '+marks+' marque-page'+(marks!==1?'s':'');if(count||marks)details.open=true;}refresh();window.addEventListener('pageshow',refresh);window.addEventListener('storage',refresh);}
 export function mountReadingTools(article,bar){
  if(!article||!bar||$('db-reading-tools'))return;style();
  const main=document.querySelector('main.article-body,main.article-wrap,main.wrap,main,article')||document.body;
@@ -40,16 +40,27 @@ export function mountReadingTools(article,bar){
  let pending=null,restoring=false,ready=false,dirty=false,scheduled=0,suppressUntil=0;
  const isText=n=>!n.closest('.side,.rail,.fil,.mfil,.dbz-cta,.dbc,nav,footer,aside,#db-reading-tools')&&clean(n.textContent).length>=15&&n.getClientRects().length>0;
  function blocks(){return [...main.querySelectorAll('h1,h2,h3,h4,p,li,blockquote,figcaption')].filter(isText);}
+ function textPosition(block,targetY){
+ if(!block)return null;const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT);let node,index=0,best=null;
+ while((node=walker.nextNode())){const len=node.length;if(!len)continue;
+ try{const range=document.createRange();range.selectNodeContents(node);const bounds=range.getBoundingClientRect();
+ if(bounds.height&&bounds.bottom>=targetY&&bounds.top<=targetY+70){let low=0,high=len-1;
+ while(low<high){const mid=Math.floor((low+high)/2);range.setStart(node,mid);range.setEnd(node,mid+1);const r=range.getBoundingClientRect();if(r.bottom<targetY)low=mid+1;else high=mid;}
+ range.setStart(node,low);range.setEnd(node,low+1);const r=range.getBoundingClientRect();if(r.height){best={char:index+low,excerpt:clean(block.textContent.slice(index+low)).slice(0,110)};break;}}
+ }catch{}index+=len;
+ }return best;
+ }
+ function charTop(block,offset){if(!Number.isInteger(offset)||offset<0)return null;const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT);let node,left=offset;while((node=walker.nextNode())){if(left<node.length){try{const r=document.createRange();r.setStart(node,left);r.setEnd(node,left+1);const rect=r.getBoundingClientRect();return rect.height?rect.top:null;}catch{return null;}}left-=node.length;}return null;}
  function capture(){
  const y=window.scrollY,top=Math.min(135,window.innerHeight*.3),all=blocks(),headings=all.filter(n=>/^H[1-4]$/.test(n.tagName));let current=null;
  for(const b of all){const r=b.getBoundingClientRect();if(r.bottom>=top&&r.top<=window.innerHeight*.85){current=b;break;}}
  const heading=[...headings].reverse().find(h=>h.getBoundingClientRect().top<=top+20)||headings[0];const section=clean(heading?.textContent)||article.t;
  const max=Math.max(1,main.getBoundingClientRect().height-window.innerHeight);const begin=main.getBoundingClientRect().top+y;
  const percent=Math.round(Math.max(0,Math.min(100,(y-begin)/max*100)));
- const r=current?.getBoundingClientRect();return {y:Math.round(y),percent,section:section.slice(0,180),headingId:heading?.id||'',headingText:clean(heading?.textContent).slice(0,220),quote:clean(current?.textContent).slice(0,200),excerpt:clean(current?.textContent).slice(0,110),blockIndex:current?all.indexOf(current):-1,offset:r?Math.max(0,Math.min(1,(top-r.top)/Math.max(1,r.height))):0,updated:Date.now()};
+ const r=current?.getBoundingClientRect(),point=textPosition(current,top);return {y:Math.round(y),percent,section:section.slice(0,180),headingId:heading?.id||'',headingText:clean(heading?.textContent).slice(0,220),quote:clean(current?.textContent).slice(0,200),excerpt:point?.excerpt||clean(current?.textContent).slice(0,110),char:point?.char??null,blockIndex:current?all.indexOf(current):-1,offset:r?Math.max(0,Math.min(1,(top-r.top)/Math.max(1,r.height))):0,updated:Date.now()};
  }
  function locate(pos){const all=blocks();let match=null;if(pos.quote){match=all.find(b=>clean(b.textContent).slice(0,200)===pos.quote);if(!match)match=all.find(b=>clean(b.textContent).startsWith(pos.quote.slice(0,60)));}
- if(match){const r=match.getBoundingClientRect();return Math.max(0,window.scrollY+r.top+r.height*(pos.offset||0)-Math.min(135,window.innerHeight*.3));}
+ if(match){const r=match.getBoundingClientRect(),line=charTop(match,pos.char);return Math.max(0,window.scrollY+(line??(r.top+r.height*(pos.offset||0)))-Math.min(135,window.innerHeight*.3));}
  const h=pos.headingId&&document.getElementById(pos.headingId)||all.find(b=>/^H[1-4]$/.test(b.tagName)&&clean(b.textContent).slice(0,220)===pos.headingText);if(h)return Math.max(0,window.scrollY+h.getBoundingClientRect().top-100);
  if(Number.isFinite(pos.percent)){const r=main.getBoundingClientRect();return Math.max(0,window.scrollY+r.top+Math.max(0,r.height-window.innerHeight)*pos.percent/100);}
  return Math.max(0,Number(pos.y)||0);
@@ -65,5 +76,5 @@ export function mountReadingTools(article,bar){
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){open(true);trigger.focus();}});
  window.addEventListener('storage',()=>{updateFavorite();if(!panel.hidden)redraw();});
  function start(){const hash=location.hash,s=getEntries();if(hash==='#reprendre')jump(s.progress[article.n]);else if(hash.startsWith('#jalon=')){let id;try{id=decodeURIComponent(hash.slice(7));}catch{}jump(s.marks.find(m=>m.article===article.n&&m.id===id));}ready=true;redraw();}
- if(document.readyState==='complete')start();else window.addEventListener('load',start,{once:true});
+ if(document.readyState==='complete')start();else {start();const savedHash=location.hash;window.addEventListener('load',()=>{if(!dirty&&location.hash===savedHash&&(savedHash==='#reprendre'||savedHash.startsWith('#jalon=')))start();},{once:true});}
 }
