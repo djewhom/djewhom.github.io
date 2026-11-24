@@ -25,7 +25,7 @@ function skin(node,id){node.dataset.world=id;}
 function scene(id){const n=el('div',undefined,'du-scene');n.setAttribute('aria-hidden','true');skin(n,id);return n;}
 function ensureStyle(){if(document.querySelector('link[data-du]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='/assets/univers.css?v=7';l.dataset.du='';document.head.append(l);}
 function radar(root){
- root.classList.add('du-explore');const head=el('div',undefined,'du-explore-head');const heading=el('div');heading.append(el('p','RADAR D’EXPLORATION','du-eyebrow'),el('h2','Choisis ta destination'));head.append(heading,a('Tous les dossiers ↗','/#sommaire','du-text-link'));root.append(head);
+ root.replaceChildren();root.classList.add('du-explore');const head=el('div',undefined,'du-explore-head');const heading=el('div');heading.append(el('p','RADAR D’EXPLORATION','du-eyebrow'),el('h2','Choisis ta destination'));head.append(heading,a('Tous les dossiers ↗','/#sommaire','du-text-link'));root.append(head);
  const layout=el('div',undefined,'du-layout'),map=el('div',undefined,'du-radar'),screen=el('div',undefined,'du-screen');
  const grid=el('div',undefined,'du-grid');grid.setAttribute('aria-hidden','true');map.append(grid);
  const sweep=el('div',undefined,'du-sweep');sweep.setAttribute('aria-hidden','true');map.append(sweep);
@@ -49,4 +49,5 @@ function pageIdentity(page,article){
  // Ne pas recolorer le texte ou les illustrations des articles existants.
  if(article){const bar=document.querySelector('.sn-bar');if(!bar)return;const crumb=el('div',undefined,'du-article-strip');skin(crumb,id);const inner=el('div',undefined,'du-article-strip-inner');inner.append(a('Exploration','/#exploration'),el('span','/'),a(e.name,e.href));crumb.append(inner);bar.insertAdjacentElement('afterend',crumb);}
 }
-export function mountUnivers(page,article){ensureStyle();const root=document.getElementById('exploration');if(root&&!root.dataset.ready){root.dataset.ready='true';radar(root);}const world=document.getElementById('du-world');if(world&&!world.dataset.ready){world.dataset.ready='true';worldPage(world);}pageIdentity(page,article);}
+function decorateHero(page){const id=page==='accueil'?'capsule':page==='cursus'?'temple':page==='fanart'?'galerie':location.pathname.toLowerCase()==='/compte.html'?'bureau':null;if(!id)return;const hero=document.querySelector(id==='capsule'?'.db-cover':id==='bureau'?'.academy-hero':'.hero');if(hero&&!hero.querySelector('.du-hero-decor')){const art=scene(id);art.classList.add('du-hero-decor');hero.prepend(art);hero.classList.add('du-decorated');}}
+export function mountUnivers(page,article){ensureStyle();decorateHero(page);const root=document.getElementById('exploration');if(root&&!root.dataset.ready){root.dataset.ready='true';radar(root);}const world=document.getElementById('du-world');if(world&&!world.dataset.ready){world.dataset.ready='true';worldPage(world);}pageIdentity(page,article);}
