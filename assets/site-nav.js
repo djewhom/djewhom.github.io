@@ -79,7 +79,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
 /* les marges illustrées et barres collantes des articles passent sous la barre */
 .rail .fil{top:calc(var(--sn-h) + 22px)!important}
 .mfil{top:calc(var(--sn-h) + 3px)!important}
-@media (max-width:1050px){
+@media (max-width:1180px){
   .sn-liens{display:none}
   .sn-mob{display:inline-flex;padding:0 9px}
   .sn-account-mobile{display:inline-flex;font-size:14px;padding:0 9px;color:#ffc531;text-decoration:none;white-space:nowrap}
@@ -135,6 +135,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
       '<a class="sn-logo" href="/" aria-label="Dragonballogie, accueil">' + IC.boule + '<span>DRAGONBALL<b>OGIE</b></span></a>' +
       '<nav class="sn-liens" aria-label="Navigation du site">' +
         '<a class="sn-lien' + (accueil ? ' actif' : '') + '" href="/">' + IC.maison + 'Accueil</a>' +
+        '<a class="sn-lien" href="/#exploration">Univers</a>' +
         '<button class="sn-btn" type="button" aria-expanded="false" aria-controls="sn-panneau">' + IC.livre + 'Articles' + IC.fleche + '</button>' +
         '<a class="sn-lien' + (page === 'cursus' ? ' actif' : '') + '" href="/cursus.html">' + IC.chapeau + 'Cursus</a>' +
         '<a class="sn-lien' + (page === 'fanart' ? ' actif' : '') + '" href="/fanart.html">' + IC.pinceau + 'Fan art</a>' +
@@ -147,6 +148,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     '<div class="sn-panneau" id="sn-panneau">' +
       '<div class="sn-extra">' +
         '<a class="sn-art" href="/"><span class="sn-num">' + '⌂' + '</span><span>Accueil</span></a>' +
+        '<a class="sn-art" href="/#exploration"><span class="sn-num">◎</span><span>Explorer les univers</span></a>' +
         '<a class="sn-art" href="/cursus.html"><span class="sn-num">✦</span><span>Cursus</span></a>' +
         '<a class="sn-art" href="/fanart.html"><span class="sn-num">✎</span><span>Fan art</span></a>' +
         '<a class="sn-art" href="/compte.html"><span class="sn-num">★</span><span>Mon académie</span></a>' +
@@ -216,6 +218,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     }).catch(function(){communityRoot.textContent='Espace communautaire temporairement indisponible.';});
   }
   if(page === 'article') import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});
+  import('/assets/univers.js?v=7').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){
     var essais = 0;
