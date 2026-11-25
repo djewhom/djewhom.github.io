@@ -217,9 +217,11 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
       return m.mountActivity(communityRoot,ARTICLES);
     }).catch(function(){communityRoot.textContent='Espace communautaire temporairement indisponible.';});
   }
-  if(page === 'article') import('/assets/image-viewer.js?v=1').then(function(m){m.mountImageViewer();}).catch(function(e){console.warn('Visionneuse indisponible',e);});
-  if(page === 'article') import('/assets/carnet.js?v=8').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});});
-  if(accueil) import('/assets/carnet.js?v=8').then(function(m){m.mountHomeNotebook();}).catch(function(){});
+  if(page === 'article') import('/assets/study.js?v=1').then(function(m){m.mountStudy(ARTICLES[ici]);}).catch(function(e){console.warn('Atelier indisponible',e);});
+  if(accueil) import('/assets/study.js?v=1').then(function(m){m.mountStudyHome();}).catch(function(){});
+  if(page === 'article') import('/assets/image-viewer.js?v=2').then(function(m){m.mountImageViewer();}).catch(function(e){console.warn('Visionneuse indisponible',e);});
+  if(page === 'article') import('/assets/carnet.js?v=10').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});});
+  if(accueil) import('/assets/carnet.js?v=10').then(function(m){m.mountHomeNotebook();}).catch(function(){});
   import('/assets/univers.js?v=7').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){

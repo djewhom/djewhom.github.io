@@ -37,7 +37,7 @@ export function mountImageViewer(){
   if(!originals.length&&!oldButtons.length)return;
   const style=document.createElement('style');style.textContent=CSS;document.head.append(style);
   const dialog=document.createElement('dialog');dialog.id='db-image-viewer';dialog.setAttribute('aria-label','Visionneuse d’images');
-  dialog.innerHTML='<div class="db-iv-bar"><span class="db-iv-title">DRAGONBALLOGY · IMAGE</span><button type="button" data-act="minus" aria-label="Réduire le zoom">−</button><button type="button" data-act="fit" aria-label="Adapter à l’écran">100 %</button><button type="button" data-act="plus" aria-label="Agrandir">+</button><a class="db-iv-original" target="_blank" rel="noopener" aria-label="Ouvrir l’image originale dans un nouvel onglet">Original ↗</a><button type="button" class="db-iv-close" data-act="close" aria-label="Fermer">×</button></div><div class="db-iv-stage" tabindex="0" aria-label="Image agrandie, déplacer pour lire les détails"><div class="db-iv-canvas"><img class="db-iv-img" draggable="false" alt=""><span class="db-iv-error" hidden>Image indisponible.</span></div></div><div class="db-iv-status"><span class="db-iv-caption"></span><span>Molette, boutons + / − ou deux doigts pour zoomer · glisser pour déplacer</span></div>';
+  dialog.innerHTML='<div class="db-iv-bar"><span class="db-iv-title">DRAGONBALLOGY · IMAGE</span><button type="button" data-act="minus" aria-label="Réduire le zoom">−</button><button type="button" data-act="fit" aria-label="Adapter à l’écran">100 %</button><button type="button" data-act="plus" aria-label="Agrandir">+</button><a class="db-iv-original" target="_blank" rel="noopener" aria-label="Ouvrir l’image originale dans un nouvel onglet">Original ↗</a><button type="button" data-act="compare" aria-label="Comparer cette image avec une autre">Comparer</button><button type="button" class="db-iv-close" data-act="close" aria-label="Fermer">×</button></div><div class="db-iv-stage" tabindex="0" aria-label="Image agrandie, déplacer pour lire les détails"><div class="db-iv-canvas"><img class="db-iv-img" draggable="false" alt=""><span class="db-iv-error" hidden>Image indisponible.</span></div></div><div class="db-iv-status"><span class="db-iv-caption"></span><span>Molette, boutons + / − ou deux doigts pour zoomer · glisser pour déplacer</span></div>';
   document.body.append(dialog);
   const stage=dialog.querySelector('.db-iv-stage'),picture=dialog.querySelector('.db-iv-img'),caption=dialog.querySelector('.db-iv-caption'),error=dialog.querySelector('.db-iv-error'),fit=dialog.querySelector('[data-act=fit]'),plus=dialog.querySelector('[data-act=plus]'),minus=dialog.querySelector('[data-act=minus]'),close=dialog.querySelector('[data-act=close]'),original=dialog.querySelector('.db-iv-original');
   let trigger=null,priorOverflow='',zoom=1,baseW=0,baseH=0,ready=false,loadToken=0;
@@ -68,6 +68,7 @@ export function mountImageViewer(){
   function open(img,element,url){
     if(dialog.open)return;
     const src=url||img.currentSrc||img.src;if(!src)return;
+    compare.hidden=!window.__dbOpenStudy;
     if(img.complete&&!img.naturalWidth&&!url)return;
     trigger=element;ready=false;zoom=1;points.clear();gesture=null;priorOverflow=document.documentElement.style.overflow;
     caption.textContent=img.alt||'';picture.alt=img.alt||'Image de l’article';error.hidden=true;picture.hidden=true;original.href=src;
@@ -83,6 +84,8 @@ export function mountImageViewer(){
     if(trigger&&trigger.isConnected)trigger.focus({preventScroll:true});trigger=null;
   });
   close.addEventListener('click',()=>dialog.close());
+  const compare=dialog.querySelector('[data-act=compare]');
+  compare.addEventListener('click',()=>{if(!window.__dbOpenStudy)return;const src=original.href;dialog.addEventListener('close',()=>document.dispatchEvent(new CustomEvent('db:study-compare',{detail:{src}})),{once:true});dialog.close();});
   plus.addEventListener('click',()=>setZoom(zoom*1.35));
   minus.addEventListener('click',()=>setZoom(zoom/1.35));
   fit.addEventListener('click',()=>{setZoom(1);stage.scrollTop=stage.scrollLeft=0;});
