@@ -21,21 +21,27 @@
 @media(max-width:1080px){.db-magazine .sn-liens:before{display:none}}@media(max-width:640px){.db-magazine .sn-liens{border:0;padding-inline:0}.db-magazine .sn-liens:after{display:none}.db-magazine .db-cover h1{font-size:clamp(2.4rem,10vw,3.6rem)}.db-magazine .db-cover-copy:before{height:22px;margin-bottom:6px;background-size:65px auto}.db-magazine .db-cover-grid{padding-top:28px}.db-magazine .db-section-head:after{width:52px}}
 </style>
 <style>
-.db-magazine .db-shenron-banner{position:relative;background:#081e40;display:flex;justify-content:center;border-bottom:1px solid #c99a42;overflow:hidden}
-.db-magazine .db-shenron-banner img{display:block;width:100%;max-width:1240px;height:auto;aspect-ratio:16/9;object-fit:contain}
-.db-magazine .db-cover-grid{padding-top:clamp(24px,4vw,46px)}
-@media(min-width:900px){.db-magazine .db-shenron-banner img{max-width:1000px}}
-@media(max-width:640px){.db-magazine .db-shenron-banner img{width:100%;height:auto}}
+/* Une couverture continue : le dessin et l'introduction partagent le même fond. */
+.db-magazine .db-hero-unified{position:relative;isolation:isolate;background:radial-gradient(ellipse at 50% 12%,#244b77 0,transparent 58%),linear-gradient(145deg,#081d3d,#102f58 65%,#081f40);overflow:hidden;border-bottom:2px solid #d9ad52}
+.db-magazine .db-shenron-banner{position:relative;display:flex;justify-content:center;isolation:isolate;padding:0 clamp(0px,2vw,24px)}
+.db-magazine .db-shenron-banner img{display:block;width:min(100%,1120px);height:auto;aspect-ratio:16/9;object-fit:contain;mask-image:linear-gradient(to bottom,#000 0%,#000 71%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 71%,transparent 100%)}
+.db-magazine .db-shenron-banner:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0b2447 0%,transparent 12%,transparent 88%,#0b2447 100%);opacity:.55}
+.db-magazine .db-hero-unified .db-cover{background:transparent;border:0;overflow:visible;margin-top:clamp(-115px,-8vw,-42px);position:relative;z-index:2}
+.db-magazine .db-hero-unified .db-cover:before{display:none}
+.db-magazine .db-hero-unified .db-cover-grid{padding-top:12px;padding-bottom:58px}
+.db-magazine .db-hero-unified .db-cover-copy:before{display:none}
+.db-magazine .db-hero-unified .db-feature{box-shadow:0 0 0 4px #e3bd5e12,0 15px 36px #0004}
+@media(max-width:640px){.db-magazine .db-shenron-banner{padding:0}.db-magazine .db-shenron-banner:after{opacity:.2}.db-magazine .db-hero-unified .db-cover{margin-top:-24px}.db-magazine .db-hero-unified .db-cover-grid{padding-top:6px;padding-bottom:44px}}
 </style>
 </head>
 <body class="db-magazine" data-world="capsule">
 <a class="db-skip" href="#sommaire">Aller aux articles</a>
 <header class="masthead"><div class="wrap"><a href="/" class="brand">Dragonballogie</a><nav><a href="#sommaire">Articles</a><a href="/cursus.html">Cursus</a><a href="/compte.html">Mon académie</a></nav></div></header>
-<div class="db-shenron-banner"><img src="/Article-Shin-Kikoho/shenron-accueil.png" alt="DragonBallogy — Shenron s’enroule autour du titre" fetchpriority="high" decoding="async" width="1672" height="941"></div>
+<div class="db-hero-unified"><div class="db-shenron-banner"><img src="/Article-Shin-Kikoho/shenron-accueil.png" alt="DragonBallogy — Shenron s’enroule autour du titre" fetchpriority="high" decoding="async" width="1672" height="941"></div>
 <section class="db-cover" aria-labelledby="db-cover-title"><div class="db-shell db-cover-grid">
   <div class="db-cover-copy"><p class="db-eyebrow"><span></span> Revue d'analyse &amp; académie</p><h1 id="db-cover-title">Relire Dragon Ball,<br><em>autrement.</em></h1><p>Des analyses longues et sourcées du manga : ce que Toriyama montre, ce qu'il a improvisé, et ce que les fans ont inventé.</p><div class="db-cover-actions"><a class="db-primary" href="#sommaire">Explorer les dossiers <span aria-hidden="true">↓</span></a><a class="db-outline" href="/cursus.html">Découvrir le cursus</a></div><p class="db-signature">Un projet indépendant de Mihawkis</p></div>
   <a href="/Article-Retcon/article-retcon.html" class="db-feature" aria-label="Dossier à découvrir : Qu'est-ce qu'un retcon ?"><img src="/Article-Retcon/images/illu-ouverture-tisserand.jpg" alt="" fetchpriority="high" decoding="async"><div class="db-feature-caption"><span class="db-eyebrow">Dossier à découvrir</span><strong>Qu'est-ce qu'un retcon ?</strong><span>Le tisserand à l'œuvre <b aria-hidden="true">↗</b></span></div></a>
-</div></section>
+</div></section></div>
 <div class="db-shell db-entry-grid" aria-label="Choisir son parcours">
 <a class="db-entry" href="#sommaire"><span class="db-entry-symbol">01</span><span><strong>Lire &amp; comprendre</strong><small>Les dossiers de fond</small></span><b aria-hidden="true">→</b></a>
 <a class="db-entry" href="/cursus.html"><span class="db-entry-symbol">02</span><span><strong>Apprendre</strong><small>Les six modules du cursus</small></span><b aria-hidden="true">→</b></a>
