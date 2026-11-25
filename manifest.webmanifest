@@ -1,7 +1,7 @@
 {
   "name": "Dragonballogie",
   "short_name": "Dragonballogie",
-  "description": "Relire Dragon Ball pour de vrai : analyses du manga par Dje.",
+  "description": "Relire Dragon Ball, autrement : analyses du manga par Miyawaki.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
