@@ -20,7 +20,8 @@
     { g:'Les analyses', n:'04', t:"L'énigme C-16",                          u:'/article-c16.html',                                p:'/article-c16.html' },
     { g:'Les analyses', n:'05', t:'Goku SSJ3 vs Gros Buu',                  u:'/Goku-SSJ3-vs-gros-Buu/',                          p:'/goku-ssj3-vs-gros-buu/' },
     { g:'Les analyses', n:'06', t:'Pourquoi Ultra Buu existe-t-il ?',       u:'/Pourquoi-Ultra-Buu-existe-t-il-/',                p:'/pourquoi-ultra-buu-existe-t-il-/' },
-    { g:'Les analyses', n:'07', t:'Super Buu vs Kid Buu',                   u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html', p:'/super-buu-vs-kid-buu/' }
+    { g:'Les analyses', n:'07', t:'Super Buu vs Kid Buu',                   u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html', p:'/super-buu-vs-kid-buu/' },
+    { g:'Les analyses', n:'08', t:'Super Saiyan : de la légende aux paliers de puissance', u:'/Article-Super-Saiyan/', p:'/article-super-saiyan/' }
   ];
 
   var chemin = location.pathname.toLowerCase();
@@ -222,7 +223,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   if(page === 'article') import('/assets/image-viewer.js?v=2').then(function(m){m.mountImageViewer();}).catch(function(e){console.warn('Visionneuse indisponible',e);});
   if(page === 'article') import('/assets/carnet.js?v=10').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});});
   if(accueil) import('/assets/carnet.js?v=10').then(function(m){m.mountHomeNotebook();}).catch(function(){});
-  import('/assets/univers.js?v=7').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
+  import('/assets/univers.js?v=8').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){
     var essais = 0;

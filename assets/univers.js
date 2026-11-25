@@ -17,7 +17,8 @@ const articles=[
  {n:'04',world:'gero',t:'L’énigme C-16',d:'Enquête sur le rôle de l’androïde et la réécriture de l’arc.',u:'/article-c16.html',img:'/files/images/c16-hero.jpg'},
  {n:'05',world:'kaioshin',t:'Goku SSJ3 vs Gros Buu',d:'Relire la mise en scène du combat et les rapports de puissance.',u:'/Goku-SSJ3-vs-gros-Buu/',img:'/Goku-SSJ3-vs-gros-Buu/images/01-domination-initiale.jpg'},
  {n:'06',world:'kaioshin',t:'Pourquoi Ultra Buu existe-t-il ?',d:'Étudier le chaînon entre Super Buu et Kid Buu.',u:'/Pourquoi-Ultra-Buu-existe-t-il-/',img:'/Pourquoi-Ultra-Buu-existe-t-il-/ultra_buu_1.png'},
- {n:'07',world:'kaioshin',t:'Super Buu vs Kid Buu',d:'Comparer ce que le manga établit sur leur puissance.',u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html',img:'/Super-Buu-vs-Kid-Buu/Super%20buu%20vs%20kid%20buu/panel-combat-ssj3.jpg'}
+ {n:'07',world:'kaioshin',t:'Super Buu vs Kid Buu',d:'Comparer ce que le manga établit sur leur puissance.',u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html',img:'/Super-Buu-vs-Kid-Buu/Super%20buu%20vs%20kid%20buu/panel-combat-ssj3.jpg'},
+ {n:'08',world:'namek',t:'Super Saiyan : de la légende aux paliers de puissance',d:'De la légende aux seuils de progression : relire les transformations dans leur ordre d’écriture.',u:'/Article-Super-Saiyan/',img:'/Article-Super-Saiyan/images/couverture.webp'}
 ];
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function a(text,href,cls){const n=el('a',text,cls);n.href=href;return n;}
