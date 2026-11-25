@@ -21,7 +21,8 @@
     { g:'Les analyses', n:'05', t:'Goku SSJ3 vs Gros Buu',                  u:'/Goku-SSJ3-vs-gros-Buu/',                          p:'/goku-ssj3-vs-gros-buu/' },
     { g:'Les analyses', n:'06', t:'Pourquoi Ultra Buu existe-t-il ?',       u:'/Pourquoi-Ultra-Buu-existe-t-il-/',                p:'/pourquoi-ultra-buu-existe-t-il-/' },
     { g:'Les analyses', n:'07', t:'Super Buu vs Kid Buu',                   u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html', p:'/super-buu-vs-kid-buu/' },
-    { g:'Les analyses', n:'08', t:'Super Saiyan : de la légende aux paliers de puissance', u:'/Article-Super-Saiyan/', p:'/article-super-saiyan/' }
+    { g:'Les analyses', n:'08', t:'Super Saiyan : de la légende aux paliers de puissance', u:'/Article-Super-Saiyan/', p:'/article-super-saiyan/' },
+    { g:'Boosts magiques / Nerfs magiques', n:'09', t:'Le miracle du Shin Kikoho', u:'/Article-Shin-Kikoho/', p:'/article-shin-kikoho/', comments:false }
   ];
 
   var chemin = location.pathname.toLowerCase();
@@ -207,7 +208,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     else document.body.insertBefore(bloc, haut);
   }
   /* ---------- commentaires et activité communautaire ---------- */
-  if (page === 'article' || accueil) {
+  if ((page === 'article' && ARTICLES[ici].comments !== false) || accueil) {
     var activitySlot = accueil && document.getElementById('db-activity');
     var communityRoot = document.createElement('section');
     if (page === 'article') {communityRoot.id='commentaires';bloc.parentNode.insertBefore(communityRoot, bloc);}
