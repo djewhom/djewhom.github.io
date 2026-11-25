@@ -22,6 +22,7 @@ const CSS = `
 #db-image-viewer .db-iv-status{flex:none;padding:7px 12px calc(8px + env(safe-area-inset-bottom,0px));text-align:center;background:#0a1f4d;color:#fff;font-size:12px}
 #db-image-viewer .db-iv-caption{display:block;max-height:2.8em;overflow:auto;overflow-wrap:anywhere;margin:0 auto 3px;max-width:1000px}
 #db-image-viewer .db-iv-error{padding:24px;color:#fff}
+#db-image-viewer [hidden]{display:none!important}
 @media(max-width:520px){#db-image-viewer .db-iv-title{display:none}#db-image-viewer .db-iv-bar{gap:4px}#db-image-viewer button,#db-image-viewer a.db-iv-original{padding:5px 8px;font-size:13px}#db-image-viewer .db-iv-close{font-size:22px}}
 @media print{.db-zoom-tip,#db-image-viewer{display:none!important}}
 `;
