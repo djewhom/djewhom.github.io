@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow"><title>Le Paradoxe du Shin Kikoho — Dragonologie</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#060612;font-family:'Rajdhani',sans-serif;color:#c8c8e8;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:24px 10px 40px;
+}
+
+/* ── HEADER ── */
+h1{
+  font-size:clamp(18px,2.4vw,30px);font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;text-align:center;
+  background:linear-gradient(90deg,#ffd700 0%,#ff7a1a 50%,#ffd700 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:5px;
+}
+.sub{font-size:11px;letter-spacing:3px;color:#363658;font-family:'Share Tech Mono',monospace;text-align:center;margin-bottom:6px;text-transform:uppercase}
+.tagline{font-size:12px;color:rgba(200,200,220,.35);font-family:'Share Tech Mono',monospace;text-align:center;margin-bottom:22px;letter-spacing:.5px}
+
+/* ── WRAPPERS ── */
+.wrap{width:100%;max-width:1250px;background:rgba(8,8,22,.93);border:1px solid rgba(255,215,0,.1);border-radius:14px;padding:22px 18px 18px;overflow-x:auto;box-shadow:0 12px 60px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.04);margin-bottom:16px}
+.figtitle{font-family:'Share Tech Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#7a7aa8;text-transform:uppercase;margin:0 0 14px 4px}
+.figtitle b{color:#ffd700;font-weight:400}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{
+  font-family:'Share Tech Mono',monospace;font-size:9.5px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:7px 16px;
+  border:1px solid rgba(255,255,255,.1);border-radius:4px;
+  background:transparent;color:#4a4a6a;cursor:pointer;transition:all .22s;
+}
+.tab:hover{color:#a0a0c0;border-color:rgba(255,255,255,.22)}
+.tab.active{color:#ffd700;border-color:rgba(255,215,0,.38);background:rgba(255,215,0,.06)}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ── SVG global ── */
+svg{display:block;width:100%}
+
+/* ── BOTTOM RULE ── */
+.rule{
+  margin-top:6px;max-width:1250px;width:100%;
+  background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.2);
+  border-radius:9px;padding:13px 20px;
+  font-family:'Share Tech Mono',monospace;font-size:11.5px;
+  color:#e8c349;text-align:center;letter-spacing:.3px;line-height:1.85
+}
+.rule .bad{color:#ef6b6b}
+.rule .good{color:#4ade80}
+
+/* ── ANIMATIONS ── */
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes flowarr{to{stroke-dashoffset:-22}}
+@keyframes tw{from{opacity:.04}to{opacity:.45}}
+@keyframes barIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.pulseEl{animation:pls 2.8s ease-in-out infinite}
+.flowarr{stroke-dasharray:6 4;animation:flowarr .85s linear infinite}
+.bar-anim{transform-origin:left center;animation:barIn .7s ease-out both}
+.fadein{animation:fadeUp .5s ease both}
+
+@media(prefers-reduced-motion:reduce){.pulseEl,.flowarr,.bar-anim,.fadein{animation:none}}
+
+.editor-note{max-width:1250px;width:100%;margin:0 0 18px;padding:14px 16px;border:1px solid #8f7849;border-radius:8px;color:#eee4c8;background:#13132b;font:14px/1.55 system-ui,sans-serif}.editor-note a{color:#ffd700}.wrap svg{min-width:780px}.tab{font-size:12px;color:#a0a0bc}.tab:focus-visible{outline:2px solid #ffd700;outline-offset:3px}@media(max-width:600px){body{padding:12px 8px}.wrap{padding:12px 8px}.tab{min-height:42px;padding:7px 10px}.editor-note{font-size:13px}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div id="stars" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden"></div>
+
+<div style="position:relative;z-index:1;width:100%;max-width:1250px;display:flex;flex-direction:column;align-items:center">
+
+  <h1>Le Paradoxe du Shin Kikoho</h1>
+  <p class="sub">Cas d'école · Dragonologie analytique</p>
+  <p class="tagline">Pourquoi "les attaques à 5%" détruit tout le manga pour sauver une seule case</p>
+
+  <aside class="editor-note"><strong>Maquette analytique — chiffres illustratifs.</strong> Les unités en Fennec, les ratios, les barres et les pourcentages sont des hypothèses de travail, pas des données du manga. Les quatre onglets présentent la thèse du dossier et une réduction à l’absurde conditionnelle. Le Kienzan et le Kaioken constituent des pistes distinctes à vérifier. Sur petit écran, faites défiler les schémas horizontalement. <a href="./#paradoxe" target="_top">Retour à l’article →</a></aside>
+  <!-- TABS -->
+  <div class="tabs" style="width:100%;max-width:1250px">
+    <button class="tab active" onclick="showTab('kikoho',this)">I — Shin Kikoho</button>
+    <button class="tab" onclick="showTab('kienzan',this)">II — Kienzan (piste)</button>
+    <button class="tab" onclick="showTab('chain',this)">III — Chaîne causale</button>
+    <button class="tab" onclick="showTab('verdict',this)">IV — Réduction à l'absurde</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PANEL I — SHIN KIKOHO
+  ══════════════════════════════════════════ -->
+  <div id="panel-kikoho" class="panel active" style="width:100%;max-width:1250px">
+
+    <!-- Fig 1a : Échelle de puissance avant la scène -->
+    <div class="wrap">
+      <p class="figtitle">Fig. 1a — <b>L'échelle de puissance juste avant la scène du Shin Kikoho</b></p>
+      <svg id="svg-scale" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mkG" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ffd700"/>
+          </marker>
+          <marker id="mkR" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ef4444"/>
+          </marker>
+          <marker id="mkC" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#38bdf8"/>
+          </marker>
+        </defs>
+
+        <!-- Axe logarithmique -->
+        <text x="36" y="18" fill="rgba(255,255,255,.28)" font-size="9" font-family="Share Tech Mono,monospace" letter-spacing="1.5">PUISSANCE RELATIVE (SCHÉMA NON À L’ÉCHELLE · UNITÉS FICTIVES)</text>
+
+        <!-- Barres horizontales — fond track -->
+        <!-- Ten (base) -->
+        <text x="10" y="62" fill="#9898b8" font-size="11" font-family="Share Tech Mono,monospace" text-anchor="start">TEN-SHIN-HAN</text>
+        <text x="10" y="75" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">post Kaioh · dominé par C17</text>
+        <rect x="200" y="52" width="950" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="52" width="28" height="22" rx="3" fill="#38bdf8" opacity=".7" class="bar-anim"/>
+        <text x="234" y="67" fill="#38bdf8" font-size="11" font-family="Share Tech Mono,monospace">≈ 30 UF</text>
+
+        <!-- SSJ Vegeta/Trunks -->
+        <text x="10" y="122" fill="#9898b8" font-size="11" font-family="Share Tech Mono,monospace">SSJ VEGETA / TRUNKS</text>
+        <text x="10" y="135" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">ne peuvent pas atteindre C17</text>
+        <rect x="200" y="112" width="950" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="112" width="85" height="22" rx="3" fill="#a78bfa" opacity=".7" class="bar-anim" style="animation-delay:.08s"/>
+        <text x="291" y="127" fill="#a78bfa" font-size="11" font-family="Share Tech Mono,monospace">≈ 90 UF</text>
+
+        <!-- Piccolo fusionné -->
+        <text x="10" y="182" fill="#9898b8" font-size="11" font-family="Share Tech Mono,monospace">PICCOLO FUSIONNÉ</text>
+        <text x="10" y="195" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">≈ C17 · indolore pour Cell-1</text>
+        <rect x="200" y="172" width="950" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="172" width="180" height="22" rx="3" fill="#4ade80" opacity=".72" class="bar-anim" style="animation-delay:.16s"/>
+        <text x="386" y="187" fill="#4ade80" font-size="11" font-family="Share Tech Mono,monospace">≈ 190 UF</text>
+
+        <!-- C16 -->
+        <text x="10" y="242" fill="#9898b8" font-size="11" font-family="Share Tech Mono,monospace">CYBORG 16</text>
+        <text x="10" y="255" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">≈ Cell-1 renforcé · échoue face à Cell-2</text>
+        <rect x="200" y="232" width="950" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="232" width="190" height="22" rx="3" fill="#fb923c" opacity=".7" class="bar-anim" style="animation-delay:.24s"/>
+        <text x="396" y="247" fill="#fb923c" font-size="11" font-family="Share Tech Mono,monospace">≈ 200 UF</text>
+
+        <!-- Cell 2ème forme -->
+        <text x="10" y="302" fill="#c8c8e8" font-size="11.5" font-weight="700" font-family="Share Tech Mono,monospace">CELL 2ÈME FORME</text>
+        <text x="10" y="315" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">retenu par le Shin Kikoho ???</text>
+        <rect x="200" y="292" width="950" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="292" width="900" height="22" rx="3" fill="#ef4444" opacity=".65" class="bar-anim" style="animation-delay:.32s"/>
+        <text x="1106" y="307" fill="#ef4444" font-size="11" font-family="Share Tech Mono,monospace">≈ 450 UF</text>
+        <circle class="pulseEl" cx="1150" cy="303" r="6" fill="none" stroke="#ffd700" stroke-width="1.8"/>
+        <circle cx="1150" cy="303" r="2.5" fill="#ffd700"/>
+
+        <!-- Flèche "Ten" → "Cell-2" avec label -->
+        <line x1="228" y1="76" x2="228" y2="290" stroke="rgba(255,215,0,.35)" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="232" y="190" fill="rgba(255,215,0,.5)" font-size="9" font-family="Share Tech Mono,monospace">×15</text>
+
+        <!-- Annotation "C16 échoue" -->
+        <path class="flowarr" d="M396 243 C 440 220 600 210 700 230" fill="none" stroke="#ef4444" stroke-width="1.2" stroke-opacity=".5" marker-end="url(#mkR)"/>
+        <rect x="562" y="196" width="220" height="28" rx="4" fill="rgba(4,4,18,.94)"/>
+        <text x="672" y="214" fill="#ef8080" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">C16 échoue à retenir Cell-2</text>
+
+        <!-- Ligne Ten → Cell-2 écart -->
+        <rect x="200" y="360" width="950" height="28" rx="4" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.2)" stroke-width=".8"/>
+        <text x="675" y="379" fill="#ef8080" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">
+          ÉCART TEN → CELL-2 : ×15 dans cet exemple · C16 (≈ ×6,7 Ten) échoue
+        </text>
+      </svg>
+    </div>
+
+    <!-- Fig 1b : Le paradoxe -->
+    <div class="wrap">
+      <p class="figtitle">Fig. 1b — <b>Si le Shin Kikoho est cohérent, que deviennent les autres attaques ?</b></p>
+      <svg id="svg-paradox" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mkG2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ffd700"/>
+          </marker>
+        </defs>
+
+        <!-- Colonne gauche : lecture normale -->
+        <rect x="20" y="20" width="540" height="440" rx="10" fill="rgba(56,189,248,.03)" stroke="rgba(56,189,248,.2)" stroke-width=".8"/>
+        <text x="290" y="46" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1.5">LECTURE NORMALE DU MANGA</text>
+        <text x="290" y="62" fill="rgba(56,189,248,.4)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">Les attaques représentent l'effort réel du combattant</text>
+
+        <!-- barres lecture normale -->
+        <!-- Kamehameha x20 -->
+        <text x="40" y="100" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">KAMEHAMEHA ×20 (Goku)</text>
+        <text x="40" y="113" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">Goku épuisé, s'effondre après</text>
+        <rect x="40" y="120" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="120" width="470" height="18" rx="3" fill="#38bdf8" opacity=".65" class="bar-anim" style="animation-delay:.1s"/>
+        <text x="515" y="133" fill="#38bdf8" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">~95%</text>
+
+        <!-- Masenko -->
+        <text x="40" y="163" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">MASENKO (Gohan)</text>
+        <text x="40" y="176" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">Gohan exsangue, à genoux après</text>
+        <rect x="40" y="183" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="183" width="450" height="18" rx="3" fill="#38bdf8" opacity=".65" class="bar-anim" style="animation-delay:.18s"/>
+        <text x="515" y="196" fill="#38bdf8" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">~90%</text>
+
+        <!-- Beam struggle -->
+        <text x="40" y="226" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">BEAM STRUGGLE Goku/Vegeta</text>
+        <text x="40" y="239" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">Les deux combattants s'effondrent</text>
+        <rect x="40" y="246" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="246" width="480" height="18" rx="3" fill="#38bdf8" opacity=".65" class="bar-anim" style="animation-delay:.26s"/>
+        <text x="515" y="259" fill="#38bdf8" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">~96%</text>
+
+        <!-- Poing C16 -->
+        <text x="40" y="289" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">POING DE C16 (contre Cell-2)</text>
+        <text x="40" y="302" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">Toute sa force · échoue totalement</text>
+        <rect x="40" y="309" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="309" width="460" height="18" rx="3" fill="#38bdf8" opacity=".65" class="bar-anim" style="animation-delay:.34s"/>
+        <text x="515" y="322" fill="#38bdf8" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">~92%</text>
+
+        <!-- Kikoho -->
+        <text x="40" y="352" fill="#e8c840" font-size="10.5" font-family="Share Tech Mono,monospace" font-weight="700">SHIN KIKOHO (Ten)</text>
+        <text x="40" y="365" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">100% canonique · retient Cell-2 ???</text>
+        <rect x="40" y="372" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="372" width="500" height="18" rx="3" fill="#ffd700" opacity=".75" class="bar-anim" style="animation-delay:.42s"/>
+        <text x="515" y="385" fill="#ffd700" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">100%</text>
+
+        <rect x="40" y="400" width="500" height="44" rx="4" fill="rgba(239,68,68,.07)" stroke="rgba(239,68,68,.18)" stroke-width=".8"/>
+        <text x="290" y="420" fill="#ef9090" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Si les autres attaques sont à ~95%...</text>
+        <text x="290" y="436" fill="#ef8080" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">...le Kikoho à 100% n'a aucune signification particulière.</text>
+
+        <!-- Colonne droite : règle des 5% -->
+        <rect x="640" y="20" width="540" height="440" rx="10" fill="rgba(239,68,68,.03)" stroke="rgba(239,68,68,.22)" stroke-width=".8"/>
+        <text x="910" y="46" fill="#ef4444" font-size="12" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1.5">SI LA RÈGLE DES 5% EST VRAIE</text>
+        <text x="910" y="62" fill="rgba(239,68,68,.4)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">Pour que le Shin Kikoho soit cohérent</text>
+
+        <!-- barres 5% -->
+        <text x="660" y="100" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">KAMEHAMEHA ×20 (Goku)</text>
+        <text x="660" y="113" fill="#ef6060" font-size="8.5" font-family="Share Tech Mono,monospace">"tout donné" = 5% de son vrai potentiel ?</text>
+        <rect x="660" y="120" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="660" y="120" width="25" height="18" rx="3" fill="#ef4444" opacity=".6" class="bar-anim" style="animation-delay:.5s"/>
+        <text x="660" y="133" fill="#ef6060" font-size="10" font-family="Share Tech Mono,monospace" dx="30">5%</text>
+        <rect x="685" y="120" width="475" height="18" rx="3" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.12)" stroke-width=".5" stroke-dasharray="3,3"/>
+        <text x="910" y="133" fill="rgba(239,68,68,.2)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">95% que Goku n'utilisera jamais</text>
+
+        <text x="660" y="163" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">MASENKO (Gohan)</text>
+        <text x="660" y="176" fill="#ef6060" font-size="8.5" font-family="Share Tech Mono,monospace">"exsangue" après 5% de son énergie ?</text>
+        <rect x="660" y="183" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="660" y="183" width="25" height="18" rx="3" fill="#ef4444" opacity=".6" class="bar-anim" style="animation-delay:.56s"/>
+        <text x="660" y="196" fill="#ef6060" font-size="10" font-family="Share Tech Mono,monospace" dx="30">5%</text>
+        <rect x="685" y="183" width="475" height="18" rx="3" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.12)" stroke-width=".5" stroke-dasharray="3,3"/>
+        <text x="910" y="196" fill="rgba(239,68,68,.2)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">95% que Gohan garde pour rien</text>
+
+        <text x="660" y="226" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">BEAM STRUGGLE Goku/Vegeta</text>
+        <text x="660" y="239" fill="#ef6060" font-size="8.5" font-family="Share Tech Mono,monospace">S'effondrent après 5% d'effort ?</text>
+        <rect x="660" y="246" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="660" y="246" width="25" height="18" rx="3" fill="#ef4444" opacity=".6" class="bar-anim" style="animation-delay:.62s"/>
+        <text x="660" y="259" fill="#ef6060" font-size="10" font-family="Share Tech Mono,monospace" dx="30">5%</text>
+        <rect x="685" y="246" width="475" height="18" rx="3" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.12)" stroke-width=".5" stroke-dasharray="3,3"/>
+        <text x="910" y="259" fill="rgba(239,68,68,.2)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">95% inutilisé · jamais mentionné</text>
+
+        <text x="660" y="289" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">POING DE C16 (contre Cell-2)</text>
+        <text x="660" y="302" fill="#ef6060" font-size="8.5" font-family="Share Tech Mono,monospace">"toute sa force" = 5% seulement ?</text>
+        <rect x="660" y="309" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="660" y="309" width="25" height="18" rx="3" fill="#ef4444" opacity=".6" class="bar-anim" style="animation-delay:.68s"/>
+        <text x="660" y="322" fill="#ef6060" font-size="10" font-family="Share Tech Mono,monospace" dx="30">5%</text>
+        <rect x="685" y="309" width="475" height="18" rx="3" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.12)" stroke-width=".5" stroke-dasharray="3,3"/>
+        <text x="910" y="322" fill="rgba(239,68,68,.2)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">95% — mais C16 ne s'en sert pas ?</text>
+
+        <text x="660" y="352" fill="#e8c840" font-size="10.5" font-family="Share Tech Mono,monospace" font-weight="700">SHIN KIKOHO (Ten)</text>
+        <text x="660" y="365" fill="#4a4a6a" font-size="8.5" font-family="Share Tech Mono,monospace">100% canonique · cohérent avec la règle</text>
+        <rect x="660" y="372" width="500" height="18" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="660" y="372" width="500" height="18" rx="3" fill="#ffd700" opacity=".75" class="bar-anim" style="animation-delay:.74s"/>
+        <text x="1135" y="385" fill="#ffd700" font-size="10" font-family="Share Tech Mono,monospace" text-anchor="end">100%</text>
+
+        <rect x="660" y="400" width="500" height="44" rx="4" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.25)" stroke-width=".8"/>
+        <text x="910" y="420" fill="#ef6060" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Cette règle implique que chaque scène d'épuisement</text>
+        <text x="910" y="436" fill="#ef4444" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">du manga est une mise en scène mensongère.</text>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PANEL II — KIENZAN
+  ══════════════════════════════════════════ -->
+  <div id="panel-kienzan" class="panel" style="width:100%;max-width:1250px">
+    <div class="wrap">
+      <p class="figtitle">Fig. 2 — <b>Le Kienzan de Krillin contre Freezer : même structure, même diagnostic</b></p>
+      <svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mkGk" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ffd700"/>
+          </marker>
+          <marker id="mkRk" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ef4444"/>
+          </marker>
+        </defs>
+
+        <!-- Principe moniste -->
+        <rect x="20" y="14" width="1160" height="70" rx="8" fill="rgba(255,215,0,.04)" stroke="rgba(255,215,0,.18)" stroke-width=".8"/>
+        <text x="600" y="38" fill="#ffd700" font-size="13" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="2">PRINCIPE FONDAMENTAL — L'ONTOLOGIE MONISTE DE DRAGON BALL</text>
+        <text x="600" y="60" fill="rgba(255,215,0,.55)" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Il n'y a que du ki. Les exceptions sont explicitement étiquetées par le texte : Guldo (pouvoir psychique, dit dans les cases), Dabra (magie, nommée comme telle).</text>
+        <text x="600" y="76" fill="rgba(255,215,0,.3)" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Créer une catégorie "technique spéciale" sans étiquette textuelle = faire ce que font les guides.</text>
+
+        <!-- Axe chronologique publication -->
+        <text x="600" y="118" fill="rgba(255,255,255,.2)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace" letter-spacing="2">ÉCART DE PUISSANCE AU MOMENT DE LA SCÈNE</text>
+
+        <!-- Krillin -->
+        <text x="10" y="155" fill="#9898b8" font-size="11" font-family="Share Tech Mono,monospace">KRILLIN</text>
+        <text x="10" y="168" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">Namek · potentiel éveillé</text>
+        <rect x="200" y="146" width="960" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="146" width="38" height="22" rx="3" fill="#38bdf8" opacity=".7" class="bar-anim"/>
+        <text x="243" y="161" fill="#38bdf8" font-size="11" font-family="Share Tech Mono,monospace">Niveau inférieur</text>
+
+        <!-- Freezer 1ère forme -->
+        <text x="10" y="214" fill="#c8c8e8" font-size="11" font-family="Share Tech Mono,monospace">FREEZER 2ÈME FORME</text>
+        <text x="10" y="227" fill="#4a4a6a" font-size="9" font-family="Share Tech Mono,monospace">Queue tranchée par le Kienzan</text>
+        <rect x="200" y="206" width="960" height="22" rx="3" fill="rgba(255,255,255,.03)"/>
+        <rect x="200" y="206" width="950" height="22" rx="3" fill="#ef4444" opacity=".6" class="bar-anim" style="animation-delay:.15s"/>
+        <text x="1156" y="221" fill="#ef4444" font-size="11" font-family="Share Tech Mono,monospace" text-anchor="end">Niveau non chiffré ici</text>
+        <circle class="pulseEl" cx="1170" cy="217" r="6" fill="none" stroke="#ffd700" stroke-width="1.8"/>
+        <circle cx="1170" cy="217" r="2.5" fill="#ffd700"/>
+
+        <!-- Flèche écart -->
+        <line x1="238" y1="170" x2="238" y2="204" stroke="rgba(239,68,68,.3)" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="242" y="190" fill="rgba(239,68,68,.5)" font-size="9" font-family="Share Tech Mono,monospace">Écart important</text>
+
+        <!-- Annotation "trois solutions" -->
+        <rect x="20" y="256" width="1160" height="130" rx="8" fill="rgba(8,8,22,.6)" stroke="rgba(255,255,255,.06)" stroke-width=".8"/>
+        <text x="600" y="280" fill="rgba(200,200,220,.6)" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Face à cet écart, trois lectures à confronter au manga :</text>
+
+        <!-- Option 1 -->
+        <rect x="40" y="294" width="340" height="78" rx="6" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.2)" stroke-width=".8"/>
+        <text x="210" y="316" fill="#ef8080" font-size="10" font-weight="700" text-anchor="middle" font-family="Share Tech Mono,monospace">❌ CATÉGORIE AD HOC</text>
+        <text x="210" y="332" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">"Le Kienzan est une technique</text>
+        <text x="210" y="346" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">de coupe qui ignore les rapports"</text>
+        <text x="210" y="362" fill="#ef6060" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">→ non étiquetée, non justifiée</text>
+
+        <!-- Option 2 -->
+        <rect x="430" y="294" width="340" height="78" rx="6" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.2)" stroke-width=".8"/>
+        <text x="600" y="316" fill="#ef8080" font-size="10" font-weight="700" text-anchor="middle" font-family="Share Tech Mono,monospace">❌ NIER L'ÉCART</text>
+        <text x="600" y="332" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">"Les chiffres ne sont pas fiables,</text>
+        <text x="600" y="346" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">l'écart n'est pas si grand"</text>
+        <text x="600" y="362" fill="#ef6060" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">→ détruit l'échelle complète</text>
+
+        <!-- Option 3 -->
+        <rect x="820" y="294" width="340" height="78" rx="6" fill="rgba(74,222,128,.06)" stroke="rgba(74,222,128,.25)" stroke-width=".8"/>
+        <text x="990" y="316" fill="#4ade80" font-size="10" font-weight="700" text-anchor="middle" font-family="Share Tech Mono,monospace">✓ ANOMALIE OUVERTE</text>
+        <text x="990" y="332" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">"C'est une couture visible —</text>
+        <text x="990" y="346" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">improvisation de Toriyama"</text>
+        <text x="990" y="362" fill="#4ade80" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">→ honnête, systémiquement cohérent</text>
+
+        <!-- Comparaison des deux cas -->
+        <rect x="20" y="406" width="1160" height="130" rx="8" fill="rgba(255,215,0,.03)" stroke="rgba(255,215,0,.1)" stroke-width=".8"/>
+        <text x="600" y="428" fill="rgba(255,215,0,.6)" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace" letter-spacing="1">MÊME QUESTION — HYPOTHÈSE À EXAMINER</text>
+
+        <!-- tableau comparatif -->
+        <line x1="200" y1="436" x2="1160" y2="436" stroke="rgba(255,255,255,.06)" stroke-width=".8"/>
+        <text x="400" y="454" fill="#4a4a6a" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">SHIN KIKOHO</text>
+        <text x="800" y="454" fill="#4a4a6a" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">KIENZAN</text>
+        <text x="40" y="474" fill="#666688" font-size="9.5" font-family="Share Tech Mono,monospace">Utilisateur</text>
+        <text x="400" y="474" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Tenshinhan (≈ 30 UF)</text>
+        <text x="800" y="474" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Krillin</text>
+        <text x="40" y="494" fill="#666688" font-size="9.5" font-family="Share Tech Mono,monospace">Cible</text>
+        <text x="400" y="494" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Cell 2ème forme (≈ 450 UF)</text>
+        <text x="800" y="494" fill="#9898b8" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Freezer 2ème forme</text>
+        <text x="40" y="514" fill="#666688" font-size="9.5" font-family="Share Tech Mono,monospace">Étiquette texte</text>
+        <text x="400" y="514" fill="#ef8080" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">aucune</text>
+        <text x="800" y="514" fill="#ef8080" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">aucune</text>
+        <text x="40" y="534" fill="#666688" font-size="9.5" font-family="Share Tech Mono,monospace">Diagnostic</text>
+        <text x="400" y="534" fill="#4ade80" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">anomalie ouverte</text>
+        <text x="800" y="534" fill="#4ade80" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">anomalie ouverte</text>
+        <line x1="200" y1="540" x2="1160" y2="540" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
+
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PANEL III — CHAÎNE CAUSALE
+  ══════════════════════════════════════════ -->
+  <div id="panel-chain" class="panel" style="width:100%;max-width:1250px">
+    <div class="wrap">
+      <p class="figtitle">Fig. 3 — <b>La chaîne de déduction : du sentiment collectif au diagnostic analytique</b></p>
+      <svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mkGc" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ffd700"/>
+          </marker>
+          <marker id="mkRc" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ef4444"/>
+          </marker>
+          <marker id="mkGrc" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#4ade80"/>
+          </marker>
+        </defs>
+
+        <!-- Nœud 1 : Mouvement de recul collectif -->
+        <rect x="400" y="20" width="400" height="74" rx="8" fill="rgba(56,189,248,.06)" stroke="#38bdf8" stroke-width="1.2"/>
+        <text x="600" y="46" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1">MOUVEMENT DE RECUL COLLECTIF</text>
+        <text x="600" y="62" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Quasi-universellement ressenti à la première lecture.</text>
+        <text x="600" y="76" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Le sentiment n'est pas un argument — c'est un symptôme narratif.</text>
+
+        <!-- Flèche vers deux branches -->
+        <line x1="600" y1="94" x2="300" y2="144" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3,4" marker-end="url(#mkRc)"/>
+        <line x1="600" y1="94" x2="900" y2="144" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3,4" marker-end="url(#mkGrc)"/>
+
+        <text x="430" y="124" fill="rgba(255,255,255,.2)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">réaction fandom</text>
+        <text x="770" y="124" fill="rgba(255,255,255,.2)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">démarche analytique</text>
+
+        <!-- Branche gauche : réaction fandom -->
+        <rect x="60" y="144" width="480" height="64" rx="8" fill="rgba(239,68,68,.05)" stroke="rgba(239,68,68,.22)" stroke-width=".8"/>
+        <text x="300" y="168" fill="#ef8080" font-size="11.5" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1">RÉPONSE AD HOC — "ça doit être autre chose"</text>
+        <text x="300" y="184" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">On postule un sens caché sans le chercher.</text>
+        <text x="300" y="198" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">La règle des 5% sert de pansement immédiat.</text>
+
+        <!-- Branche droite : démarche analytique -->
+        <rect x="660" y="144" width="480" height="64" rx="8" fill="rgba(74,222,128,.05)" stroke="rgba(74,222,128,.22)" stroke-width=".8"/>
+        <text x="900" y="168" fill="#4ade80" font-size="11.5" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1">DÉMARCHE ANALYTIQUE — tester dans le texte</text>
+        <text x="900" y="184" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Définition canonique du Kikoho : T.8, école de la Grue.</text>
+        <text x="900" y="198" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">100% du ki de l'utilisateur. Pas un multiplicateur.</text>
+
+        <!-- Suite branche gauche : test de généralisation -->
+        <line x1="300" y1="208" x2="300" y2="258" stroke="rgba(239,68,68,.25)" stroke-width="1" marker-end="url(#mkRc)"/>
+
+        <rect x="60" y="258" width="480" height="80" rx="8" fill="rgba(239,68,68,.05)" stroke="rgba(239,68,68,.18)" stroke-width=".8"/>
+        <text x="300" y="280" fill="#ef8080" font-size="11" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif">TEST DE GÉNÉRALISATION</text>
+        <text x="300" y="296" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">"Si cette règle est vraie ici, qu'implique-t-elle</text>
+        <text x="300" y="310" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">pour toutes les autres scènes du manga ?"</text>
+        <text x="300" y="326" fill="#ef6060" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Kamehameha x20, Masenko, beam struggles → à 5% ?</text>
+
+        <!-- Suite branche droite : vérification écart -->
+        <line x1="900" y1="208" x2="900" y2="258" stroke="rgba(74,222,128,.25)" stroke-width="1" marker-end="url(#mkGrc)"/>
+
+        <rect x="660" y="258" width="480" height="80" rx="8" fill="rgba(74,222,128,.04)" stroke="rgba(74,222,128,.18)" stroke-width=".8"/>
+        <text x="900" y="280" fill="#4ade80" font-size="11" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif">VÉRIFICATION DE L'ÉCART</text>
+        <text x="900" y="296" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Ten ≈ 30 UF · Cell-2 ≈ 450 UF · C16 ≈ 200 UF</text>
+        <text x="900" y="310" fill="#9898b8" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">C16 ("toute sa force") échoue dans la case précédente.</text>
+        <text x="900" y="326" fill="#4ade80" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Grammaire interne : écart → annihilation.</text>
+
+        <!-- Les deux branches convergent vers le même résultat -->
+        <line x1="300" y1="338" x2="540" y2="418" stroke="rgba(239,68,68,.2)" stroke-width="1" marker-end="url(#mkRc)"/>
+        <line x1="900" y1="338" x2="660" y2="418" stroke="rgba(74,222,128,.2)" stroke-width="1" marker-end="url(#mkGrc)"/>
+
+        <text x="300" y="388" fill="rgba(239,68,68,.4)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">absurde — détruit le corpus</text>
+        <text x="900" y="388" fill="rgba(74,222,128,.4)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">confirmé par la grammaire</text>
+
+        <!-- Nœud convergence : verdict commun -->
+        <rect x="330" y="418" width="540" height="90" rx="10" fill="rgba(255,215,0,.06)" stroke="#ffd700" stroke-width="1.2" style="filter:drop-shadow(0 0 8px rgba(255,215,0,.15))"/>
+        <circle class="pulseEl" cx="875" cy="448" r="5" fill="none" stroke="#ffd700" stroke-width="1.5"/>
+        <text x="600" y="446" fill="#ffd700" font-size="13" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="2">DIAGNOSTIC — ANOMALIE OUVERTE</text>
+        <text x="600" y="464" fill="#c8c8e8" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Le Shin Kikoho contre Cell est une couture visible de l'improvisation.</text>
+        <text x="600" y="480" fill="#c8c8e8" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Toriyama avait besoin de la scène (Ten couvre la fuite de C18).</text>
+        <text x="600" y="496" fill="#a09050" font-size="10" text-anchor="middle" font-family="Share Tech Mono,monospace">Il l'a dessinée sans comptabilité — exactement comme le Kaioken ×20.</text>
+
+        <!-- Question décisive -->
+        <rect x="100" y="534" width="1000" height="58" rx="8" fill="rgba(192,132,252,.05)" stroke="rgba(192,132,252,.22)" stroke-width=".8"/>
+        <text x="600" y="556" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1">QUESTION DÉCISIVE POUR LE DÉBAT</text>
+        <text x="600" y="574" fill="#a898c8" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">"Si tu acceptes la règle des 5% pour le Kikoho, acceptes-tu que Goku n'a jamais dépassé 5% de son énergie dans aucun de ses combats ?"</text>
+        <text x="600" y="588" fill="#7a6a98" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace">S'il dit non → il vient d'admettre que la règle ne vaut que pour la case qu'elle doit sauver. Ce n'est pas une règle : c'est un alibi.</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PANEL IV — RÉDUCTION À L'ABSURDE
+  ══════════════════════════════════════════ -->
+  <div id="panel-verdict" class="panel" style="width:100%;max-width:1250px">
+    <div class="wrap">
+      <p class="figtitle">Fig. 4 — <b>Réduction à l'absurde : le retcon silencieux imposé par le fandom</b></p>
+      <svg viewBox="0 0 1200 580" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mkGv" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ffd700"/>
+          </marker>
+          <marker id="mkRv" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+            <path d="M0,.5L0,6.5L9,3.5z" fill="#ef4444"/>
+          </marker>
+        </defs>
+
+        <!-- Titre de la démonstration -->
+        <text x="600" y="24" fill="rgba(255,255,255,.25)" font-size="9.5" text-anchor="middle" font-family="Share Tech Mono,monospace" letter-spacing="2">HYPOTHÈSE : ACCEPTER LA RÈGLE DES 5% — CONSEQUENCES SUR L'ENSEMBLE DU CORPUS</text>
+
+        <!-- ─── LECTURE RÉELLE (colonne gauche) ─── -->
+        <rect x="20" y="36" width="560" height="30" rx="6" fill="rgba(56,189,248,.06)" stroke="rgba(56,189,248,.2)" stroke-width=".8"/>
+        <text x="300" y="56" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1.5">CE QUE LE MANGA MONTRE</text>
+
+        <!-- Scène 1 : Goku épuisé -->
+        <rect x="20" y="78" width="560" height="74" rx="6" fill="rgba(8,8,22,.8)" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
+        <text x="40" y="99" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">Goku après Kamehameha ×20 contre Vegeta :</text>
+        <text x="40" y="115" fill="#c8c8e8" font-size="11" font-family="Rajdhani,sans-serif">"Je suis à bout. Je ne peux plus rien faire."</text>
+        <rect x="40" y="124" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="124" width="490" height="14" rx="2" fill="#38bdf8" opacity=".6" class="bar-anim" style="animation-delay:.1s"/>
+        <text x="40" y="146" fill="#38bdf8" font-size="9" font-family="Share Tech Mono,monospace">Effort affiché par le manga : ~95%</text>
+
+        <!-- Scène 2 : Gohan épuisé -->
+        <rect x="20" y="164" width="560" height="74" rx="6" fill="rgba(8,8,22,.8)" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
+        <text x="40" y="185" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">Gohan après le Masenko contre Radditz :</text>
+        <text x="40" y="201" fill="#c8c8e8" font-size="11" font-family="Rajdhani,sans-serif">S'effondre immédiatement, incapable de se relever.</text>
+        <rect x="40" y="210" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="210" width="480" height="14" rx="2" fill="#38bdf8" opacity=".6" class="bar-anim" style="animation-delay:.18s"/>
+        <text x="40" y="232" fill="#38bdf8" font-size="9" font-family="Share Tech Mono,monospace">Effort affiché par le manga : ~92%</text>
+
+        <!-- Scène 3 : C16 échoue -->
+        <rect x="20" y="250" width="560" height="74" rx="6" fill="rgba(8,8,22,.8)" stroke="rgba(255,255,255,.07)" stroke-width=".8"/>
+        <text x="40" y="271" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">C16 contre Cell-2 (case précédente) :</text>
+        <text x="40" y="287" fill="#c8c8e8" font-size="11" font-family="Rajdhani,sans-serif">"Toute ma force" — incapable de retenir Cell.</text>
+        <rect x="40" y="296" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="296" width="470" height="14" rx="2" fill="#38bdf8" opacity=".6" class="bar-anim" style="animation-delay:.26s"/>
+        <text x="40" y="318" fill="#38bdf8" font-size="9" font-family="Share Tech Mono,monospace">Effort déclaré par le manga : 100%</text>
+
+        <!-- Scène Kikoho -->
+        <rect x="20" y="336" width="560" height="74" rx="6" fill="rgba(255,215,0,.04)" stroke="rgba(255,215,0,.2)" stroke-width=".8"/>
+        <text x="40" y="357" fill="#a09050" font-size="10.5" font-family="Share Tech Mono,monospace">Tenshinhan — Shin Kikoho contre Cell-2 :</text>
+        <text x="40" y="373" fill="#e8c840" font-size="11" font-family="Rajdhani,sans-serif">"Je vais mourir mais je vais le retenir."</text>
+        <rect x="40" y="382" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="40" y="382" width="520" height="14" rx="2" fill="#ffd700" opacity=".7" class="bar-anim" style="animation-delay:.34s"/>
+        <text x="40" y="404" fill="#ffd700" font-size="9" font-family="Share Tech Mono,monospace">Kikoho : 100% canonique (école de la Grue, T.8)</text>
+
+        <!-- ─── IMPLICATIONS (colonne droite) ─── -->
+        <rect x="620" y="36" width="560" height="30" rx="6" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.22)" stroke-width=".8"/>
+        <text x="900" y="56" fill="#ef4444" font-size="11" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="1.5">SI LA RÈGLE DES 5% EST VRAIE</text>
+
+        <rect x="620" y="78" width="560" height="74" rx="6" fill="rgba(239,68,68,.04)" stroke="rgba(239,68,68,.1)" stroke-width=".8"/>
+        <text x="640" y="99" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">Goku gardait 95% de son énergie en réserve.</text>
+        <text x="640" y="115" fill="#ef6060" font-size="11" font-family="Rajdhani,sans-serif">Il n'aurait jamais eu besoin de Yajirobe.</text>
+        <rect x="640" y="124" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="640" y="124" width="26" height="14" rx="2" fill="#ef4444" opacity=".55" class="bar-anim" style="animation-delay:.12s"/>
+        <rect x="666" y="124" width="494" height="14" rx="2" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.15)" stroke-width=".5" stroke-dasharray="3,4"/>
+        <text x="900" y="146" fill="rgba(239,68,68,.35)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">95% de puissance fantôme — inexpliquée, inutilisée</text>
+
+        <rect x="620" y="164" width="560" height="74" rx="6" fill="rgba(239,68,68,.04)" stroke="rgba(239,68,68,.1)" stroke-width=".8"/>
+        <text x="640" y="185" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">Gohan s'effondrait à 5% de son énergie réelle.</text>
+        <text x="640" y="201" fill="#ef6060" font-size="11" font-family="Rajdhani,sans-serif">À 100%, il pulvérisait Radditz sans aide.</text>
+        <rect x="640" y="210" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="640" y="210" width="26" height="14" rx="2" fill="#ef4444" opacity=".55" class="bar-anim" style="animation-delay:.2s"/>
+        <rect x="666" y="210" width="494" height="14" rx="2" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.15)" stroke-width=".5" stroke-dasharray="3,4"/>
+        <text x="900" y="232" fill="rgba(239,68,68,.35)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">95% — jamais utilisés même pour survivre</text>
+
+        <rect x="620" y="250" width="560" height="74" rx="6" fill="rgba(239,68,68,.04)" stroke="rgba(239,68,68,.1)" stroke-width=".8"/>
+        <text x="640" y="271" fill="#9898b8" font-size="10.5" font-family="Share Tech Mono,monospace">C16 n'utilisait que 5% face à Cell-2.</text>
+        <text x="640" y="287" fill="#ef6060" font-size="11" font-family="Rajdhani,sans-serif">À 100%, il le surclassait de loin.</text>
+        <rect x="640" y="296" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="640" y="296" width="26" height="14" rx="2" fill="#ef4444" opacity=".55" class="bar-anim" style="animation-delay:.28s"/>
+        <rect x="666" y="296" width="494" height="14" rx="2" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.15)" stroke-width=".5" stroke-dasharray="3,4"/>
+        <text x="900" y="318" fill="rgba(239,68,68,.35)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">95% — mais il ne s'en sert pas pour se sauver ?</text>
+
+        <rect x="620" y="336" width="560" height="74" rx="6" fill="rgba(255,215,0,.04)" stroke="rgba(255,215,0,.14)" stroke-width=".8"/>
+        <text x="640" y="357" fill="#a09050" font-size="10.5" font-family="Share Tech Mono,monospace">Tenshinhan à 100% retient Cell-2.</text>
+        <text x="640" y="373" fill="#e8c840" font-size="11" font-family="Rajdhani,sans-serif">Cohérent SEULEMENT avec la règle des 5%.</text>
+        <rect x="640" y="382" width="520" height="14" rx="2" fill="rgba(255,255,255,.03)"/>
+        <rect x="640" y="382" width="520" height="14" rx="2" fill="#ffd700" opacity=".7" class="bar-anim" style="animation-delay:.36s"/>
+        <text x="900" y="404" fill="rgba(255,215,0,.4)" font-size="9" text-anchor="middle" font-family="Share Tech Mono,monospace">100% — mais la règle détruit toutes les scènes ci-dessus</text>
+
+        <!-- Flèche liant les deux colonnes au verdict -->
+        <path class="flowarr" d="M300 412 C 300 460 600 460 600 490" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-opacity=".45" marker-end="url(#mkRv)"/>
+        <path class="flowarr" d="M900 412 C 900 460 660 460 660 490" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-opacity=".45" marker-end="url(#mkRv)"/>
+
+        <!-- Box verdict final -->
+        <rect x="200" y="492" width="800" height="74" rx="10" fill="rgba(255,215,0,.06)" stroke="#ffd700" stroke-width="1.2"/>
+        <text x="600" y="516" fill="#ffd700" font-size="13" font-weight="700" text-anchor="middle" font-family="Rajdhani,sans-serif" letter-spacing="2">RÉDUCTION À L'ABSURDE — QED</text>
+        <text x="600" y="534" fill="#c8c8e8" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">La règle des 5% ne peut fonctionner que si on s'interdit de la généraliser.</text>
+        <text x="600" y="550" fill="#a09050" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">Elle n'est pas une règle — c'est un retcon silencieux imposé par le fandom</text>
+        <text x="600" y="564" fill="#a09050" font-size="10.5" text-anchor="middle" font-family="Share Tech Mono,monospace">pour sauver une seule case au prix de toutes les autres.</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- RÈGLE D'OR -->
+  <div class="rule" style="max-width:1250px">
+    ✦ RÈGLE DE LA GRAMMAIRE INTERNE — <span class="good">anomalie identifiée et nommée</span> : renforce le système analytique
+    &nbsp;·&nbsp; <span class="bad">anomalie patchée par une règle ad hoc</span> : détruit le corpus pour sauver une case
+    <br>
+    <span style="color:rgba(200,200,220,.4);font-size:10.5px">Le Shin Kikoho, le Kienzan et le Kaioken ×20 : trois pistes d'analyse à confronter séparément aux sources.</span>
+  </div>
+
+</div><!-- /z-index wrapper -->
+
+<div id="tip" style="position:fixed;display:none;background:rgba(4,4,18,.97);border:1px solid rgba(255,215,0,.3);border-radius:8px;padding:10px 14px;font-size:12px;font-family:'Share Tech Mono',monospace;color:#c0c0dc;pointer-events:none;z-index:9999;max-width:260px;line-height:1.65;box-shadow:0 8px 30px rgba(0,0,0,.75)"></div>
+
+<script>
+// Stars
+(()=>{
+  const c=document.getElementById('stars');
+  for(let i=0;i<90;i++){
+    const d=document.createElement('div'),sz=Math.random()*1.8+.4;
+    d.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;background:rgba(255,255,255,.8);left:${Math.random()*100}%;top:${Math.random()*100}%;animation:tw ${2+Math.random()*3}s ${Math.random()*4}s infinite alternate`;
+    c.appendChild(d);
+  }
+})();
+
+// Tabs
+function showTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+  // Re-trigger bar animations
+  document.querySelectorAll('#panel-'+id+' .bar-anim').forEach(b => {
+    b.style.animation = 'none';
+    void b.offsetWidth;
+    b.style.animation = '';
+  });
+}
+</script>
+</body>
+</html>
