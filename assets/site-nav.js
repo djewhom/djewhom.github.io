@@ -162,6 +162,23 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
     '</div>' +
     (page === 'article' ? '<div class="sn-prog" aria-hidden="true"></div>' : '');
   document.body.insertBefore(bar, document.body.firstChild);
+  /* Traduction des pages publiques uniquement, chargée à la demande. */
+  if (accueil || page === 'article' || page === 'cursus' || page === 'fanart') {
+    var lang = document.createElement('details');
+    lang.className = 'db-language-switcher notranslate';
+    lang.setAttribute('translate','no');
+    lang.innerHTML = '<summary aria-label="Choisir la langue / Choose language">🌐 <span>FR</span> ▾</summary><div class="db-language-panel"><strong>Langue / Language</strong><div class="db-gt"></div><p>Automatic translation · Traduction automatique</p><a class="db-translate-fallback" href="https://translate.google.com/translate?sl=fr&tl=en&u='+encodeURIComponent(location.origin+location.pathname)+'" target="_blank" rel="noopener noreferrer">English — Google Translate ↗</a></div>';
+    bar.querySelector('.sn-in').appendChild(lang);
+    var ls=document.createElement('style');ls.textContent='.db-language-switcher{position:relative;flex:none;color:#f8d783;font:600 14px system-ui,sans-serif}.db-language-switcher summary{cursor:pointer;list-style:none;padding:7px 8px;white-space:nowrap;border:1px solid #c99a4277;border-radius:8px}.db-language-switcher summary::-webkit-details-marker{display:none}.db-language-panel{position:absolute;right:0;top:calc(100% + 8px);width:228px;padding:14px;background:#fffdf6;color:#102f58;border:1px solid #c99a42;border-radius:10px;box-shadow:0 6px 25px #0005;font:14px/1.5 system-ui,sans-serif;z-index:1100}.db-language-panel p{font-size:11px;color:#596577;margin:12px 0 5px}.db-language-panel a{color:#174780;font-size:12px}.db-language-panel .db-gt{margin-top:10px}.db-language-panel select{max-width:100%;width:100%;padding:7px}.db-language-switcher summary:focus-visible{outline:2px solid #ffd477}@media(max-width:1320px){.sn-in .sn-liens{display:none}.sn-in .sn-mob{display:inline-flex}.sn-in .sn-account-mobile{display:inline-flex;color:#ffc531;font-size:13px;text-decoration:none}}@media(max-width:390px){.db-language-switcher summary{padding:5px;font-size:12px}.sn-in .sn-account-mobile{display:none}.sn-in{padding-inline:8px;gap:4px}}';document.head.appendChild(ls);
+    var loaded=false;
+    lang.addEventListener('toggle',function(){
+      if(!lang.open || loaded)return;loaded=true;
+      window.gtranslateSettings={default_language:'fr',native_language_names:true,detect_browser_language:false,languages:['fr','en','es','pt','ja','de','it','pl'],wrapper_selector:'.db-gt',flag_style:'2d',alt_flags:{pt:'brazil'}};
+      var script=document.createElement('script');script.src='https://cdn.gtranslate.net/widgets/latest/dropdown.js';script.async=true;script.onerror=function(){loaded=false;script.remove();};document.head.appendChild(script);
+    });
+    document.addEventListener('click',function(e){if(!lang.contains(e.target))lang.open=false;});
+  }
+
   /* si la page a une marge autour du body, la barre la compense pour rester bord à bord */
   var cs = getComputedStyle(document.body);
   ['Top','Left','Right'].forEach(function(c){ var v = parseFloat(cs['margin' + c]) + parseFloat(cs['padding' + c]); if (v) bar.style['margin' + c] = (-v) + 'px'; });
