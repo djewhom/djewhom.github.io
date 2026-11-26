@@ -244,6 +244,28 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   if(page === 'article') import('/assets/carnet.js?v=10').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});});
   if(accueil) import('/assets/carnet.js?v=10').then(function(m){m.mountHomeNotebook();}).catch(function(){});
   import('/assets/univers.js?v=8').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
+
+  /* Clarity: consentement facultatif, pages publiques uniquement. */
+  (function(){
+    if(!(accueil || page==='article' || page==='cursus' || page==='fanart' || chemin==='/univers.html' || chemin==='/article-lecture-fluide/' || chemin==='/article-lecture-fluide/index.html'))return;
+    if(/(?:access_token|refresh_token|code|token)=/i.test(location.search+location.hash))return;
+    var key='db-clarity-consent-v1', loaded=false, choice=null;
+    try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved && Date.now()-saved.time<15552000000)choice=saved.choice;}catch(e){}
+    document.documentElement.setAttribute('data-clarity-mask','true');
+    function start(){
+      if(loaded)return;loaded=true;
+      window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments);};
+      window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});
+      var t=document.createElement('script');t.async=true;t.src='https://www.clarity.ms/tag/zjpd7ieuuq';document.head.appendChild(t);
+    }
+    var style=document.createElement('style');style.textContent='#db-privacy-panel{position:fixed;bottom:16px;left:16px;right:16px;max-width:560px;z-index:20000;background:#fffdf6;color:#102f58;border:1px solid #c99a42;border-radius:12px;padding:18px;box-shadow:0 6px 30px #0005;font:15px/1.5 system-ui,sans-serif}#db-privacy-panel[hidden]{display:none}#db-privacy-panel p{margin:8px 0}#db-privacy-panel button,#db-privacy-open{font:inherit;cursor:pointer;border:1px solid #9a7a3d;border-radius:7px;background:#102f58;color:white;padding:9px 14px}#db-privacy-panel .db-privacy-actions{display:flex;flex-wrap:wrap;gap:8px}#db-privacy-open{display:block;margin:10px auto;font-size:12px}#db-privacy-panel a{color:#174780}';document.head.appendChild(style);
+    var panel=document.createElement('section');panel.id='db-privacy-panel';panel.setAttribute('aria-label','Préférences de confidentialité');panel.hidden=choice!==null;panel.innerHTML='<strong>Mesure d’audience facultative</strong><p>Avec votre accord, Microsoft Clarity analyse les clics, le défilement et enregistre les interactions de navigation pour améliorer DragonBallogy. Des données techniques de navigation sont transmises à Microsoft. Aucun usage publicitaire autorisé. Vous pouvez refuser sans restriction et modifier votre choix à tout moment.</p><p><a href="https://privacy.microsoft.com/fr-fr/privacystatement" target="_blank" rel="noopener noreferrer">Confidentialité Microsoft</a></p><div class="db-privacy-actions"><button type="button" data-choice="yes">Accepter</button><button type="button" data-choice="no">Refuser</button></div>';
+    document.body.appendChild(panel);
+    var settings=document.createElement('button');settings.id='db-privacy-open';settings.type='button';settings.textContent='Préférences de confidentialité';settings.addEventListener('click',function(){panel.hidden=!panel.hidden;if(!panel.hidden)panel.querySelector('button').focus();});var footer=document.querySelector('body > footer, footer');(footer||document.body).appendChild(settings);
+    panel.addEventListener('click',function(e){var b=e.target.closest('button[data-choice]');if(!b)return;var next=b.dataset.choice;try{localStorage.setItem(key,JSON.stringify({choice:next,time:Date.now()}));}catch(err){}choice=next;panel.hidden=true;if(next==='yes')start();else if(loaded){window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'denied'});location.reload();}});
+    if(choice==='yes')start();
+  })();
+
   /* ---------- statistiques GoatCounter : lectures complètes + clics Discord ---------- */
   function compter(nom, titre){
     var essais = 0;
