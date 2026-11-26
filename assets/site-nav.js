@@ -29,7 +29,7 @@
   var accueil = chemin === '/' || chemin === '/index.html';
   var ici = -1;
   ARTICLES.forEach(function(a, i){ if (chemin.indexOf(a.p) === 0) ici = i; });
-  var page = accueil ? 'accueil' : chemin.indexOf('/cursus') === 0 ? 'cursus' : chemin.indexOf('/fanart') === 0 ? 'fanart' : ici >= 0 ? 'article' : 'autre';
+  var page = accueil ? 'accueil' : chemin.indexOf('/cursus') === 0 ? 'cursus' : chemin.indexOf('/fanart') === 0 ? 'fanart' : chemin === '/contact.html' ? 'contact' : ici >= 0 ? 'article' : 'autre';
 
   window.__dbArticles = ARTICLES.map(function(a){return {n:a.n,t:a.t,u:a.u};});
   /* ---------- styles ---------- */
@@ -142,6 +142,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<a class="sn-lien' + (page === 'cursus' ? ' actif' : '') + '" href="/cursus.html">' + IC.chapeau + 'Cursus</a>' +
         '<a class="sn-lien' + (page === 'fanart' ? ' actif' : '') + '" href="/fanart.html">' + IC.pinceau + 'Fan art</a>' +
         '<a class="sn-lien sn-academy-link" href="/compte.html">Mon académie</a>' +
+        '<a class="sn-lien' + (page === 'contact' ? ' actif' : '') + '" href="/contact.html">Contact</a>' +
         '<a class="sn-lien sn-discord" href="' + DISCORD + '" target="_blank" rel="noopener">' + IC.discord + 'Discord</a>' +
       '</nav>' +
       '<a class="sn-account-mobile" href="/compte.html">Académie</a>' +
@@ -153,6 +154,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
         '<a class="sn-art" href="/#exploration"><span class="sn-num">◎</span><span>Explorer les univers</span></a>' +
         '<a class="sn-art" href="/cursus.html"><span class="sn-num">✦</span><span>Cursus</span></a>' +
         '<a class="sn-art" href="/fanart.html"><span class="sn-num">✎</span><span>Fan art</span></a>' +
+        '<a class="sn-art" href="/contact.html"><span class="sn-num">✉</span><span>Contact</span></a>' +
         '<a class="sn-art" href="/compte.html"><span class="sn-num">★</span><span>Mon académie</span></a>' +
         '<a class="sn-art" href="' + DISCORD + '" target="_blank" rel="noopener"><span class="sn-num" style="background:#5865F2;color:#fff;box-shadow:none">' + IC.discord + '</span><span>Rejoindre le Discord</span></a>' +
       '</div>' +
