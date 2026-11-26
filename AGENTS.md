@@ -103,6 +103,8 @@ ChatGPT produit l'image → Dje la dépose dans le dépôt → Claude l'intègre
 
 - `Article-C16-Etreinte/` — Relecture de fond à valider avec Dje et Claude : compléter les références de chapitres/pages ; vérifier sur les planches la comparabilité des deux attaques par-derrière et distinguer l’inquiétude visible de Cell de l’intention de se libérer ; distinguer la réparation attestée de l’hypothèse d’une amélioration, sans transformer le silence du récit en preuve. Le schéma reste qualitatif.
 - Bandeau de consentement commun : lors du premier test Chrome émulé à 375 px, un débordement horizontal (500 px) a été observé ; non reproduit lors du test suivant. À surveiller sur téléphone réel ; aucun fichier partagé modifié.
+- `Article-C16-Etreinte/` — Dje complétera plus tard les numéros de chapitres et de pages ; à lui rappeler (ne pas les inventer). Vérifier alors la légende du diptyque « à quelques chapitres d'écart ».
+- **Méthode — vérification en VO** : pour les points où le sens compte (ex. « sans aura » : ki non détectable ou absence de ki ? quel vocabulaire japonais exact ?), comparer la traduction française au texte japonais. Dje fournira le lien du site du manga en japonais ; en attendant, ne pas trancher sur la traduction seule, signaler le doute dans « À vérifier ».
 
 ---
 
