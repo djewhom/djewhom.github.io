@@ -1,0 +1,98 @@
+# AGENTS.md — Carnet de bord commun de Dragonballogy
+
+Ce fichier est lu par **toutes les IA** qui travaillent sur ce site (ChatGPT, Claude…).
+Il remplace les explications répétées : avant toute modification, lisez-le en entier.
+Après chaque session de travail, ajoutez une ligne au **Journal** (en bas).
+
+Propriétaire et décideur : **Dje** (djewhom). Les IA proposent, Dje tranche.
+
+---
+
+## 1. Règles de travail entre IA
+
+1. **Toujours partir de la dernière version sur GitHub**, jamais d'une copie gardée en mémoire ou dans une conversation. Relire le fichier juste avant de le modifier.
+2. **Une seule IA à la fois sur le site.** Si le Journal indique un chantier « en cours » par une autre IA, ne pas toucher aux mêmes fichiers.
+3. **Ne pas défaire le travail de l'autre sans le signaler.** Si quelque chose semble faux, l'écrire dans « À vérifier » plutôt que de le réécrire en silence.
+4. **Fichiers sensibles (partagés par toutes les pages)** : `assets/site-nav.js`, `style.css`, `sw.js`, `manifest.webmanifest`. Modifications courtes et ciblées, jamais de réécriture complète. Après modification : vérifier la syntaxe (`node --check`) et tester au moins l'accueil + un article.
+5. **Aucune clé secrète dans le dépôt** (Supabase service_role, secrets OAuth, mots de passe). Le dépôt est public.
+6. Messages de commit en français, clairs (« Ajouter X à Y »). Indiquer l'IA dans le Journal.
+7. Le cache de GitHub Pages met ~10 min à se rafraîchir : une modif invisible tout de suite n'est pas forcément ratée.
+
+---
+
+## 2. Identité du site
+
+- **Nom** : Dragonballogie / Dragonballogy — https://dragonballogy.com
+- **Esprit** : analyse rigoureuse et narratologique du manga Dragon Ball (« dragonballologie »). Public prioritaire : les lecteurs curieux, les « dragonballogues ».
+- **Ton des articles** : on s'adresse au lecteur avec **« vous »**. Argumenter à partir des planches du manga (preuves primaires), distinguer preuve et ressenti.
+- **Palette** (définie dans `assets/site-nav.js`) : bleu nuit `#0a1f4d`, bleu `#12357a`, orange `#f5821f`, or `#ffc531`, rouge `#d7261e`. Titres en Oswald.
+- **Langue** : français (un sélecteur de traduction existe pour les autres langues).
+
+---
+
+## 3. Hébergement et architecture
+
+- **GitHub Pages**, compte `djewhom`. Domaine chez **OVH** (DNS : A 185.199.108-111.153, CNAME www → djewhom.github.io). Ne pas toucher au fichier `CNAME`.
+- **Dépôt principal** `djewhom.github.io` : accueil, cursus, fan art, univers, contact, compte, articles récents.
+- **Dépôts séparés par article** (servis sous `dragonballogy.com/<Nom-du-dépôt>/`) :
+  - `Les-3-cercles-de-lectures` → `/Les-3-cercles-de-lectures/article-3cercles_7.html`
+  - `Article-Retcon` → `/Article-Retcon/article-retcon.html` (+ `Infographie/retcon_anatomie.html`, `images/`)
+  - `La-vraie-fin-de-DB`, `Goku-SSJ3-vs-gros-Buu`, `Pourquoi-Ultra-Buu-existe-t-il-`, `Super-Buu-vs-Kid-Buu`
+  - Ces pages chargent le script commun via `/assets/site-nav.js` (chemin absolu vers le dépôt principal).
+- **Articles dans le dépôt principal** : `article-c16.html`, `Article-Super-Saiyan/`, `Article-Shin-Kikoho/`, `Article-Lecture-Fluide/`.
+
+### Le script commun `assets/site-nav.js`
+Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></script>`. Il fournit :
+- la barre du haut, le menu des articles, le panneau mobile, la barre de progression, « Haut de page », « Article précédent / suivant » ;
+- la liste **`ARTICLES`** : pour publier un nouvel article dans le menu, ajouter **une ligne** ici ;
+- `var DISCORD` : **le seul endroit** où changer le lien d'invitation Discord dans la barre (les blocs `<!-- cta-discord -->` en bas de page contiennent aussi le lien) ;
+- les compteurs d'événements GoatCounter (`clic-discord`, `lecture-complete`) ;
+- le chargement de Clarity (avec consentement), des commentaires, de l'atelier de lecture (`study.js`).
+
+### Autres modules (`assets/`)
+`carnet.js/css` (carnet de lecture, marque-pages), `image-viewer.js` (visionneuse d'images), `study.js/css` (atelier : recherche, notes, surlignage, glossaire), `comments.js/css`, `account*.js` (comptes Supabase — **bêta non ouverte**, voir `docs/academy-setup.md`), `magazine.js/css` (habillage accueil), `univers.js/css`.
+
+### Statistiques
+- **GoatCounter** : https://dragonballogy.goatcounter.com (visites, provenance, événements).
+- **Microsoft Clarity** (consentement explicite, textes masqués).
+- **Google Search Console** + `sitemap.xml` (à tenir à jour à chaque nouvelle page publique).
+
+### Communauté
+- Discord : https://discord.gg/JxMAuBbpQ (**lien temporaire, expire vers le 23/12** → à remplacer par un lien permanent).
+- Fan art : `fanart.html` + `fanart.js` (images du dossier `/fanart`, nom `AAAA-MM-JJ - Pseudo - Titre.jpg`) + salon Discord en direct via WidgetBot. Tout ce qu'affiche WidgetBot est **public**.
+- Contact : `contact.html` → dragonballogy.site@gmail.com.
+
+### Cursus (`cursus.html`)
+6 modules : 01 Retcons · 02 Timelines · 03 Registres narratifs · 04 Intentions de l'auteur · 05 Continuité · 06 Puissance. Images dans `/cursus/`. Projet : bandeau tiré au hasard parmi plusieurs visuels (`cursus-1.jpg`, `cursus-2.jpg`…).
+
+---
+
+## 4. Rôles proposés
+
+- **ChatGPT** : visuels (bannières, images du Cursus), évolutions courantes du site, fonctionnalités.
+- **Claude** : analyse et rédaction des articles, relecture technique de ce qui est publié.
+- **Relecture croisée** : ce qu'une IA construit, l'autre peut le vérifier. Noter les problèmes trouvés dans « À vérifier ».
+
+---
+
+## 5. Chantiers en attente
+
+- Lien Discord permanent à mettre dans `var DISCORD` + tous les blocs `cta-discord`.
+- Article Retcon : 3 illustrations de marge (§3 Gyumao et le petit nuage, §6 dragon avec pansements « patch 1/patch 2 », §9 rangée de visages choqués), bannière `images/banner_retcon.jpg`, diptyque du tisserand, numéros de chapitre des scènes du bain et de Yamcha.
+- Article « Le canon Z » (registre narratif, image du douanier) à publier, avec passerelles depuis Retcon, 3 cercles et le module 03 du Cursus.
+- Bandeau aléatoire du Cursus quand plusieurs visuels seront déposés.
+
+## 6. À vérifier
+
+- `Article-Lecture-Fluide/` n'est pas dans la liste `ARTICLES` ni sur l'accueil : volontaire (brouillon) ou oubli ?
+- `sitemap.xml` ne contient pas les articles des dépôts séparés (3 cercles, Retcon, Vraie fin, SSJ3, Ultra Buu, Super vs Kid).
+
+---
+
+## 7. Journal
+
+Format : `JJ/MM — IA — ce qui a été fait (fichiers principaux)`. Ajouter en bas, ne pas effacer.
+
+- 23-24/11 — Claude — Domaine, sommaire d'accueil, fan art + WidgetBot, Cursus, GoatCounter + compteurs, bouton et blocs Discord, habillage de l'article Retcon (ouverture sur la queue de Goku, fil rouge, sommaire mobile, encadrés repliables).
+- 24-26/11 — ChatGPT — Univers et salons thématiques, carnet de lecture, visionneuse, atelier de lecture, articles Super Saiyan, Shin Kikoho et Lecture fluide, accueil magazine bleu et or + bannière Shenron, page Contact, sélecteur de langue, Search Console + sitemap, Clarity, préparation des comptes Supabase.
+- 26/11 — Claude — Création de ce carnet de bord `AGENTS.md`.
