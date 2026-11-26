@@ -39,7 +39,7 @@ Propriétaire et décideur : **Dje** (djewhom). Les IA proposent, Dje tranche.
   - `Article-Retcon` → `/Article-Retcon/article-retcon.html` (+ `Infographie/retcon_anatomie.html`, `images/`)
   - `La-vraie-fin-de-DB`, `Goku-SSJ3-vs-gros-Buu`, `Pourquoi-Ultra-Buu-existe-t-il-`, `Super-Buu-vs-Kid-Buu`
   - Ces pages chargent le script commun via `/assets/site-nav.js` (chemin absolu vers le dépôt principal).
-- **Articles dans le dépôt principal** : `article-c16.html`, `Article-Super-Saiyan/`, `Article-Shin-Kikoho/`, `Article-Lecture-Fluide/`.
+- **Articles dans le dépôt principal** : `article-c16.html`, `Article-Super-Saiyan/`, `Article-Shin-Kikoho/`, `Article-C16-Etreinte/`, `Article-Lecture-Fluide/`.
 
 ### Le script commun `assets/site-nav.js`
 Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></script>`. Il fournit :
@@ -111,3 +111,4 @@ Format : `JJ/MM — IA — ce qui a été fait (fichiers principaux)`. Ajouter e
 - 24-26/11 — ChatGPT — Univers et salons thématiques, carnet de lecture, visionneuse, atelier de lecture, articles Super Saiyan, Shin Kikoho et Lecture fluide, accueil magazine bleu et or + bannière Shenron, page Contact, sélecteur de langue, Search Console + sitemap, Clarity, préparation des comptes Supabase.
 - 26/11 — Claude — Création de ce carnet de bord `AGENTS.md`.
 - 26/11 — Claude — Section 4 : répartition des rôles validée par Dje (Claude = code/structure/fond, ChatGPT = image/style/diffusion, chacun peut remplacer l'autre).
+- 26/11 — Claude — Article « C-16 : une puissance de circonstance » (dossier Boosts magiques · 02) : `Article-C16-Etreinte/` (6 planches), ligne 10 dans `ARTICLES`, carte d'accueil, sitemap. Gabarit et style repris du Shin Kikoho (ChatGPT). Fond discuté avec Dje ; numéros de chapitres à compléter. Prochain volet prévu : l'étreinte qui retient un adversaire plus fort (cas fournis par Dje).
