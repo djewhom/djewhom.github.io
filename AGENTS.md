@@ -66,6 +66,7 @@ Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></sc
 6 modules : 01 Retcons · 02 Timelines · 03 Registres narratifs · 04 Intentions de l'auteur · 05 Continuité · 06 Puissance. Images dans `/cursus/`. Projet : bandeau tiré au hasard parmi plusieurs visuels (`cursus-1.jpg`, `cursus-2.jpg`…).
 - C-16 et les trois cercles : ajouter la scène comme exemple appliqué dans l'article « Les 3 cercles de lecture » (analyse transversale, grille des trois cercles ; 1er cercle insuffisant, 2e cercle = intention de l'auteur). Dje redonne l'analyse ; ne pas reformuler les cercles de mémoire.
 - Article « C-16 : une sortie honorable ? » (thèse de Dje : deux scènes héroïques en fin d'arc pour compenser un rôle de boss initialement envisagé). Hypothèse d'intention : chercher une source en VO (interview, Daizenshuu) avant de l'affirmer ; sinon la présenter comme lecture cohérente avec le texte.
+- Article « Les 3 cercles de lecture » : système de notation visuel pour les exemples appliqués (note /20 + trois jauges : tenue du 1er cercle, clarté de l'intention = 2e cercle, besoin du 3e cercle ; idée d'un point qui se place entre les trois cercles). Exemples en attente : commando Ginyu (Barta), soldes du Super Saiyan, C-16, cas de DB Super (3e cercle), scène de Goku notée 18/20 par Dje. Vote des lecteurs : option à choisir (Discord, Giscus ou base de données). Piloté par Claude (structure) avec ChatGPT pour le visuel.
 
 ---
 
