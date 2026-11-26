@@ -67,9 +67,105 @@
 .ce-teaser{font:700 22px/1.4 Georgia,serif;color:var(--navy);text-align:center;margin:34px 0 10px;clear:both}
 @media(max-width:760px){.ce-side,.ce-side.g{float:none;width:auto;margin:16px 0}.ce-dip-grid{gap:8px}.ce-dip-grid figcaption{font-size:13px;padding:8px 9px}}
 @media(prefers-reduced-motion:reduce){.ce-fil a::before,.ce-tipbox,.ce-obj summary::after{transition:none}}
+</style><style id="ce-polish">
+/* Relecture artistique C-16 · styles exclusivement locaux */
+.sk-hero{box-shadow:0 12px 30px #0a1f4d18;border-bottom:0}
+.sk-hero::before{content:"";position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,#d9ae58 0 50%,#a23c31 50% 100%);pointer-events:none}
+.sk-body{box-shadow:0 8px 26px #0a1f4d08}
+.sk-pair>div{min-width:0;border-top:3px solid #bd862a;padding:clamp(13px,2vw,20px)}
+.sk-pair>div:nth-child(2){border-top-color:var(--red)}
+.sk-pair>div h3{margin:5px 0 8px;font-family:Georgia,serif}
+.sk-manga-group{box-shadow:0 5px 16px #0a1f4d0b}
+.sk-manga-label{border-bottom:2px solid #d9ae58}
+.sk-manga-figure figcaption{padding:12px 14px}
+.sk-manga-figure a{touch-action:manipulation}
+.sk-rail{scrollbar-width:thin;scrollbar-color:#b89a5c transparent;padding:2px 3px 4px}
+.sk-rail section{box-shadow:0 5px 14px #0a1f4d16}
+.ce-state{border-top:3px solid #d9ae58!important}
+.ce-state .ce-tag{display:inline-block;max-width:100%;white-space:normal;line-height:1.35;font-size:13px;padding:7px 10px}
+.ce-fil nav{border-left-color:#d9ae5866;margin-left:7px}
+.ce-fil a{opacity:1;color:#dbe4ed;padding:10px 6px 10px 16px;min-height:44px;display:flex;align-items:center;border-radius:0 5px 5px 0}
+.ce-fil a.done{opacity:1;color:#fff4d5}
+.ce-fil a.on{background:#ffffff16;color:#fff9e8;box-shadow:inset -3px 0 #f1d38c}
+.ce-fil a:hover{background:#ffffff0e}
+.sk-rail a:focus-visible{outline:2px solid #f1d38c;outline-offset:-2px}
+.ce-tip{color:#174a71;font-weight:650;line-height:inherit;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#9c6c1d;text-underline-offset:3px;border:0}
+.ce-tip:hover,.ce-tip[aria-expanded=true]{background:#f5e8c6;border-radius:3px}
+.ce-tip:focus-visible,.ce-side summary:focus-visible,.ce-obj summary:focus-visible,.sk-toc-mobile summary:focus-visible,.sk-toc-mobile a:focus-visible{outline:3px solid #875a13;outline-offset:3px;border-radius:4px}
+.ce-tipbox{max-width:calc(100vw - 32px);max-height:min(45vh,280px);overflow:auto;border-top:3px solid #d9ae58;overflow-wrap:anywhere}
+@media(hover:hover){.ce-tw:not(.open):focus-within .ce-tipbox{visibility:hidden;opacity:0}}
+.ce-side{width:min(235px,36%);margin:7px 0 17px 22px}
+.ce-side.g{margin:7px 22px 17px 0}
+.ce-side details{box-shadow:0 3px 12px #0a1f4d0b}
+.ce-side summary{min-height:44px;padding:13px;letter-spacing:.085em}
+.ce-side summary::after{margin-left:7px}
+.ce-side p{font-size:14px;line-height:1.6}
+.ce-rappel{box-shadow:0 2px 9px #a23c3109;border:1px solid #ead4ca;border-left:4px solid var(--red)}
+.ce-diptyque{padding:clamp(10px,2vw,18px);background:#f4efe3;border:1px solid #d7c7a4;border-radius:12px}
+.ce-dip-grid{gap:clamp(8px,2vw,16px);grid-template-columns:repeat(2,minmax(0,1fr))}
+.ce-dip-grid figure{min-width:0;border-top:4px solid #b9862d;display:flex;flex-direction:column}
+.ce-dip-grid figure.apres{border-top-color:var(--red)}
+.ce-dip-grid img{object-fit:contain;object-position:center;background:#fff;aspect-ratio:1/1}
+.ce-dip-grid figcaption{flex:1;overflow-wrap:anywhere}
+.ce-dip-grid figcaption strong{margin-bottom:5px}
+.ce-diptyque>figcaption{margin:10px 2px 0;font-size:14px;color:var(--muted);text-align:center}
+.ce-timeline{counter-reset:ce-step;box-shadow:0 5px 16px #0a1f4d0b}
+.ce-row:not(.ce-head){counter-increment:ce-step;padding:11px 15px}
+.ce-row:not(.ce-head)>span:first-child{display:grid;grid-template-columns:2em minmax(0,1fr);align-items:baseline;gap:8px;min-width:0}
+.ce-row:not(.ce-head)>span:first-child::before{content:counter(ce-step,decimal-leading-zero);font:700 12px/1.5 system-ui,sans-serif;color:#76511b;letter-spacing:.025em}
+.ce-row .ce-tag{max-width:100%;white-space:normal;border-radius:6px;line-height:1.4;padding:5px 9px}
+.ce-end{background:#fbede9!important}
+.ce-chart{box-shadow:0 8px 18px #0a1f4d1f}
+.ce-chart h3{padding-bottom:12px;border-bottom:1px solid #ffffff25}
+.ce-bar span{font-weight:550;overflow-wrap:anywhere}
+.ce-obj{border-left:3px solid #b9862d;box-shadow:0 3px 10px #0a1f4d08}
+.ce-obj[open]{border-left-color:var(--red);background:#fffaf0}
+.ce-obj summary{min-height:48px;padding:14px 44px 14px 16px}
+.ce-obj summary:hover{background:#eadcc433}
+.ce-obj>div{padding:12px 16px 6px;border-top:1px solid #e7dece}
+.sk-toc-mobile summary,.sk-toc-mobile a{min-height:44px;display:flex;align-items:center;line-height:1.4}
+.sk-toc-mobile summary{justify-content:space-between;list-style:none}
+.sk-toc-mobile summary::-webkit-details-marker{display:none}
+.sk-toc-mobile summary::after{content:"+";font-size:22px;color:#85601f}
+.sk-toc-mobile[open] summary::after{content:"−"}
+.sk-test label,.sk-btn{min-height:44px}
+.sk-conclusion{border-top:3px solid #b9862d}
+@media(min-width:851px){.sk-layout{grid-template-columns:minmax(0,1fr) 250px}}
+@media(min-width:761px) and (max-width:1050px){.ce-side,.ce-side.g{float:none;width:auto;margin:16px 0}}
+@media(max-width:850px){
+.sk-layout{grid-template-columns:minmax(0,1fr);gap:10px}
+.sk-rail{display:block;order:-1;position:sticky;top:calc(var(--sn-h,58px) + 4px);max-height:none;overflow:visible;z-index:20;padding:0}
+.sk-rail>section:not(.ce-state){display:none}
+.sk-rail .ce-state{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0;padding:7px 10px;border-radius:8px;min-height:44px}
+.ce-state h2{flex:0 1 auto;font-size:10px;letter-spacing:.06em;margin:0}
+.ce-state p{flex:0 1 auto;text-align:right}
+.ce-state .ce-tag{font-size:11.5px;padding:5px 7px}
+.sk-body h2{scroll-margin-top:64px}
+.ce-tipbox{position:fixed;inset:auto 16px 84px;width:auto;max-width:420px;transform:none!important;margin-inline:auto;z-index:990}
+}
+@media(max-width:760px){.ce-side,.ce-side.g{float:none;width:auto;margin:16px 0}}
+@media(max-width:600px){
+.ce-timeline{font-size:15px}
+.ce-row:not(.ce-head){padding:10px 12px;gap:7px}
+.ce-row:not(.ce-head)>span:nth-child(2){padding-left:calc(2em + 8px)}
+.ce-head{padding:10px 12px}
+.ce-head span:last-child{display:block;font-size:10px;letter-spacing:.06em;color:#e8dfc7}
+.ce-chart{padding:15px}
+.ce-bars{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.ce-bar{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:10px;min-width:0}
+.ce-bar span{grid-row:1;grid-column:1;min-height:0;font-size:12px;text-align:left;line-height:1.35}
+.ce-bar i{grid-row:1;grid-column:2;width:calc(var(--v)*1%);height:18px;min-width:4px;min-height:0;border-radius:0 4px 4px 0;border-bottom:0}
+.ce-chart figcaption{margin-top:16px}
+.ce-dip-grid figcaption{padding:8px;font-size:12px}
+.ce-dip-grid figcaption strong{font-size:10.5px;letter-spacing:.06em}
+.sk-manga-figure figcaption{padding:10px}
+}
+@media(prefers-reduced-motion:reduce){
+.sk-wrap .ce-state .ce-tag,.sk-wrap .ce-fil a,.sk-wrap .ce-fil a::before,.sk-wrap .ce-tipbox,.sk-wrap .ce-obj summary::after,.sk-wrap .sk-btn{transition:none!important;animation:none!important}
+}
 </style></head><body><main class="sk-wrap"><header class="sk-hero"><div class="sk-kicker">Dossier · Boosts magiques / Nerfs magiques · 02</div><h1>C-16 : une puissance de circonstance</h1><p class="sk-deck">Méprisé par Perfect Cell, puis capable de l’immobiliser pendant cinq planches : quand un même personnage sert deux effets narratifs opposés.</p><div class="sk-meta">Analyse narrative · Mihawkis</div></header>
 <div class="sk-layout"><article class="sk-body">
-<details class="sk-toc-mobile"><summary>Sommaire de l’étude</summary><nav><a href="#contraste">01 — Un même personnage, deux effets</a><a href="#carcasse">02 — « Une carcasse sans intérêt »</a><a href="#etreinte">03 — L’étreinte</a><a href="#inquietude">04 — Cell ne joue plus</a><a href="#duree">05 — Cinq planches d’immobilisation</a><a href="#liberation">06 — La libération instantanée</a><a href="#objections">07 — Les objections</a><a href="#conclusion">08 — Conclusion</a></nav></details>
+<details class="sk-toc-mobile"><summary>Sommaire de l’étude</summary><nav aria-label="Sommaire de l’étude"><a href="#contraste">01 — Un même personnage, deux effets</a><a href="#carcasse">02 — « Une carcasse sans intérêt »</a><a href="#etreinte">03 — L’étreinte</a><a href="#inquietude">04 — Cell ne joue plus</a><a href="#duree">05 — Cinq planches d’immobilisation</a><a href="#liberation">06 — La libération instantanée</a><a href="#objections">07 — Les objections</a><a href="#conclusion">08 — Conclusion</a></nav></details>
 
 <p class="sk-lead">C-16 est l’un des personnages les plus attachants de l’arc Cell. Androïde pacifique, amoureux de la nature, il finit par se dresser contre Cell au péril de son existence. Sa tentative d’autodestruction pendant le <span class="ce-tw"><button type="button" class="ce-tip" aria-expanded="false" aria-controls="tip-cellgame">Cell Game</button><span class="ce-tipbox" id="tip-cellgame" role="note"><b>Le Cell Game</b>Le tournoi que Cell organise pour affronter les guerriers de la Terre. C’est là que se déroule la scène étudiée.</span></span> est un moment fort.</p>
 <p>Mais relisez la scène en gardant en tête ce que le manga vous avait montré quelques chapitres plus tôt. Le contraste est saisissant. Et c’est ce contraste, bien plus qu’une scène isolée, qui fait de C-16 un cas d’école.</p>
@@ -103,7 +199,7 @@
 <p>La quatrième planche est capitale. C-16 révèle la puissance de sa bombe, une arme interdite cachée dans son corps. Observez le visage de Cell : les yeux écarquillés, les dents serrées, le « GNN ! ».</p>
 <div class="sk-manga-group single"><div class="sk-manga-label">L’inquiétude de Cell <small>Cliquer pour agrandir</small></div><div class="sk-manga-grid"><figure class="sk-manga-figure" id="planche-4"><a href="images/planche-4.jpg" target="_blank" rel="noopener" aria-label="Agrandir : Cell s’inquiète"><img src="images/planche-4.jpg" alt="C-16 décrit sa bombe ; Cell serre les dents" loading="lazy" decoding="async" width="1068" height="1578"></a><figcaption><strong>« GNN ! »</strong><p>Toriyama mobilise les codes graphiques de la tension et de l’effort.</p></figcaption></figure></div></div>
 <div class="ce-rappel"><b>Vous vous souvenez de la planche 1 ?</b><p>Cell, bras croisés, ne daignait même pas se retourner (<a href="#planche-1">revoir la planche</a>). Comparez.</p></div>
-<figure class="ce-diptyque"><div class="ce-dip-grid"><figure class="avant"><img src="images/cell-calme.jpg" alt="Le visage de Perfect Cell, calme, bras croisés" loading="lazy" decoding="async" width="312" height="322"><figcaption><strong>Planche 1</strong>« Tu n’es plus qu’une carcasse sans intérêt. »</figcaption></figure><figure class="apres"><img src="images/cell-gnn.jpg" alt="Le visage de Perfect Cell crispé, les dents serrées" loading="lazy" decoding="async" width="320" height="342"><figcaption><strong>Planche 4</strong>« GNN ! »</figcaption></figure></div><p>Le même visage, à quelques chapitres d’écart.</p></figure>
+<figure class="ce-diptyque"><div class="ce-dip-grid"><figure class="avant"><img src="images/cell-calme.jpg" alt="Le visage de Perfect Cell, calme, bras croisés" loading="lazy" decoding="async" width="312" height="322"><figcaption><strong>Planche 1</strong>« Tu n’es plus qu’une carcasse sans intérêt. »</figcaption></figure><figure class="apres"><img src="images/cell-gnn.jpg" alt="Le visage de Perfect Cell crispé, les dents serrées" loading="lazy" decoding="async" width="320" height="342"><figcaption><strong>Planche 4</strong>« GNN ! »</figcaption></figure></div><figcaption>Le même visage, à quelques chapitres d’écart.</figcaption></figure>
 <p>On est très loin du Cell nonchalant de la première planche. L’argument selon lequel Cell se laisserait volontairement immobiliser, par jeu ou par curiosité, devient donc particulièrement difficile à défendre. Cell ne joue plus : il <strong>veut</strong> se libérer.</p>
 
 <h2 id="duree">05. Cinq planches d’immobilisation</h2>
