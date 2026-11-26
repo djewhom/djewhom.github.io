@@ -175,5 +175,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
 const states={contraste:['Avant la scène',''],carcasse:['Dominant, bras croisés','c-dom'],etreinte:['Pris par surprise','c-surprise'],inquietude:['Inquiet, il serre les dents','c-alerte'],duree:['Toujours immobilisé','c-alerte'],liberation:['Libéré en une case','c-libre'],objections:['Rapport de force rétabli',''],conclusion:['Rapport de force rétabli','']};
 const ids=Object.keys(states),links=ids.map(id=>document.querySelector('.ce-fil a[href="#'+id+'"]')),chip=document.getElementById('ce-chip');
 function set(id){const k=ids.indexOf(id);links.forEach((a,i)=>{if(!a)return;a.classList.toggle('on',i===k);a.classList.toggle('done',i<k)});const st=states[id];chip.textContent=st[0];chip.className='ce-tag '+st[1]}
-if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)set(e.target.id)})},{rootMargin:'-35% 0px -60% 0px'});ids.forEach(id=>{const h=document.getElementById(id);if(h)io.observe(h)})}
+const heads=ids.map(id=>document.getElementById(id));let tick=false,cur='';
+function spy(){tick=false;let id=ids[0];const y=innerHeight*0.4;heads.forEach((h,i)=>{if(h&&h.getBoundingClientRect().top<=y)id=ids[i]});if(scrollY<80)id=ids[0];if(id!==cur){cur=id;set(id)}}
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(spy)}},{passive:true});addEventListener('resize',spy);spy();
 })();</script></body></html>
