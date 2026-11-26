@@ -64,6 +64,8 @@ Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></sc
 
 ### Cursus (`cursus.html`)
 6 modules : 01 Retcons · 02 Timelines · 03 Registres narratifs · 04 Intentions de l'auteur · 05 Continuité · 06 Puissance. Images dans `/cursus/`. Projet : bandeau tiré au hasard parmi plusieurs visuels (`cursus-1.jpg`, `cursus-2.jpg`…).
+- C-16 et les trois cercles : ajouter la scène comme exemple appliqué dans l'article « Les 3 cercles de lecture » (analyse transversale, grille des trois cercles ; 1er cercle insuffisant, 2e cercle = intention de l'auteur). Dje redonne l'analyse ; ne pas reformuler les cercles de mémoire.
+- Article « C-16 : une sortie honorable ? » (thèse de Dje : deux scènes héroïques en fin d'arc pour compenser un rôle de boss initialement envisagé). Hypothèse d'intention : chercher une source en VO (interview, Daizenshuu) avant de l'affirmer ; sinon la présenter comme lecture cohérente avec le texte.
 
 ---
 
