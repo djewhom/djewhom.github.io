@@ -101,6 +101,9 @@ ChatGPT produit l'image → Dje la dépose dans le dépôt → Claude l'intègre
 - `Article-Lecture-Fluide/` n'est pas dans la liste `ARTICLES` ni sur l'accueil : volontaire (brouillon) ou oubli ?
 - `sitemap.xml` ne contient pas les articles des dépôts séparés (3 cercles, Retcon, Vraie fin, SSJ3, Ultra Buu, Super vs Kid).
 
+- `Article-C16-Etreinte/` — Relecture de fond à valider avec Dje et Claude : compléter les références de chapitres/pages ; vérifier sur les planches la comparabilité des deux attaques par-derrière et distinguer l’inquiétude visible de Cell de l’intention de se libérer ; distinguer la réparation attestée de l’hypothèse d’une amélioration, sans transformer le silence du récit en preuve. Le schéma reste qualitatif.
+- Bandeau de consentement commun : lors du premier test Chrome émulé à 375 px, un débordement horizontal (500 px) a été observé ; non reproduit lors du test suivant. À surveiller sur téléphone réel ; aucun fichier partagé modifié.
+
 ---
 
 ## 7. Journal
@@ -113,3 +116,4 @@ Format : `JJ/MM — IA — ce qui a été fait (fichiers principaux)`. Ajouter e
 - 26/11 — Claude — Section 4 : répartition des rôles validée par Dje (Claude = code/structure/fond, ChatGPT = image/style/diffusion, chacun peut remplacer l'autre).
 - 26/11 — Claude — Article « C-16 : une puissance de circonstance » (dossier Boosts magiques · 02) : `Article-C16-Etreinte/` (6 planches), ligne 10 dans `ARTICLES`, carte d'accueil, sitemap. Gabarit et style repris du Shin Kikoho (ChatGPT). Fond discuté avec Dje ; numéros de chapitres à compléter. Prochain volet prévu : l'étreinte qui retient un adversaire plus fort (cas fournis par Dje).
 - 26/11 — Claude — `Article-C16-Etreinte/` : appareil pédagogique à la manière du Retcon (fil « Situation de Cell » dans la colonne de droite, rappels « Vous vous souvenez ? », infobulles `.ce-tip`, notes de marge `.ce-side`, diptyque des visages de Cell, objections repliables, accroche de fin). Styles `ce-*` locaux à la page, rien de partagé modifié. Illustrations de marge à produire par ChatGPT si Dje le souhaite.
+- 26/11 — ChatGPT — Relecture artistique et ergonomique de `Article-C16-Etreinte/index.html` : indicateur de scène mobile, fil, infobulles, notes, diptyque, tableau numéroté, graphique adaptatif et objections ; focus et mouvement réduit ; légende du graphique adaptée au mobile. Tests Chrome à 375 et 1366 px sur la première version publiée : 5 infobulles, 3 notes, 3 objections et fil fonctionnels, aucun débordement reproduit. Ajustements d’ancrage et de densité de la colonne effectués ensuite. Fond et scripts inchangés ; fichiers partagés intacts. À relire par Claude pour le contrôle technique et les réserves de fond.
