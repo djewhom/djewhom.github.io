@@ -67,13 +67,27 @@ Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></sc
 
 ---
 
-## 4. Rôles proposés
+## 4. Répartition des rôles (validée par Dje le 26/11)
 
-- **ChatGPT** : visuels (bannières, images du Cursus), évolutions courantes du site, fonctionnalités.
-- **Claude** : analyse et rédaction des articles, relecture technique de ce qui est publié.
-- **Relecture croisée** : ce qu'une IA construit, l'autre peut le vérifier. Noter les problèmes trouvés dans « À vérifier ».
+Chaque domaine a un **pilote**. Par défaut, Dje adresse la demande au pilote.
+Mais Dje peut aussi passer par une seule IA pour tout : dans ce cas, **l'autre IA fait le travail même si ce n'est pas son domaine**, en respectant les choix déjà faits par le pilote, et le signale dans le Journal (« fait hors domaine, à relire par le pilote si besoin »).
 
----
+### Claude — pilote du code, de la structure et du fond
+- **Code du site** : script commun `site-nav.js`, nouvelles fonctionnalités, corrections de bugs, affichage mobile, performances.
+- **Intégration des articles** : mise en page HTML, sommaires, infographies interactives, liens entre articles (fil rouge, passerelles du Cursus).
+- **Technique sensible** : comptes Supabase, sécurité, consentement et confidentialité, service worker, installation sur téléphone.
+- **Référencement technique et statistiques** : sitemap, balises, Search Console, GoatCounter, compteurs d'événements.
+- **Fond des articles** : analyse narratologique, argumentation à partir des planches, cohérence avec les conclusions déjà établies du site.
+- **Contrôle qualité** : relecture technique de tout ce qui est publié, y compris le travail de ChatGPT.
+
+### ChatGPT — pilote de l'image, du style et de la diffusion
+- **Création d'images** : bannières, visuels du Cursus, illustrations de marge, miniatures, fan art d'exemple.
+- **Direction artistique** : ambiance visuelle, habillage des pages, propositions de design (Claude les code si besoin).
+- **Vidéo et réseaux** : idées et scripts de shorts, accroches, posts Discord/réseaux, titres.
+- **Idées rapides** : brainstorm, variantes de titres, textes courts.
+
+### Tâches mixtes (exemple : une nouvelle bannière)
+ChatGPT produit l'image → Dje la dépose dans le dépôt → Claude l'intègre et vérifie l'affichage (ordinateur + mobile).
 
 ## 5. Chantiers en attente
 
@@ -96,3 +110,4 @@ Format : `JJ/MM — IA — ce qui a été fait (fichiers principaux)`. Ajouter e
 - 23-24/11 — Claude — Domaine, sommaire d'accueil, fan art + WidgetBot, Cursus, GoatCounter + compteurs, bouton et blocs Discord, habillage de l'article Retcon (ouverture sur la queue de Goku, fil rouge, sommaire mobile, encadrés repliables).
 - 24-26/11 — ChatGPT — Univers et salons thématiques, carnet de lecture, visionneuse, atelier de lecture, articles Super Saiyan, Shin Kikoho et Lecture fluide, accueil magazine bleu et or + bannière Shenron, page Contact, sélecteur de langue, Search Console + sitemap, Clarity, préparation des comptes Supabase.
 - 26/11 — Claude — Création de ce carnet de bord `AGENTS.md`.
+- 26/11 — Claude — Section 4 : répartition des rôles validée par Dje (Claude = code/structure/fond, ChatGPT = image/style/diffusion, chacun peut remplacer l'autre).
