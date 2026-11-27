@@ -22,6 +22,7 @@
     { g:'Les analyses', n:'06', t:'Pourquoi Ultra Buu existe-t-il ?',       u:'/Pourquoi-Ultra-Buu-existe-t-il-/',                p:'/pourquoi-ultra-buu-existe-t-il-/' },
     { g:'Les analyses', n:'07', t:'Super Buu vs Kid Buu',                   u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html', p:'/super-buu-vs-kid-buu/' },
     { g:'Les analyses', n:'08', t:'Super Saiyan : de la légende aux paliers de puissance', u:'/Article-Super-Saiyan/', p:'/article-super-saiyan/' },
+    { g:'Les analyses', n:'11', t:'Gotenks SSJ3 vs Super Buu : quand la narration dicte le rapport de force', u:'/Article-Gotenks-SSJ3/', p:'/article-gotenks-ssj3/', comments:false },
     { g:'Boosts magiques / Nerfs magiques', n:'09', t:'Le miracle du Shin Kikoho', u:'/Article-Shin-Kikoho/', p:'/article-shin-kikoho/', comments:false },
     { g:'Boosts magiques / Nerfs magiques', n:'10', t:'C-16 : une puissance de circonstance', u:'/Article-C16-Etreinte/', p:'/article-c16-etreinte/', comments:false }
   ];
