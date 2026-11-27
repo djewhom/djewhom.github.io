@@ -24,3 +24,11 @@
 .du-grid{inset:3.5%;border:3px solid #8e9aa5;box-shadow:inset 0 0 22px #05290f;background:repeating-linear-gradient(90deg,transparent 0 11.1%,#0a3a17aa 11.1% 11.9%),repeating-linear-gradient(0deg,transparent 0 11.1%,#0a3a17aa 11.1% 11.9%),radial-gradient(circle at 50% 45%,#47a85c,#2a8040 60%,#1c5f2d)}
 .du-sweep{inset:3.5%;background:conic-gradient(from 0deg,transparent 0 280deg,#d9ffd800 300deg,#d9ffd855 359deg,#d9ffd800 360deg)}
 .du-radar .du-point{text-shadow:0 1px 3px #000,0 0 6px #000}
+/* Dragon Radar, version plus vivante : boîtier épaissi, reflet de verre, points qui pulsent */
+.du-grid{inset:6%;border:4px solid #6f7c88;box-shadow:inset 0 0 26px #031d0a,0 0 0 5px #e9eef2,0 0 0 7px #98a5b0}
+.du-sweep{inset:6%}
+.du-grid:after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(155deg,#ffffff55 0,#ffffff12 28%,transparent 42%),radial-gradient(circle at 50% 50%,transparent 62%,#00000038 100%);pointer-events:none}
+.du-radar .du-point-icon{box-shadow:0 0 0 0 var(--point);animation:du-ping 2.6s ease-out infinite}
+.du-radar .du-point:nth-of-type(2n) .du-point-icon{animation-delay:.9s}.du-radar .du-point:nth-of-type(3n) .du-point-icon{animation-delay:1.7s}
+@keyframes du-ping{0%{box-shadow:0 0 0 0 var(--point)}70%,100%{box-shadow:0 0 0 12px #0000}}
+@media (prefers-reduced-motion:reduce){.du-radar .du-point-icon{animation:none}}
