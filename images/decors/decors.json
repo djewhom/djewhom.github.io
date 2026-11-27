@@ -4,7 +4,9 @@
     "capsule": "Capsule Corp",
     "gero": "Laboratoire du Dr Gero",
     "namek": "Namek",
-    "kaioshin": "Kaiô Shinkai (monde des Kaiô Shin) : 2 images"
+    "kaioshin": "Kaiô Shinkai (monde des Kaiô Shin) : 2 images",
+    "cell-game": "Cell Game : 2 images, rattachées à l’univers Gero (arc Cell)",
+    "tenkaichi-budokai": "Tenka’ichi Budôkai : 4 images en réserve, pas encore de catégorie sur le site"
   },
   "images": [
     {
@@ -18,7 +20,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Portrait, basse définition (350×571) : à remplacer par une version HD.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Capsule Corp » (radar et page)"
     },
     {
       "id": "labo-sous-terrain-3d-01",
@@ -31,7 +34,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Filigrane « DBZ Art Collection » visible : ne pas publier tel quel en grand format, à recadrer ou remplacer.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Laboratoire Gero » (arc Cell)"
     },
     {
       "id": "labo-machine-01",
@@ -44,7 +48,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Capture d’écran basse définition (516×387).",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Laboratoire Gero » (arc Cell)"
     },
     {
       "id": "labo-dr-gero-01",
@@ -57,7 +62,8 @@
       "usage_conseille": "illustration d’article",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Capture avec personnage : plutôt pour un article que pour un fond de page. Basse définition (516×387).",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Laboratoire Gero » (arc Cell)"
     },
     {
       "id": "namek-manga-01",
@@ -68,8 +74,9 @@
       "statut_droits": "à vérifier (case de manga)",
       "remarques": "Déjà en place ; fichier laissé à son emplacement d’origine.",
       "utilise_dans": [
-        "assets/univers.css (.du-scene[data-world=namek])"
-      ]
+        "assets/univers.css (namek)"
+      ],
+      "associe_a": "Univers « Namek » ; articles de l’arc Freezer (La vraie fin de DB, Super Saiyan)"
     },
     {
       "id": "planete-namek-espace-01",
@@ -82,7 +89,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Sans personnage, idéal en bandeau sombre. Basse définition (360×270).",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Namek » ; articles de l’arc Freezer (La vraie fin de DB, Super Saiyan)"
     },
     {
       "id": "anciens-namekiens-01",
@@ -95,7 +103,8 @@
       "usage_conseille": "illustration d’article",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Avec personnages : pas un fond. 516×387.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Namek » ; articles de l’arc Freezer (La vraie fin de DB, Super Saiyan)"
     },
     {
       "id": "paysage-namek-02",
@@ -108,7 +117,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Sans personnage, très adapté en fond. Légende « Paysage de Namek » en bas à droite rognée.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Namek » ; articles de l’arc Freezer (La vraie fin de DB, Super Saiyan)"
     },
     {
       "id": "affiche-saga-namek-01",
@@ -121,7 +131,8 @@
       "usage_conseille": "illustration d’article",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Portrait, personnages protégés par le droit d’auteur : à réserver à l’article sur la saga, pas un fond. 463×661.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Namek » ; articles de l’arc Freezer (La vraie fin de DB, Super Saiyan)"
     },
     {
       "id": "dr-brief-jardin-01",
@@ -134,7 +145,8 @@
       "usage_conseille": "illustration d’article",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Avec personnage : pas un fond. Basse définition (516×387).",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Capsule Corp » (radar et page)"
     },
     {
       "id": "capsule-corp-batiment-02",
@@ -147,7 +159,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Sans personnage, paysage : très bon fond pour l’univers Capsule Corp.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Capsule Corp » (radar et page)"
     },
     {
       "id": "logo-capsule-corp-01",
@@ -160,7 +173,8 @@
       "usage_conseille": "logo",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Marque et logo protégés (image de produit dérivé) : usage décoratif léger uniquement, ne pas en faire l’identité du site. Fond blanc à détourer si besoin.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Capsule Corp » (radar et page)"
     },
     {
       "id": "kaioshinkai-planete-01",
@@ -173,7 +187,8 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Ressemble beaucoup à Namek, mais c’est bien le Kaiô Shinkai (précision de Dje). Sans personnage, format carré : bon pour un bandeau ou une vignette.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Royaume des Kaioshins » (arc Boo)"
     },
     {
       "id": "kaioshinkai-paysage-01",
@@ -186,7 +201,92 @@
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Lieu confirmé par Dje. Très petite image (220×165) : à remplacer par une version plus grande avant de l’utiliser en fond.",
-      "utilise_dans": []
+      "utilise_dans": [],
+      "associe_a": "Univers « Royaume des Kaioshins » (arc Boo)"
+    },
+    {
+      "id": "arene-cell-game-01",
+      "monde": "cell-game",
+      "fichier": "/images/decors/cell-game/arene-cell-game-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Arène du Cell Game vue de face : ring, piliers blancs et plaine verte (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Presque sans personnage (deux silhouettes minuscules). Candidate pour l’arc Cell.",
+      "utilise_dans": [],
+      "associe_a": "Univers « Laboratoire Gero » (arc Cell) ; articles Cell / C-16"
+    },
+    {
+      "id": "arene-cell-game-manga-02",
+      "monde": "cell-game",
+      "fichier": "/images/decors/cell-game/arene-cell-game-manga-02.webp",
+      "largeur": 360,
+      "hauteur": 213,
+      "format": "paysage",
+      "description": "Arène du Cell Game vue en plongée avec les spectateurs (case de manga en couleur)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Très petite image (359 px de large environ), spectateurs visibles.",
+      "utilise_dans": [],
+      "associe_a": "Univers « Laboratoire Gero » (arc Cell) ; articles Cell / C-16"
+    },
+    {
+      "id": "tenkaichi-facade-01",
+      "monde": "tenkaichi-budokai",
+      "fichier": "/images/decors/tenkaichi-budokai/tenkaichi-facade-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Façade du Tenka’ichi Budôkai : bâtiment au toit de chaume, ring et foule (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Foule au premier plan, sans personnage identifiable.",
+      "utilise_dans": [],
+      "associe_a": "aucune page pour l’instant (pas de catégorie Tenka’ichi Budôkai)"
+    },
+    {
+      "id": "tenkaichi-arene-3d-02",
+      "monde": "tenkaichi-budokai",
+      "fichier": "/images/decors/tenkaichi-budokai/tenkaichi-arene-3d-02.webp",
+      "largeur": 588,
+      "hauteur": 294,
+      "format": "paysage",
+      "description": "Arène du Tenka’ichi Budôkai, vue de face avec fanions (rendu de jeu vidéo)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Aucun personnage, composition très dégagée : le meilleur fond de la série. Issue d’un jeu vidéo : droits à vérifier avec attention.",
+      "utilise_dans": [],
+      "associe_a": "aucune page pour l’instant (pas de catégorie Tenka’ichi Budôkai)"
+    },
+    {
+      "id": "tenkaichi-arene-plongee-03",
+      "monde": "tenkaichi-budokai",
+      "fichier": "/images/decors/tenkaichi-budokai/tenkaichi-arene-plongee-03.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Arène du Tenka’ichi Budôkai vue en plongée, tribunes pleines (capture d’anime)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Foule et combattants visibles.",
+      "utilise_dans": [],
+      "associe_a": "aucune page pour l’instant (pas de catégorie Tenka’ichi Budôkai)"
+    },
+    {
+      "id": "presentateur-micro-01",
+      "monde": "tenkaichi-budokai",
+      "fichier": "/images/decors/tenkaichi-budokai/presentateur-micro-01.webp",
+      "largeur": 359,
+      "hauteur": 271,
+      "format": "paysage",
+      "description": "Le présentateur du Tenka’ichi Budôkai au micro (capture d’anime)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Personnage en gros plan : pas un fond. 359×271.",
+      "utilise_dans": [],
+      "associe_a": "aucune page pour l’instant (pas de catégorie Tenka’ichi Budôkai)"
     }
   ]
 }

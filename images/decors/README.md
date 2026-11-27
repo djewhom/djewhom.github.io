@@ -5,6 +5,8 @@ Images servant à habiller le site (fonds de pages, bandeaux, salons de l'Univer
 - `capsule/` : Capsule Corp
 - `gero/` : laboratoire du Dr Gero
 - `kaioshin/` : Kaiô Shinkai, le monde des Kaiô Shin
+- `cell-game/` : arène du Cell Game (rattaché à l'univers Gero, arc Cell)
+- `tenkaichi-budokai/` : Tenka'ichi Budôkai (en réserve : pas encore de catégorie sur le site)
 - `namek/` : Namek (l'image actuelle est dans `images/univers/namek.webp`)
 
 ## Ajouter une image
