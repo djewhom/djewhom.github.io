@@ -89,6 +89,11 @@
   .oeuvre .couv{display:block;aspect-ratio:3/4;background:var(--db-blue-deep);overflow:hidden}.oeuvre .couv img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.oeuvre .couv:hover img{transform:scale(1.05)}
   .oeuvre .corps{padding:16px 18px 18px;color:var(--db-blue-deep);display:flex;flex-direction:column;gap:6px;flex:1}.oeuvre h2{font-family:'Oswald',sans-serif;font-size:1.3rem;margin:0}.oeuvre .par{color:var(--db-red);font-family:'IBM Plex Mono',monospace;font-size:.75rem}.oeuvre p{margin:0;font-size:.95rem;line-height:1.45}
   .oeuvre .tomes{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px}.oeuvre .tomes a{padding:7px 13px;border-radius:999px;background:var(--db-orange);color:#fff;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:.9rem}.oeuvre .tomes a:hover{background:var(--db-red)}
+  body[data-world] .hero.doujin{background:linear-gradient(90deg,rgba(7,21,47,.82) 0,rgba(7,21,47,.45) 42%,rgba(7,21,47,0) 70%),#2b1a0b url(/images/doujinshi/banniere-bibliotheque.webp) right center/cover no-repeat!important;min-height:300px;display:flex;align-items:center}
+  .hero.doujin .du-hero-decor{display:none}.hero.doujin>.wrap{position:relative;max-width:none;margin:0;width:100%;padding-left:clamp(20px,4vw,64px);padding-right:clamp(20px,4vw,64px)}.hero.doujin h1{font-size:clamp(2rem,4.4vw,3.4rem);max-width:11ch}@media(min-width:900px){.hero.doujin>.wrap{max-width:46%;margin:0}}
+  .hero.doujin h1,.hero.doujin .lede{text-shadow:0 2px 10px #000a}.hero.doujin .lede{max-width:34ch}
+  .atelier{display:block;width:100%;height:auto;border-radius:10px;margin:0 0 14px;aspect-ratio:3/1;object-fit:cover}
+  @media(max-width:700px){body[data-world] .hero.doujin{background:linear-gradient(90deg,rgba(7,21,47,.9),rgba(7,21,47,.4)),#2b1a0b url(/images/doujinshi/banniere-bibliotheque.webp) 68% center/cover no-repeat!important;min-height:240px}}
   .mention{margin-top:36px;font-size:.85rem;color:#5b5a55;line-height:1.5}
 </style>
 <script src="/assets/site-nav.js?v=7" defer></script>
@@ -110,7 +115,7 @@
     </nav>
   </div>
 </header>
-<section class="hero">
+<section class="hero doujin">
   <div class="wrap">
     <p class="eyebrow">Fan art · Mangas de fans</p>
     <h1>Mangas &amp; doujinshi</h1>
@@ -121,6 +126,7 @@
 <main class="galerie">
   <div class="wrap">
     <div class="proposer">
+      <img class="atelier" src="/images/doujinshi/banniere-atelier.webp" alt="Des créateurs réunis autour d’une table de dessin, planches de manga et encres" width="1800" height="600" loading="lazy">
       <h2>Tu as créé un manga ou un doujinshi ?</h2>
       <p>Propose-le à l’équipe sur le Discord : nous le mettons en ligne dans la liseuse, avec ton nom et ton accord. <a href="/fanart.html">← Retour au fan art</a></p>
     </div>
