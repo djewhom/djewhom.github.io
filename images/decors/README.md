@@ -4,7 +4,7 @@ Images servant à habiller le site (fonds de pages, bandeaux, salons de l'Univer
 
 - `capsule/` : Capsule Corp
 - `gero/` : laboratoire du Dr Gero
-- `kaioshin/` : Keiyo Shinkai (vide pour l'instant)
+- `kaioshin/` : Kaiô Shinkai, le monde des Kaiô Shin
 - `namek/` : Namek (l'image actuelle est dans `images/univers/namek.webp`)
 
 ## Ajouter une image

@@ -4,7 +4,7 @@
     "capsule": "Capsule Corp",
     "gero": "Laboratoire du Dr Gero",
     "namek": "Namek",
-    "kaioshin": "Keiyo Shinkai (monde des Kaiô Shin) : aucune image pour l’instant"
+    "kaioshin": "Kaiô Shinkai (monde des Kaiô Shin) : 2 images"
   },
   "images": [
     {
@@ -163,29 +163,29 @@
       "utilise_dans": []
     },
     {
-      "id": "planete-namek-lune-02",
-      "monde": "namek",
-      "fichier": "/images/decors/namek/planete-namek-lune-02.webp",
+      "id": "kaioshinkai-planete-01",
+      "monde": "kaioshin",
+      "fichier": "/images/decors/kaioshin/kaioshinkai-planete-01.webp",
       "largeur": 447,
       "hauteur": 447,
       "format": "carré",
-      "description": "Planète Namek et sa lune bleue vues de l’espace (capture d’anime)",
+      "description": "Le Kaiô Shinkai (monde des Kaiô Shin) : planète verte et sa lune bleue vues de l’espace (capture d’anime)",
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
-      "remarques": "Sans personnage, format carré : bon pour un bandeau ou une vignette.",
+      "remarques": "Ressemble beaucoup à Namek, mais c’est bien le Kaiô Shinkai (précision de Dje). Sans personnage, format carré : bon pour un bandeau ou une vignette.",
       "utilise_dans": []
     },
     {
-      "id": "paysage-lune-violet-01",
-      "monde": "a-classer",
-      "fichier": "/images/decors/a-classer/paysage-lune-violet-01.webp",
+      "id": "kaioshinkai-paysage-01",
+      "monde": "kaioshin",
+      "fichier": "/images/decors/kaioshin/kaioshinkai-paysage-01.webp",
       "largeur": 220,
       "hauteur": 165,
       "format": "paysage",
-      "description": "Paysage de rivière et de collines sous une grande lune, ciel violet (capture d’anime)",
+      "description": "Paysage du Kaiô Shinkai : rivière, collines et grande lune sous un ciel violet (capture d’anime)",
       "usage_conseille": "fond de page",
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
-      "remarques": "Lieu non identifié : à classer dans le bon univers (Dje). Très petite image : 220 px de large environ, à remplacer par une version plus grande.",
+      "remarques": "Lieu confirmé par Dje. Très petite image (220×165) : à remplacer par une version plus grande avant de l’utiliser en fond.",
       "utilise_dans": []
     }
   ]
