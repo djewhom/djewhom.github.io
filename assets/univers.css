@@ -17,3 +17,10 @@
 .du-scene[data-world=gero]{background:#2b2f3d url(/images/univers/gero.webp) center 45%/cover no-repeat}
 .du-scene[data-world=kaioshin]{background:#2a2a6b url(/images/univers/kaioshin.webp) center 50%/cover no-repeat}
 .du-scene[data-world=capsule]:before,.du-scene[data-world=capsule]:after,.du-scene[data-world=gero]:before,.du-scene[data-world=gero]:after,.du-scene[data-world=kaioshin]:before,.du-scene[data-world=kaioshin]:after{display:none}
+/* Radar d'accueil habillé en Dragon Radar : boîtier blanc, écran vert quadrillé, bouton sur le dessus */
+.du-radar{aspect-ratio:1/1;max-width:400px;margin:22px auto 6px;background:radial-gradient(circle at 50% 38%,#fff 0 60%,#dfe5ea 72%,#aeb9c2 100%);border:0;border-radius:50%;overflow:visible;box-shadow:0 6px 18px #0008,inset 0 -6px 12px #7d8a9560}
+.du-radar:before{content:"";position:absolute;left:50%;top:-5.5%;width:15%;height:8%;transform:translateX(-50%);background:linear-gradient(#f4f6f8,#aab4bd);border-radius:5px 5px 2px 2px;box-shadow:0 2px 4px #0006;z-index:-1}
+.du-radar:after{content:"";position:absolute;left:50%;top:-1.5%;width:7%;height:3.5%;transform:translateX(-50%);background:#c5cdd4;border-radius:2px;z-index:-1}
+.du-grid{inset:3.5%;border:3px solid #8e9aa5;box-shadow:inset 0 0 22px #05290f;background:repeating-linear-gradient(90deg,transparent 0 11.1%,#0a3a17aa 11.1% 11.9%),repeating-linear-gradient(0deg,transparent 0 11.1%,#0a3a17aa 11.1% 11.9%),radial-gradient(circle at 50% 45%,#47a85c,#2a8040 60%,#1c5f2d)}
+.du-sweep{inset:3.5%;background:conic-gradient(from 0deg,transparent 0 280deg,#d9ffd800 300deg,#d9ffd855 359deg,#d9ffd800 360deg)}
+.du-radar .du-point{text-shadow:0 1px 3px #000,0 0 6px #000}
