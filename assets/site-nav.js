@@ -37,15 +37,17 @@
   window.__dbArticles = ARTICLES.map(function(a){return {n:a.n,t:a.t,u:a.u};});
   /* ---------- styles ---------- */
   var css = `
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
-:root{--sn-h:58px;--sn-bleu:#0a1f4d;--sn-bleu2:#12357a;--sn-orange:#f5821f;--sn-or:#ffc531;--sn-rouge:#d7261e}
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Oswald:wght@500;600;700&display=swap');
+:root{--sn-h:72px;--sn-bleu:#0a1f4d;--sn-bleu2:#12357a;--sn-orange:#f5821f;--sn-or:#ffc531;--sn-rouge:#d7261e}
 html{scroll-padding-top:calc(var(--sn-h) + 16px)}
 /* anciennes barres de chaque article : remplacées par la barre commune */
 body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-header, body > header.masthead{display:none!important}
-.sn-bar{position:sticky;top:0;z-index:1000;height:var(--sn-h);background:var(--sn-bleu);border-bottom:3px solid var(--sn-orange);box-shadow:0 4px 16px rgba(10,31,77,.25);font-family:'Oswald',system-ui,sans-serif}
-.sn-in{max-width:1240px;margin:0 auto;height:100%;padding:0 18px;display:flex;align-items:center;gap:8px}
+.sn-bar{position:sticky;top:0;z-index:1000;height:var(--sn-h);background:linear-gradient(90deg,#16602f 0%,#145a30 22%,#137063 38%,#12508a 58%,#0f2f6e 80%,#0a1f4d 100%);border-bottom:3px solid var(--sn-orange);border-image:linear-gradient(90deg,#f5821f,#ffc531) 1;box-shadow:0 4px 16px rgba(10,31,77,.25);font-family:'Oswald',system-ui,sans-serif}
+.sn-in{max-width:none;margin:0;height:100%;padding:0 18px 0 0;display:flex;align-items:center;gap:8px}
 .sn-logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;font-size:19px;letter-spacing:1.5px;margin-right:auto;white-space:nowrap}
 .sn-logo svg{width:30px;height:30px;flex:none}
+.sn-logo img{display:block;height:calc(var(--sn-h) - 6px);width:auto;max-width:none;-webkit-mask-image:linear-gradient(90deg,#000 78%,transparent);mask-image:linear-gradient(90deg,#000 78%,transparent)}
+.sn-lien,.sn-btn,.sn-account-mobile{font-family:'Kaushan Script','Oswald',cursive!important;letter-spacing:0!important;text-shadow:0 1px 2px rgba(0,0,0,.35);white-space:nowrap;font-size:16px!important}
 .sn-logo b{color:var(--sn-or);font-weight:700}
 .sn-liens{display:flex;align-items:center;gap:4px}
 .sn-lien,.sn-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:999px;color:#fff;text-decoration:none;font-size:15.5px;font-weight:500;letter-spacing:.3px;background:transparent;border:0;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
@@ -90,13 +92,15 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   .sn-account-mobile{display:inline-flex;font-size:14px;padding:0 9px;color:#ffc531;text-decoration:none;white-space:nowrap}
   .sn-in{padding:0 10px;gap:4px}
   .sn-extra{display:block}
-  .sn-logo{font-size:17px}
+  :root{--sn-h:56px}
+  .sn-logo img{height:46px}
+  .sn-bar{background:linear-gradient(90deg,#16602f 0,#145a30 190px,#137063 250px,#12508a 330px,#0a1f4d 100%)}
   .sn-panneau{left:8px;right:8px;width:auto}
   .sn-suite .sn-grille{grid-template-columns:1fr}
   .sn-carte.suiv{text-align:left}
   .sn-haut{right:14px;bottom:16px;width:50px;height:50px}
 }
-@media (max-width:360px){.sn-logo{font-size:14px;gap:4px}.sn-logo svg{width:23px;height:23px}.sn-account-mobile{font-size:12px;padding:0 4px}.sn-btn.sn-mob{font-size:13px;padding:0 5px}}
+@media (max-width:360px){:root{--sn-h:50px}.sn-account-mobile{font-size:12px;padding:0 4px}.sn-btn.sn-mob{font-size:13px;padding:0 5px}}
 @media (prefers-reduced-motion:reduce){.sn-haut,.sn-carte,.sn-prog{transition:none}}
 @media print{.sn-bar,.sn-haut,.sn-suite{display:none!important}}
 `;
@@ -137,7 +141,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   bar.className = 'sn-bar';
   bar.innerHTML =
     '<div class="sn-in">' +
-      '<a class="sn-logo" href="/" aria-label="Dragonballogie, accueil">' + IC.boule + '<span>DRAGONBALL<b>OGIE</b></span></a>' +
+      '<a class="sn-logo" href="/" aria-label="Dragonballogie, accueil"><img src="/assets/logo-dragon.webp?v=1" alt="Dragonballogie" width="927" height="180"></a>' +
       '<nav class="sn-liens" aria-label="Navigation du site">' +
         '<a class="sn-lien' + (accueil ? ' actif' : '') + '" href="/">' + IC.maison + 'Accueil</a>' +
         '<a class="sn-lien" href="/#exploration">Univers</a>' +
