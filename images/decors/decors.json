@@ -122,6 +122,71 @@
       "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
       "remarques": "Portrait, personnages protégés par le droit d’auteur : à réserver à l’article sur la saga, pas un fond. 463×661.",
       "utilise_dans": []
+    },
+    {
+      "id": "dr-brief-jardin-01",
+      "monde": "capsule",
+      "fichier": "/images/decors/capsule/dr-brief-jardin-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Le Dr Brief dans son jardin, avec son chat noir et un dinosaure (capture d’anime)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Avec personnage : pas un fond. Basse définition (516×387).",
+      "utilise_dans": []
+    },
+    {
+      "id": "capsule-corp-batiment-02",
+      "monde": "capsule",
+      "fichier": "/images/decors/capsule/capsule-corp-batiment-02.webp",
+      "largeur": 588,
+      "hauteur": 333,
+      "format": "paysage",
+      "description": "Siège de Capsule Corp, dôme doré sous un ciel de fin de journée (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Sans personnage, paysage : très bon fond pour l’univers Capsule Corp.",
+      "utilise_dans": []
+    },
+    {
+      "id": "logo-capsule-corp-01",
+      "monde": "capsule",
+      "fichier": "/images/decors/capsule/logo-capsule-corp-01.webp",
+      "largeur": 554,
+      "hauteur": 554,
+      "format": "carré",
+      "description": "Logo Capsule Corp (autocollant, fond blanc)",
+      "usage_conseille": "logo",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Marque et logo protégés (image de produit dérivé) : usage décoratif léger uniquement, ne pas en faire l’identité du site. Fond blanc à détourer si besoin.",
+      "utilise_dans": []
+    },
+    {
+      "id": "planete-namek-lune-02",
+      "monde": "namek",
+      "fichier": "/images/decors/namek/planete-namek-lune-02.webp",
+      "largeur": 447,
+      "hauteur": 447,
+      "format": "carré",
+      "description": "Planète Namek et sa lune bleue vues de l’espace (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Sans personnage, format carré : bon pour un bandeau ou une vignette.",
+      "utilise_dans": []
+    },
+    {
+      "id": "paysage-lune-violet-01",
+      "monde": "a-classer",
+      "fichier": "/images/decors/a-classer/paysage-lune-violet-01.webp",
+      "largeur": 220,
+      "hauteur": 165,
+      "format": "paysage",
+      "description": "Paysage de rivière et de collines sous une grande lune, ciel violet (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Lieu non identifié : à classer dans le bon univers (Dje). Très petite image : 220 px de large environ, à remplacer par une version plus grande.",
+      "utilise_dans": []
     }
   ]
 }
