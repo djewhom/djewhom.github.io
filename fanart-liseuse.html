@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Liseuse — Dragonballogie</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#07152f">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+:root{--navy:#0a1f4d;--deep:#07152f;--gold:#ffc531;--orange:#f5821f;--paper:#fff6e6}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--deep);color:var(--paper);font:16px/1.5 system-ui,sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
+button,select{font:inherit;color:inherit}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:0;touch-action:pan-y;overflow:auto}
+#stage.largeur{align-items:flex-start;justify-content:center}
+#stage img{display:block;max-height:100dvh;max-width:100%;width:auto;height:auto;object-fit:contain;background:#fff;box-shadow:0 0 30px #000a}
+#stage.double img{max-width:50%}
+#stage.largeur img{max-height:none;width:min(100%,900px)}
+#stage.largeur.double img{width:50%;max-width:none}
+#stage img.fondu{animation:fondu .22s ease}@keyframes fondu{from{opacity:.2}to{opacity:1}}
+.bar{position:fixed;left:0;right:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(rgba(7,21,47,.96),rgba(7,21,47,.82));backdrop-filter:blur(6px);transition:opacity .25s,transform .25s}
+#haut{top:0;padding-top:max(10px,env(safe-area-inset-top))}#bas{bottom:0;flex-wrap:wrap;padding-bottom:max(10px,env(safe-area-inset-bottom));background:linear-gradient(rgba(7,21,47,.82),rgba(7,21,47,.96))}
+body.calme .bar{opacity:0;pointer-events:none}body.calme #haut{transform:translateY(-10px)}body.calme #bas{transform:translateY(10px)}
+.titre{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}.titre small{display:block;font-weight:400;color:#9db6cf;font-size:12px}
+.btn{background:#ffffff14;border:1px solid #ffffff30;border-radius:10px;padding:7px 12px;cursor:pointer;min-height:38px;display:inline-flex;align-items:center;gap:6px}
+.btn:hover,.btn:focus-visible{border-color:var(--gold);outline:none}.btn[aria-pressed=true]{background:#ffc53126;border-color:var(--gold)}
+a.btn{color:inherit;text-decoration:none}select.btn{padding-right:6px;background:#0a1f4d}
+#curseur{flex:1;min-width:140px;accent-color:var(--gold)}#compteur{font-variant-numeric:tabular-nums;min-width:74px;text-align:center;font-size:14px}
+.zone{position:fixed;top:64px;bottom:64px;z-index:3;width:30%;background:none;border:0;cursor:pointer}#zg{left:0}#zd{right:0}
+.fin{position:fixed;inset:0;z-index:8;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(7,21,47,.93)}
+.fin.on{display:flex}.fin .carte{max-width:460px;width:100%;text-align:center;border:1px solid var(--gold);background:var(--navy);border-radius:16px;padding:26px 22px;animation:fondu .3s ease}
+.fin h2{margin:0 0 6px;font-size:1.6rem;color:var(--gold)}.fin p{margin:0 0 14px;color:#cfe3f7}.fin .liens{display:flex;flex-direction:column;gap:9px}
+.fin a,.fin button.btn{justify-content:center;text-decoration:none;color:var(--paper)}.fin a.primaire{background:var(--gold);color:var(--navy);font-weight:800;border-color:var(--gold)}
+.credit{font-size:12px;color:#9db6cf;margin-top:14px}
+#msg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;z-index:9}#msg a{color:var(--gold)}
+@media (max-width:700px){#bas .opt{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="calme">
+<div id="msg">Chargement de la liseuse…</div>
+<div id="stage" hidden></div>
+<button class="zone" id="zg" aria-label="Page de gauche" hidden></button><button class="zone" id="zd" aria-label="Page de droite" hidden></button>
+<header class="bar" id="haut" hidden>
+  <a class="btn" href="/fanart-doujinshi.html" aria-label="Retour à la bibliothèque">← Bibliothèque</a>
+  <div class="titre" id="titre"></div>
+  <select class="btn" id="tomes" aria-label="Choisir le tome"></select>
+</header>
+<footer class="bar" id="bas" hidden>
+  <button class="btn" id="prec" aria-label="Page précédente">‹</button>
+  <input type="range" id="curseur" min="1" value="1" aria-label="Aller à la page">
+  <button class="btn" id="suiv" aria-label="Page suivante">›</button>
+  <span id="compteur" aria-live="polite"></span>
+  <button class="btn opt" id="b-double" aria-pressed="false" title="Afficher deux pages côte à côte">▯▯ Double page</button>
+  <button class="btn opt" id="b-sens" aria-pressed="true" title="Sens de lecture : japonais (de droite à gauche)">⇠ Sens japonais</button>
+  <button class="btn opt" id="b-fit" aria-pressed="false" title="Ajuster à la largeur">⇳ Largeur</button>
+  <button class="btn" id="b-plein" title="Plein écran">⛶</button>
+</footer>
+<div class="fin" id="fin" role="dialog" aria-modal="true" aria-labelledby="fin-t"><div class="carte">
+  <h2 id="fin-t">Fin du tome</h2><p id="fin-p"></p>
+  <div class="liens" id="fin-liens"></div>
+  <p class="credit" id="credit"></p>
+</div></div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i);};
+  var q=new URLSearchParams(location.search), slug=q.get('o')||'', tomeN=parseInt(q.get('t'),10)||1;
+  var oeuvre=null,tome=null,pages=[],idx=0,double=false,rtl=true,largeur=false,calmeTimer=null,PREF='db-liseuse-prefs';
+  function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n;}
+  function erreur(h){var m=$('msg');m.replaceChildren();m.insertAdjacentHTML('afterbegin',h);}
+  if(!/^[a-z0-9-]+$/.test(slug)){erreur('<div><p>Œuvre introuvable.</p><a href="/fanart-doujinshi.html">← Retour à la bibliothèque</a></div>');return;}
+  try{var p=JSON.parse(localStorage.getItem(PREF)||'{}');if(typeof p.double==='boolean')double=p.double;if(typeof p.largeur==='boolean')largeur=p.largeur;if(typeof p.rtl==='boolean')rtl=p.rtl;}catch(e){}
+  fetch('/doujinshi/'+slug+'/oeuvre.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(o){
+    oeuvre=o;if(o.sens==='ltr'&&!localStorage.getItem(PREF))rtl=false;
+    tome=o.tomes.filter(function(t){return t.n===tomeN;})[0]||o.tomes[0];tomeN=tome.n;
+    pages=[];for(var i=1;i<=tome.pages;i++)pages.push('/doujinshi/'+slug+'/tome-'+tomeN+'/'+String(i).padStart(3,'0')+'.webp');
+    document.title=o.titre+' — Tome '+tomeN+' — Dragonballogie';
+    $('titre').replaceChildren(document.createTextNode(o.titre),Object.assign(el('small'),{textContent:'Tome '+tomeN+' · par '+o.auteur}));
+    o.tomes.forEach(function(t){var op=el('option',null,'Tome '+t.n);op.value=t.n;if(t.n===tomeN)op.selected=true;$('tomes').append(op);});
+    var saved=parseInt(localStorage.getItem('db-liseuse:'+slug+':'+tomeN),10),h=parseInt((location.hash.match(/p=(\d+)/)||[])[1],10);
+    idx=h>0?h-1:(saved>0?saved-1:0);idx=Math.max(0,Math.min(pages.length-1,idx));
+    $('curseur').max=pages.length;
+    ['stage','haut','bas','zg','zd'].forEach(function(i){$(i).hidden=false;});$('msg').remove();
+    afficher(true);reveiller();
+  }).catch(function(){erreur('<div><p>Cette œuvre n’est pas disponible.</p><a href="/fanart-doujinshi.html">← Retour à la bibliothèque</a></div>');});
+
+  function large(){return window.innerWidth>=800&&double;}
+  /* Les pages affichées : couverture seule, puis paires (2-3, 4-5…) en double page. */
+  function groupe(i){if(!large())return [i];if(i===0)return [0];var a=i%2===1?i:i-1;return a+1<pages.length?[a,a+1]:[a];}
+  function afficher(sansFondu){
+    var g=groupe(idx),st=$('stage');idx=g[0];
+    st.className=(large()?'double ':'')+(largeur?'largeur':'');st.replaceChildren();
+    var ordre=large()&&rtl?g.slice().reverse():g;
+    ordre.forEach(function(i){var im=new Image();im.src=pages[i];im.alt='Page '+(i+1)+' sur '+pages.length;im.draggable=false;if(!sansFondu)im.className='fondu';st.append(im);});
+    st.scrollTop=0;
+    $('curseur').value=g[g.length-1]+1;$('compteur').textContent=(g.length>1?(g[0]+1)+'–'+(g[1]+1):(g[0]+1))+' / '+pages.length;
+    $('b-double').setAttribute('aria-pressed',String(double));$('b-sens').setAttribute('aria-pressed',String(rtl));$('b-sens').textContent=rtl?'⇠ Sens japonais':'⇢ Sens occidental';$('b-fit').setAttribute('aria-pressed',String(largeur));
+    $('b-double').hidden=window.innerWidth<800;
+    for(var k=1;k<=3;k++){var n=g[g.length-1]+k;if(pages[n]){var pre=new Image();pre.src=pages[n];}}
+    try{localStorage.setItem('db-liseuse:'+slug+':'+tomeN,String(idx+1));}catch(e){}
+    history.replaceState(null,'','#p='+(idx+1));
+  }
+  function aller(d){ /* d = +1 page suivante (dans la lecture), -1 précédente */
+    var g=groupe(idx);
+    if(d>0){var n=g[g.length-1]+1;if(n>=pages.length){fin();return;}idx=n;}
+    else{if(idx===0)return;idx=Math.max(0,idx-1);}
+    afficher();
+  }
+  function fin(){
+    var f=$('fin'),liens=$('fin-liens');liens.replaceChildren();
+    $('fin-t').textContent='Fin du tome '+tomeN;$('fin-p').textContent=oeuvre.titre+' — par '+oeuvre.auteur;
+    var suivant=oeuvre.tomes.filter(function(t){return t.n===tomeN+1;})[0];
+    if(suivant){var a=el('a','btn primaire','Lire le tome '+suivant.n+' →');a.href='/fanart-liseuse.html?o='+slug+'&t='+suivant.n;liens.append(a);}
+    else liens.append(el('p',null,'Tu as tout lu pour l’instant. La suite arrive peut-être !'));
+    var r=el('button','btn','↺ Relire ce tome');r.type='button';r.onclick=function(){f.classList.remove('on');idx=0;afficher();};liens.append(r);
+    var d=el('a','btn','💬 En parler sur le Discord');d.href='https://discord.gg/JxMAuBbpQ';d.target='_blank';d.rel='noopener';liens.append(d);
+    var b=el('a','btn','Bibliothèque');b.href='/fanart-doujinshi.html';liens.append(b);
+    $('credit').textContent=oeuvre.credit||'Œuvre de fan publiée avec l’accord de son auteur. Dragon Ball © Toriyama / Bird Studio / Shueisha / Toei Animation.';
+    f.classList.add('on');b.focus&&r.focus();
+    import('/assets/progress.js?v=1').then(function(m){m.award('read','/doujinshi/'+slug+'/tome-'+tomeN+'/');}).catch(function(){});
+  }
+  function sens(){return rtl?-1:1;}
+  /* Zones de clic : à gauche/droite selon le sens de lecture. */
+  $('zg').onclick=function(){aller(rtl?1:-1);};$('zd').onclick=function(){aller(rtl?-1:1);};
+  $('suiv').onclick=function(){aller(1);};$('prec').onclick=function(){aller(-1);};
+  $('curseur').oninput=function(){idx=parseInt(this.value,10)-1;afficher(true);};
+  $('b-double').onclick=function(){double=!double;sauver();afficher(true);};
+  $('b-sens').onclick=function(){rtl=!rtl;sauver();afficher(true);};
+  $('b-fit').onclick=function(){largeur=!largeur;sauver();afficher(true);};
+  $('b-plein').onclick=function(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();};
+  $('tomes').onchange=function(){location.href='/fanart-liseuse.html?o='+slug+'&t='+this.value;};
+  function sauver(){try{localStorage.setItem(PREF,JSON.stringify({double:double,largeur:largeur,rtl:rtl}));}catch(e){}}
+  window.addEventListener('resize',function(){if(pages.length)afficher(true);});
+  /* Clavier */
+  document.addEventListener('keydown',function(e){
+    if($('fin').classList.contains('on')){if(e.key==='Escape')$('fin').classList.remove('on');return;}
+    if(e.target.tagName==='SELECT'||e.target.id==='curseur')return;
+    var k=e.key;
+    if(k==='ArrowRight')aller(rtl?-1:1);else if(k==='ArrowLeft')aller(rtl?1:-1);
+    else if(k===' '||k==='PageDown'){e.preventDefault();aller(1);}else if(k==='PageUp')aller(-1);
+    else if(k==='Home'){idx=0;afficher();}else if(k==='End'){idx=pages.length-1;afficher();}
+    else if(k==='f'||k==='F')$('b-plein').click();else return;
+    reveiller();
+  });
+  /* Balayage tactile */
+  var tx=null,ty=null;
+  $('stage').addEventListener('touchstart',function(e){if(e.touches.length===1){tx=e.touches[0].clientX;ty=e.touches[0].clientY;}},{passive:true});
+  $('stage').addEventListener('touchend',function(e){if(tx==null)return;var t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;tx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){aller(dx<0?(rtl?-1:1):(rtl?1:-1));reveiller();}});
+  /* Barres qui s'effacent d'elles-mêmes ; un tap au centre les rappelle. */
+  function reveiller(){document.body.classList.remove('calme');clearTimeout(calmeTimer);calmeTimer=setTimeout(function(){if(!document.activeElement||document.activeElement.tagName!=='SELECT')document.body.classList.add('calme');},3200);}
+  $('stage').addEventListener('click',function(){if(document.body.classList.contains('calme'))reveiller();else document.body.classList.add('calme');});
+  ['haut','bas'].forEach(function(i){$(i).addEventListener('pointerdown',reveiller);});
+  document.addEventListener('mousemove',function(){if(document.body.classList.contains('calme'))reveiller();});
+})();
+</script>
+</body>
+</html>
