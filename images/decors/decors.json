@@ -70,6 +70,58 @@
       "utilise_dans": [
         "assets/univers.css (.du-scene[data-world=namek])"
       ]
+    },
+    {
+      "id": "planete-namek-espace-01",
+      "monde": "namek",
+      "fichier": "/images/decors/namek/planete-namek-espace-01.webp",
+      "largeur": 360,
+      "hauteur": 270,
+      "format": "paysage",
+      "description": "Planète Namek vue de l’espace, verte avec un halo bleu (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Sans personnage, idéal en bandeau sombre. Basse définition (360×270).",
+      "utilise_dans": []
+    },
+    {
+      "id": "anciens-namekiens-01",
+      "monde": "namek",
+      "fichier": "/images/decors/namek/anciens-namekiens-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Le chef du village et des Namek­iens devant un ciel vert (capture d’anime)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Avec personnages : pas un fond. 516×387.",
+      "utilise_dans": []
+    },
+    {
+      "id": "paysage-namek-02",
+      "monde": "namek",
+      "fichier": "/images/decors/namek/paysage-namek-02.webp",
+      "largeur": 557,
+      "hauteur": 329,
+      "format": "paysage",
+      "description": "Paysage de Namek : falaises, arbres bleus, ciel vert (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Sans personnage, très adapté en fond. Légende « Paysage de Namek » en bas à droite rognée.",
+      "utilise_dans": []
+    },
+    {
+      "id": "affiche-saga-namek-01",
+      "monde": "namek",
+      "fichier": "/images/decors/namek/affiche-saga-namek-01.webp",
+      "largeur": 463,
+      "hauteur": 661,
+      "format": "portrait",
+      "description": "Affiche de la saga Namek : Freezer, Goku Super Saiyan, Piccolo, Végéta, Krilin, Gohan (illustration officielle)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Portrait, personnages protégés par le droit d’auteur : à réserver à l’article sur la saga, pas un fond. 463×661.",
+      "utilise_dans": []
     }
   ]
 }
