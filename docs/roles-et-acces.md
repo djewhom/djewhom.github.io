@@ -27,3 +27,13 @@ Les droits sont appliqués par la base Supabase (RLS et fonctions SQL), jamais p
 - Tant que l'authentification GitHub est ouverte, n'importe quel détenteur d'un compte GitHub peut créer un compte **membre**. Il n'obtient jamais de rôle sans action d'un administrateur.
 - Ne jamais mettre de clé `service_role` ou de secret dans le dépôt (il est public).
 - Retirer un accès : repasser la personne en `member` depuis Membres & rôles.
+
+## Grades pédagogiques et points (migration 006)
+Deux notions distinctes : le **rôle** (membre, rédacteur, administrateur, fondateur) et le **grade académique** (pédagogique), calculé d'après les points.
+
+- Grades d'essai : Badaud (0), École de la Tortue (40), Ruban rouge (100), Tour Karin (200), Sanctuaire (350), Kaiô (550), Super Saiyan (800), Salle de l'Esprit et du Temps (1100), Super Saiyan 2 (1500). Table `db_internal.grade_levels`.
+- Barème d'essai : inscription +20 ; lecture complète d'un dossier +15 (une fois par dossier, plafond 60/jour) ; prédiction avant la scène +10 (une fois par dossier, plafond 30/jour) ; commentaire approuvé par la modération +5 (plafond 15/jour). Table `db_internal.point_rules`.
+- Les points sont accordés par PostgreSQL : le navigateur ne peut demander que « lecture » et « prédiction », une fois par page, avec plafond. Inscription et commentaires passent par des déclencheurs.
+- Modifier un barème ou un seuil : `update db_internal.point_rules set points=20 where kind='read';` ou `update db_internal.grade_levels set min_points=60 where rank=2;`
+- Réinitialiser tous les points (fondateur connecté) : `select public.academy_points_reset();` ou, dans le SQL Editor, `delete from db_internal.point_events;` puis relancer le bloc d'inscription de la migration.
+- Récompenses (à venir) : le solde (`balance`) pourra baisser par des dépenses sans faire baisser le grade, calculé sur les points gagnés (`earned`).

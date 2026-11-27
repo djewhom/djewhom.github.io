@@ -288,7 +288,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
       var max = document.documentElement.scrollHeight - window.innerHeight;
       var part = max > 0 ? window.scrollY / max : 1;
       /* fin atteinte = 85 % de la page défilée, après au moins 90 secondes sur la page */
-      if (part >= 0.85 && Date.now() - debut > 90000){ dejaLu = true; compter('lecture-complete', 'Lecture complète'); }
+      if (part >= 0.85 && Date.now() - debut > 90000){ dejaLu = true; compter('lecture-complete', 'Lecture complète'); try{ import('/assets/progress.js?v=1').then(function(m){ m.award('read', location.pathname); }); }catch(e){} }
     }
     window.addEventListener('scroll', verifierFin, { passive: true });
   }
