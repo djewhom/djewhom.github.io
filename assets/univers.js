@@ -24,7 +24,7 @@ function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefine
 function a(text,href,cls){const n=el('a',text,cls);n.href=href;return n;}
 function skin(node,id){node.dataset.world=id;}
 function scene(id){const n=el('div',undefined,'du-scene');n.setAttribute('aria-hidden','true');skin(n,id);return n;}
-function ensureStyle(){if(document.querySelector('link[data-du]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='/assets/univers.css?v=8';l.dataset.du='';document.head.append(l);}
+function ensureStyle(){if(document.querySelector('link[data-du]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='/assets/univers.css?v=9';l.dataset.du='';document.head.append(l);}
 function radar(root){
  root.replaceChildren();root.classList.add('du-explore');const head=el('div',undefined,'du-explore-head');const heading=el('div');heading.append(el('p','RADAR D’EXPLORATION','du-eyebrow'),el('h2','Choisis ta destination'));head.append(heading,a('Tous les dossiers ↗','/#sommaire','du-text-link'));root.append(head);
  const layout=el('div',undefined,'du-layout'),map=el('div',undefined,'du-radar'),screen=el('div',undefined,'du-screen');

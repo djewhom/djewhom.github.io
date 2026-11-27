@@ -246,7 +246,7 @@ body > .topnav, body > nav.topnav, body > header.topbar, body > header.site-head
   if(page === 'article') import('/assets/image-viewer.js?v=2').then(function(m){m.mountImageViewer();}).catch(function(e){console.warn('Visionneuse indisponible',e);});
   if(page === 'article') import('/assets/carnet.js?v=10').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){import('/assets/magazine.js?v=6').then(function(m){m.mountReadingTools(ARTICLES[ici],bar);}).catch(function(){});});
   if(accueil) import('/assets/carnet.js?v=10').then(function(m){m.mountHomeNotebook();}).catch(function(){});
-  import('/assets/univers.js?v=9').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
+  import('/assets/univers.js?v=10').then(function(m){m.mountUnivers(page,ici>=0?ARTICLES[ici]:null);}).catch(function(){});
 
   /* Clarity: consentement facultatif, pages publiques uniquement. */
   (function(){
