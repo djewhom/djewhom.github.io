@@ -51,6 +51,9 @@ Chargé par **toutes** les pages : `<script src="/assets/site-nav.js" defer></sc
 - les compteurs d'événements GoatCounter (`clic-discord`, `lecture-complete`) ;
 - le chargement de Clarity (avec consentement), des commentaires, de l'atelier de lecture (`study.js`).
 
+### Banque d'images de décors (`images/decors/`)
+Images de fond par univers (capsule, gero, kaioshin, namek…) pour le design du site, avec un catalogue `decors.json` et un `README.md` (marche à suivre pour en ajouter). Y piocher avant de chercher ailleurs ; y déclarer toute nouvelle image.
+
 ### Autres modules (`assets/`)
 `carnet.js/css` (carnet de lecture, marque-pages), `image-viewer.js` (visionneuse d'images), `study.js/css` (atelier : recherche, notes, surlignage, glossaire), `comments.js/css`, `account*.js` (comptes Supabase — **bêta non ouverte**, voir `docs/academy-setup.md`), `magazine.js/css` (habillage accueil), `univers.js/css`.
 
@@ -140,3 +143,4 @@ Format : `JJ/MM — IA — ce qui a été fait (fichiers principaux)`. Ajouter e
 - 27/11 — Claude — Règle 9 (articles participatifs) + Shin Kikoho : note « Un statut provisoire » (§01) et bloc « À vous de jouer » après la conclusion (lien premier cercle, invitation Discord). Dépôt Les-3-cercles : ancres `#premier-niveau`, `#deuxieme-niveau`, `#troisieme-niveau` ajoutées. Texte à valider par Dje.
 - 27/11 — Claude — Shin Kikoho : nouvelle section « Ce qui définit un boost magique : le résultat, pas l’intention » (`#resultat`, après les deux définitions) avec 4 schémas SVG inline (auteur à la seringue de ki ; deux branches choix conscient / oubli → boost magique ; « Je me retenais » qui masque l’écart ; l’auteur glisse, le récit enregistre). Texte et schémas = brouillon à valider par Dje.
 - 27/11 — Claude — Shin Kikoho : les 4 schémas SVG provisoires de la section `#resultat` sont remplacés par les illustrations ChatGPT fournies par Dje (`Article-Shin-Kikoho/images/boost-seringue-ki|deux-chemins|auteur-glisse|masque.webp`, cliquables pour agrandir). À vérifier : le personnage « Je me retenais » (illustration 3) n’est pas un personnage identifié de DB ; le texte intégré aux images (« Rustine verbale », etc.) est celui de ChatGPT.
+- 27/11 — Claude — Création de la banque d'images de décors `images/decors/` (dossiers par univers, `decors.json`, `README.md`) : 1 image Capsule Corp, 3 images du laboratoire du Dr Gero ; Namek référencé ; Keiyo Shinkai (kaioshin) à alimenter. Droits à vérifier pour toutes ; une image porte un filigrane « DBZ Art Collection ».

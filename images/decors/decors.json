@@ -1,0 +1,75 @@
+{
+  "description": "Banque d’images de décors pour le design du site Dragonballogie. Un dossier par univers (identifiants de assets/univers.js : capsule, gero, kaioshin, namek, archives, temple, bureau, galerie).",
+  "mondes_a_alimenter": {
+    "capsule": "Capsule Corp",
+    "gero": "Laboratoire du Dr Gero",
+    "namek": "Namek",
+    "kaioshin": "Keiyo Shinkai (monde des Kaiô Shin) : aucune image pour l’instant"
+  },
+  "images": [
+    {
+      "id": "capsule-corp-dome-01",
+      "monde": "capsule",
+      "fichier": "/images/decors/capsule/capsule-corp-dome-01.webp",
+      "largeur": 350,
+      "hauteur": 571,
+      "format": "portrait",
+      "description": "Capsule Corp : dôme jaune sur fond de ciel rose (illustration d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Portrait, basse définition (350×571) : à remplacer par une version HD.",
+      "utilise_dans": []
+    },
+    {
+      "id": "labo-sous-terrain-3d-01",
+      "monde": "gero",
+      "fichier": "/images/decors/gero/labo-sous-terrain-3d-01.webp",
+      "largeur": 588,
+      "hauteur": 330,
+      "format": "paysage",
+      "description": "Laboratoire souterrain en rendu 3D : C-18 devant des capsules de stase",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Filigrane « DBZ Art Collection » visible : ne pas publier tel quel en grand format, à recadrer ou remplacer.",
+      "utilise_dans": []
+    },
+    {
+      "id": "labo-machine-01",
+      "monde": "gero",
+      "fichier": "/images/decors/gero/labo-machine-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Laboratoire du Dr Gero : grande machine centrale et cuve verte (capture d’anime)",
+      "usage_conseille": "fond de page",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Capture d’écran basse définition (516×387).",
+      "utilise_dans": []
+    },
+    {
+      "id": "labo-dr-gero-01",
+      "monde": "gero",
+      "fichier": "/images/decors/gero/labo-dr-gero-01.webp",
+      "largeur": 516,
+      "hauteur": 387,
+      "format": "paysage",
+      "description": "Le Dr Gero devant sa cuve verte dans son laboratoire (capture d’anime)",
+      "usage_conseille": "illustration d’article",
+      "statut_droits": "à vérifier (image fournie par Dje, source non documentée)",
+      "remarques": "Capture avec personnage : plutôt pour un article que pour un fond de page. Basse définition (516×387).",
+      "utilise_dans": []
+    },
+    {
+      "id": "namek-manga-01",
+      "monde": "namek",
+      "fichier": "/images/univers/namek.webp",
+      "format": "paysage",
+      "description": "Paysage de Namek tiré du manga (fond de l’univers Namek)",
+      "statut_droits": "à vérifier (case de manga)",
+      "remarques": "Déjà en place ; fichier laissé à son emplacement d’origine.",
+      "utilise_dans": [
+        "assets/univers.css (.du-scene[data-world=namek])"
+      ]
+    }
+  ]
+}
