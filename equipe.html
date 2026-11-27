@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Salle de contrôle — Dragonballogie</title><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><link rel="icon" href="/assets/icon-192.png">
+<style>
+:root{color-scheme:dark;--navy:#0a1f4d;--gold:#ffc531;--orange:#f5821f;--paper:#fff6e6;--ink:#07152f}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--paper);font:16px/1.55 system-ui,sans-serif;background:linear-gradient(rgba(7,21,47,.82),rgba(7,21,47,.95)),#07152f url(/images/univers/capsule.webp) center/cover fixed}
+main{max-width:900px;margin:0 auto;padding:clamp(18px,5vw,46px) clamp(14px,4vw,24px) 56px}
+a{color:var(--gold)}.eyebrow{font:700 11px/1.4 system-ui;letter-spacing:.14em;text-transform:uppercase;color:#7fd3ff;margin:0}
+h1{font:800 clamp(30px,6vw,46px)/1.1 Oswald,Impact,system-ui,sans-serif;margin:6px 0 8px}
+.lead{color:#cfe3f7;max-width:60ch;margin:0 0 22px}
+.card{border:1px solid #3a6080;background:rgba(10,31,77,.78);backdrop-filter:blur(4px);border-radius:16px;padding:clamp(16px,3vw,26px);animation:rise .5s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ladder{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.ladder li{display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;border:1px solid #3a6080;color:#9db6cf;font-size:14px}
+.ladder li:before{content:"";width:10px;height:10px;border-radius:50%;background:#3a6080}
+.ladder li.on{border-color:var(--gold);color:#fff;background:#ffc53122}.ladder li.on:before{background:var(--gold);box-shadow:0 0 10px var(--gold)}.ladder li.under{color:#d7e6f5}.ladder li.under:before{background:#7fd3ff}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.tile{display:block;text-decoration:none;color:var(--paper);border:1px solid #4a7396;border-radius:14px;padding:16px 16px 15px;background:linear-gradient(160deg,#12357a,#0a1f4d);transition:transform .18s,border-color .18s,box-shadow .18s;animation:rise .5s ease both}
+.tile:hover,.tile:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 8px 22px #0007;outline:none}
+.tile .ball{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#5a2b00;background:radial-gradient(circle at 35% 30%,#ffe9a0,var(--orange));margin-bottom:10px;box-shadow:0 0 0 3px #f5821f33}
+.tile strong{display:block;font-size:17px}.tile span.d{display:block;color:#b9cde2;font-size:14px;margin-top:3px}.tile em{display:inline-block;margin-top:9px;font:700 11px/1 system-ui;letter-spacing:.08em;text-transform:uppercase;color:#7fd3ff;font-style:normal}
+h2{font:700 13px/1.4 system-ui;letter-spacing:.12em;text-transform:uppercase;color:#7fd3ff;margin:30px 0 12px}
+.msg{text-align:center;padding:clamp(26px,6vw,52px) 20px}.msg h1{font-size:clamp(26px,5vw,36px)}
+.btn{display:inline-block;background:var(--gold);color:var(--navy);padding:11px 20px;border-radius:10px;font-weight:800;text-decoration:none;margin-top:10px}
+.back{display:inline-block;margin-top:30px;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body><main id="app"><div class="card msg" id="wait"><p class="eyebrow">Accès réservé</p><h1>Vérification…</h1></div></main>
+<script type="module">
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from '/assets/account-config.js';
+const app=document.getElementById('app');
+const LEVEL={member:0,contributor:1,admin:2,owner:3};
+const NAMES=[['owner','Fondateur'],['admin','Administrateur'],['contributor','Rédacteur'],['member','Membre']];
+const TILES=[
+ {min:1,sym:'✎',t:'Rédaction',d:'Proposer un texte, suivre ses brouillons, passer en relecture.',h:'/compte.html#editorial-panel',tag:'Rédacteurs et au-dessus'},
+ {min:2,sym:'⚖',t:'Modération',d:'Examiner et traiter les commentaires signalés.',h:'/compte.html#comment-moderation',tag:'Administrateurs'},
+ {min:2,sym:'✉',t:'Annonces & communauté',d:'Publier une annonce, suivre la vie de l’académie.',h:'/compte.html#community-panel',tag:'Administrateurs'},
+ {min:2,sym:'★',t:'Membres & rôles',d:'Voir les inscrits, attribuer les rôles, consulter l’historique.',h:'/compte.html#staff-panel',tag:'Administrateurs'}];
+const TOOLS=[
+ {min:2,sym:'▤',t:'Carnet de bord',d:'AGENTS.md : règles et journal partagés entre Claude et ChatGPT.',h:'https://github.com/djewhom/djewhom.github.io/blob/main/AGENTS.md'},
+ {min:2,sym:'◔',t:'Statistiques',d:'Visites, provenance et clics Discord (GoatCounter).',h:'https://dragonballogy.goatcounter.com'}];
+function el(tag,text,cls){const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;}
+function closed(title,text,cta){app.replaceChildren();const c=el('div',null,'card msg');c.append(el('p','Accès réservé','eyebrow'),el('h1',title),el('p',text,'lead'));if(cta){const a=el('a',cta[0],'btn');a.href=cta[1];c.append(a);}const b=el('a','← Retour à Dragonballogie','back');b.href='/';c.append(document.createElement('br'),b);app.append(c);}
+function hub(role,pseudo){
+ const lvl=LEVEL[role];app.replaceChildren();
+ app.append(el('p','Salle de contrôle','eyebrow'),el('h1','Bienvenue, '+pseudo),el('p','Espace réservé à l’équipe Dragonballogie. Les droits sont vérifiés par la base de données à chaque action : cette page ne fait que t’orienter.','lead'));
+ const ladder=el('ul',null,'ladder');for(const [r,n] of NAMES){const li=el('li',n);if(r===role)li.className='on';else if(LEVEL[r]<lvl)li.className='under';ladder.append(li);}app.append(ladder);
+ function tiles(list,label){const items=list.filter(x=>lvl>=x.min);if(!items.length)return;if(label)app.append(el('h2',label));const g=el('div',null,'tiles');items.forEach((x,i)=>{const a=el('a',null,'tile');a.href=x.h;if(x.h.startsWith('http')){a.target='_blank';a.rel='noopener noreferrer';}a.style.animationDelay=(i*70)+'ms';const b=el('span',x.sym,'ball');b.setAttribute('aria-hidden','true');a.append(b,el('strong',x.t),el('span',x.d,'d'));if(x.tag)a.append(el('em',x.tag));g.append(a);});app.append(g);}
+ tiles(TILES);tiles(TOOLS,'Outils');
+ if(lvl<2)app.append(el('p','Les autres espaces s’ouvriront selon ton rôle.','lead'));
+ const b=el('a','← Retour à Dragonballogie','back');b.href='/';app.append(b);
+}
+try{
+ if(!SUPABASE_URL||!SUPABASE_PUBLISHABLE_KEY)throw 0;
+ const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.1/+esm');
+ const client=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{flowType:'pkce'}});
+ const {data:{session}}=await client.auth.getSession();
+ if(!session){closed('Cette salle est réservée','Connecte-toi avec ton compte d’équipe pour y accéder.',['Me connecter','/compte.html']);}
+ else{
+  const {data,error}=await client.from('db_profiles').select('pseudo,role').eq('id',session.user.id).single();
+  if(error||!data||!(data.role in LEVEL)||LEVEL[data.role]<1)closed('Cette salle est réservée','Ton compte n’a pas (encore) accès à l’espace équipe.');
+  else hub(data.role,data.pseudo);
+ }
+}catch{closed('Salle indisponible','L’espace équipe est momentanément injoignable. Réessaie un peu plus tard.');}
+</script></body></html>
