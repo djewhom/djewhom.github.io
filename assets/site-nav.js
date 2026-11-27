@@ -23,6 +23,7 @@
     { g:'Les analyses', n:'07', t:'Super Buu vs Kid Buu',                   u:'/Super-Buu-vs-Kid-Buu/article-superbuu-vs-kidbuu.html', p:'/super-buu-vs-kid-buu/' },
     { g:'Les analyses', n:'08', t:'Super Saiyan : de la légende aux paliers de puissance', u:'/Article-Super-Saiyan/', p:'/article-super-saiyan/' },
     { g:'Les analyses', n:'11', t:'Gotenks SSJ3 vs Super Buu : quand la narration dicte le rapport de force', u:'/Article-Gotenks-SSJ3/', p:'/article-gotenks-ssj3/', comments:false },
+    { g:'Les analyses', n:'12', t:'De Gros Buu à Super Buu : anatomie d\'un antagoniste en cours d\'écriture', u:'/Article-Gros-Buu-Super-Buu/', p:'/article-gros-buu-super-buu/', comments:false },
     { g:'Boosts magiques / Nerfs magiques', n:'09', t:'Le miracle du Shin Kikoho', u:'/Article-Shin-Kikoho/', p:'/article-shin-kikoho/', comments:false },
     { g:'Boosts magiques / Nerfs magiques', n:'10', t:'C-16 : une puissance de circonstance', u:'/Article-C16-Etreinte/', p:'/article-c16-etreinte/', comments:false }
   ];
